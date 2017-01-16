@@ -11,6 +11,7 @@
     <AssemblyName>PaxComputation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,17 +47,15 @@
   <ItemGroup>
     <Compile Include="AgilityTool.cs" />
     <Compile Include="BooksComputation.cs" />
-    <Compile Include="Models\DescrItem.cs" />
-    <Compile Include="Models\ImgItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PaxDal\PaxDal.csproj">
-      <Project>{3E45CE8F-3E89-4BEA-81A0-FDFCA1D14C37}</Project>
-      <Name>PaxDal</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{3d6f2924-0577-4bb1-ba9c-91c0d132edb7}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

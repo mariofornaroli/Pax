@@ -10,3 +10,13 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\HtmlAgilityPack.xml
 C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\EntityFramework.xml
 C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\obj\Debug\PaxComputation.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\obj\Debug\PaxComputation.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\PaxComputation.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\PaxComputation.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\HtmlAgilityPack.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\HtmlAgilityPack.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\HtmlAgilityPack.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\obj\Debug\PaxComputation.csprojResolveAssemblyReference.cache
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\obj\Debug\PaxComputation.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\obj\Debug\PaxComputation.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\Entities.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Debug\Entities.pdb

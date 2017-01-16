@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PaxWebApi;
 using PaxWebApi.Controllers;
 using PaxComputation;
-using PaxDal;
+using Entities;
 
 namespace PaxWebApi.Tests.Controllers
 {
@@ -19,13 +19,11 @@ namespace PaxWebApi.Tests.Controllers
         public void ComputeHeartBooksOk()
         {
             // Act
-            IEnumerable<Books> result = BooksComputation.ComputeHeartBooks();
+            IEnumerable<BookItem> result = BooksComputation.ComputeHeartBooks();
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
+            Assert.AreEqual(12, result.Count());
         }        
     }
 }

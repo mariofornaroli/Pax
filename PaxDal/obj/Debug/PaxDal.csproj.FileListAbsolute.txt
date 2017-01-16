@@ -8,3 +8,11 @@ C:\mfo\Projects\PaxDal\bin\Debug\EntityFramework.SqlServer.xml
 C:\mfo\Projects\PaxDal\obj\Debug\PaxDal.csprojResolveAssemblyReference.cache
 C:\mfo\Projects\PaxDal\obj\Debug\PaxDal.dll
 C:\mfo\Projects\PaxDal\obj\Debug\PaxDal.pdb
+E:\Mario\Projects\PAX\PaxDal\bin\Debug\PaxDal.dll.config
+E:\Mario\Projects\PAX\PaxDal\bin\Debug\PaxDal.dll
+E:\Mario\Projects\PAX\PaxDal\bin\Debug\PaxDal.pdb
+E:\Mario\Projects\PAX\PaxDal\bin\Debug\EntityFramework.xml
+E:\Mario\Projects\PAX\PaxDal\bin\Debug\EntityFramework.SqlServer.xml
+E:\Mario\Projects\PAX\PaxDal\obj\Debug\PaxDal.csprojResolveAssemblyReference.cache
+E:\Mario\Projects\PAX\PaxDal\obj\Debug\PaxDal.dll
+E:\Mario\Projects\PAX\PaxDal\obj\Debug\PaxDal.pdb

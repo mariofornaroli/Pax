@@ -1,0 +1,5 @@
+E:\Mario\Projects\PAX\PaxWebApi\Entities\bin\Debug\Entities.dll
+E:\Mario\Projects\PAX\PaxWebApi\Entities\bin\Debug\Entities.pdb
+E:\Mario\Projects\PAX\PaxWebApi\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+E:\Mario\Projects\PAX\PaxWebApi\Entities\obj\Debug\Entities.dll
+E:\Mario\Projects\PAX\PaxWebApi\Entities\obj\Debug\Entities.pdb

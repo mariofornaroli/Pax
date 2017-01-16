@@ -14,6 +14,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -103,9 +104,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\PaxDal\PaxDal.csproj">
-      <Project>{3e45ce8f-3e89-4bea-81a0-fdfca1d14c37}</Project>
-      <Name>PaxDal</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{3d6f2924-0577-4bb1-ba9c-91c0d132edb7}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\PaxComputation\PaxComputation.csproj">
       <Project>{e4d970e2-1a88-4a7e-9191-0e547eae1034}</Project>
