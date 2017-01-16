@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="AgilityTool.cs" />
     <Compile Include="BooksComputation.cs" />
+    <Compile Include="Models\DescrItem.cs" />
+    <Compile Include="Models\ImgItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
