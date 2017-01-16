@@ -91,9 +91,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Computation\BooksComputationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -102,6 +103,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PaxDal\PaxDal.csproj">
+      <Project>{3e45ce8f-3e89-4bea-81a0-fdfca1d14c37}</Project>
+      <Name>PaxDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PaxComputation\PaxComputation.csproj">
+      <Project>{e4d970e2-1a88-4a7e-9191-0e547eae1034}</Project>
+      <Name>PaxComputation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PaxWebApi\PaxWebApi.csproj">
       <Project>{7CDAE921-4972-44E0-A6B2-23B7D0AF8CB6}</Project>
       <Name>PaxWebApi</Name>

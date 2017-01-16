@@ -1,0 +1,10 @@
+C:\mfo\Projects\PaxDal\bin\Debug\PaxDal.dll.config
+C:\mfo\Projects\PaxDal\bin\Debug\PaxDal.dll
+C:\mfo\Projects\PaxDal\bin\Debug\PaxDal.pdb
+C:\mfo\Projects\PaxDal\bin\Debug\EntityFramework.dll
+C:\mfo\Projects\PaxDal\bin\Debug\EntityFramework.SqlServer.dll
+C:\mfo\Projects\PaxDal\bin\Debug\EntityFramework.xml
+C:\mfo\Projects\PaxDal\bin\Debug\EntityFramework.SqlServer.xml
+C:\mfo\Projects\PaxDal\obj\Debug\PaxDal.csprojResolveAssemblyReference.cache
+C:\mfo\Projects\PaxDal\obj\Debug\PaxDal.dll
+C:\mfo\Projects\PaxDal\obj\Debug\PaxDal.pdb
