@@ -24,7 +24,104 @@ namespace PaxComputation
             return _ComputeHeartBooks();
         }
 
-        #region Private Methods
+        /// <summary>
+        /// Get Heart book details
+        /// </summary>
+        /// <returns>Book details</returns>
+        public static BookDetailsItem ComputeBookDetails(string completeHref)
+        {
+            return _ComputeBookDetails(completeHref);
+        }
+
+
+        #region Private ComputeBookDetails Methods
+
+        private static BookDetailsItem _ComputeBookDetails(string completeHref)
+        {
+            HtmlWeb web = new HtmlWeb();
+            HtmlDocument doc = web.Load(completeHref);
+
+            return GetBookDetailsObj(doc);
+        }
+
+        private static BookDetailsItem GetBookDetailsObj(HtmlDocument doc)
+        {
+            var bookDetails = new BookDetailsItem();
+
+            /* Get coeurTdDoc object */
+            var detailTableDoc = GetDetailTableObj(doc);
+
+            /* Fill properties */
+            FillTitle(detailTableDoc, bookDetails);
+            FillImgSrc(detailTableDoc, bookDetails);
+            FillAuthor(detailTableDoc, bookDetails);
+
+
+            return bookDetails;
+
+            /* Get coeurTdDoc Block list */
+            //var groupBlocksList = GetGroupBlocksList(coeurTdDoc);
+            //
+            ///* Get coeurTdDoc Img list and Description list */
+            //var bookList = new List<BookItem>();
+            //GetGeneralBookListItem(groupBlocksList, ref bookList);
+            //
+            //return bookList;
+        }
+
+        private static HtmlDocument GetDetailTableObj(HtmlDocument doc)
+        {
+            var className = "tab_detaillivre";
+            var detailTable = doc.DocumentNode
+                .Descendants("table")
+                .Where(d =>
+                d.Attributes.Contains("class")
+                &&
+                d.Attributes["class"].Value.Contains(className)
+                ).Select(x => AgilityTool.LoadFromString(x.InnerHtml));
+            return detailTable.FirstOrDefault();
+        }
+
+        /* Title */
+        private static void FillTitle(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode titleNode = tableDoc.DocumentNode
+                .SelectSingleNode("//td[@class='tab_detaillivre_metabook']//span[@class='titre']");
+            if (titleNode != null) {
+                bookDetails.Title = titleNode.InnerText;
+            }
+        }
+
+        /* ImgSrc */
+        private static void FillImgSrc(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode imgNode = tableDoc.DocumentNode
+                .SelectSingleNode("//td[@class='visu']//img");
+            if (imgNode != null)
+            {
+                bookDetails.ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
+            }
+        }
+
+        /* Author */
+        private static void FillAuthor(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode autheurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='auteur']//a");
+            if (autheurNode != null)
+            {
+                bookDetails.AuthorHref = autheurNode.HasAttributes ? autheurNode.Attributes["href"].Value : string.Empty;
+                bookDetails.Author = autheurNode.InnerText;
+            }
+        }
+
+
+
+        #endregion
+
+
+
+
+        #region Private ComputeHeartBooks Methods
 
         private static List<BookItem> _ComputeHeartBooks()
         {
@@ -172,5 +269,6 @@ namespace PaxComputation
         }
 
         #endregion
+                
     }
 }

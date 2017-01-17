@@ -24,6 +24,24 @@ namespace PaxWebApi.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(12, result.Count());
-        }        
+        }
+
+        [TestMethod]
+        public void ComputeBookDetailsOk()
+        {
+            string bookDetail = getFirstBookCompleteHref();
+            // Act
+            BookDetailsItem bookDetails = BooksComputation.ComputeBookDetails(bookDetail);
+
+            // Assert
+            Assert.IsNotNull(bookDetails);
+        }
+
+        private string getFirstBookCompleteHref()
+        {
+            var booksList = BooksComputation.ComputeHeartBooks();
+            return booksList.FirstOrDefault().CompleteHref;
+
+        }
     }
 }
