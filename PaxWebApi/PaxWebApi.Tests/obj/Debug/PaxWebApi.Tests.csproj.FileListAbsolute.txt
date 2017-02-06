@@ -211,3 +211,5 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxServices.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxDal.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxWorker.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxWorker.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\EntityFramework.SqlServer.xml
