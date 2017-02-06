@@ -1,11 +1,10 @@
-﻿using PaxDal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaxDal
+namespace Entities
 {
     public interface IDataBaseManager
     {
@@ -13,14 +12,21 @@ namespace PaxDal
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        List<Book> GetHeartBooks();
+        List<BookItem> GetHeartBooks();
 
         /// <summary>
         /// Get Heart books
         /// </summary>
         /// <param name="booksToAdd"></param>
         /// <returns></returns>
-        bool AddHeartBooks(List<Book> booksToAdd);
+        bool AddHeartBooks(List<BookItem> booksToAdd);
+
+        /// <summary>
+        /// Get book details
+        /// </summary>
+        /// <param name="completeHref"></param>
+        /// <returns></returns>
+        BookDetailsItem GetBookDetails(string completeHref);
 
         /// <summary>
         /// begin Transaction

@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="BookManager.cs" />
     <Compile Include="IBookManager.cs" />
-    <Compile Include="Tools\Mapper.cs" />
     <Compile Include="Mock\BookManagerMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

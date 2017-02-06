@@ -213,3 +213,15 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxWorker.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxWorker.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\EntityFramework.SqlServer.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\EntityFramework.SqlServer.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\EntityFramework.SqlServer.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxWorker.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxServices.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxWorker.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\EntityFramework.SqlServer.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxServices.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Ninject.Web.Common.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Ninject.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Ninject.Web.WebApi.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Ninject.Web.Common.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Ninject.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Ninject.Web.WebApi.xml

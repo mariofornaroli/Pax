@@ -51,11 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Book.cs">
-      <DependentUpon>PasModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Book.cs" />
     <Compile Include="DataBaseManager.cs" />
-    <Compile Include="IDataBaseManager.cs" />
     <Compile Include="PasModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,6 +69,7 @@
       <DependentUpon>PasModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Mapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
