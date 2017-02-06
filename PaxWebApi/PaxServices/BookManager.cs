@@ -1,4 +1,5 @@
-﻿using PaxDal;
+﻿using Entities;
+using PaxDal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,10 @@ namespace PaxServices
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public List<Books> GetHeartBooks()
+        public List<BookItem> GetHeartBooks()
         {
-            return myDatabaseManager.GetHeartBooks();
+            var dalBooks = myDatabaseManager.GetHeartBooks();
+            return dalBooks.Select(x => Tools.Mapper.DalToServiceBookMapper(x)).ToList();
         }
     }
 }

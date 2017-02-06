@@ -12,11 +12,15 @@ namespace PaxDal
     using System;
     using System.Collections.Generic;
     
-    public partial class Books
+    public partial class Book
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Description { get; set; }
+        public string Href { get; set; }
+        public string CompleteHref { get; set; }
+        public string ImgSrc { get; set; }
+        public Nullable<System.DateTime> DateComputation { get; set; }
     }
 }

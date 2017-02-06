@@ -127,9 +127,7 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\obj\Debug\PaxWebApi.Tests.csprojRe
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\obj\Debug\PaxWebApi.Tests.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\obj\Debug\PaxWebApi.Tests.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxComputation.dll
-C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxDal.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\HtmlAgilityPack.dll
-C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxDal.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxComputation.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\HtmlAgilityPack.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\HtmlAgilityPack.xml
@@ -205,3 +203,11 @@ E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\obj\Debug\PaxWebApi.Tests.dll
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\obj\Debug\PaxWebApi.Tests.pdb
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Entities.dll
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Entities.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Entities.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\Entities.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxServices.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxDal.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxServices.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxDal.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxWorker.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\PaxWorker.pdb

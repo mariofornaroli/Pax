@@ -1,4 +1,5 @@
-﻿using PaxDal;
+﻿using Entities;
+using PaxDal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace PaxServices
 {
     public interface IBookManager
     {
-        List<Books> GetHeartBooks();
+        List<BookItem> GetHeartBooks();
     }
 }

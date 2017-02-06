@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BookManager.cs" />
     <Compile Include="IBookManager.cs" />
+    <Compile Include="Tools\Mapper.cs" />
     <Compile Include="Mock\BookManagerMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -49,6 +50,10 @@
     <ProjectReference Include="..\..\PaxDal\PaxDal.csproj">
       <Project>{3e45ce8f-3e89-4bea-81a0-fdfca1d14c37}</Project>
       <Name>PaxDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{3D6F2924-0577-4BB1-BA9C-91C0D132EDB7}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

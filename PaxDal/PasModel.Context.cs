@@ -25,6 +25,6 @@ namespace PaxDal
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Books> Books { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
     }
 }

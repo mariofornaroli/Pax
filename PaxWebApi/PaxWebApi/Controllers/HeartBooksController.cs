@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entities;
+using PaxServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,9 +11,21 @@ namespace PaxWebApi.Controllers
 {
     public class HeartBooksController : ApiController
     {
-        public string Get()
+        private IBookManager bookManager = null;
+
+        public HeartBooksController(IBookManager _bookManager)
         {
-            return "Heart Books";
+            bookManager = _bookManager;
+        }
+
+        public ResultModel<List<BookItem>> Get()
+        {
+            var resultModel = new ResultModel<List<BookItem>>();
+            resultModel.ResultData = bookManager.GetHeartBooks();
+
+            /* Return data */
+            resultModel.OperationResult = true;
+            return resultModel;
         }
     }
 }

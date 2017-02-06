@@ -6,11 +6,18 @@ warning 6002: The table/view 'PAX.dbo.Books' does not have a primary key defined
     <Key>
       <PropertyRef Name="Id" />
       <PropertyRef Name="Title" />
+      <PropertyRef Name="Href" />
+      <PropertyRef Name="CompleteHref" />
+      <PropertyRef Name="ImgSrc" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Author" Type="nvarchar" MaxLength="150" />
     <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Href" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompleteHref" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImgSrc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateComputation" Type="datetime" />
   </EntityType>
   <EntityContainer Name="PAXModelStoreContainer">
     <EntitySet Name="Books" EntityType="Self.Books" store:Type="Tables" store:Schema="dbo">
@@ -18,7 +25,11 @@ warning 6002: The table/view 'PAX.dbo.Books' does not have a primary key defined
     [Books].[Id] AS [Id], 
     [Books].[Title] AS [Title], 
     [Books].[Author] AS [Author], 
-    [Books].[Description] AS [Description]
+    [Books].[Description] AS [Description], 
+    [Books].[Href] AS [Href], 
+    [Books].[CompleteHref] AS [CompleteHref], 
+    [Books].[ImgSrc] AS [ImgSrc], 
+    [Books].[DateComputation] AS [DateComputation]
     FROM [dbo].[Books] AS [Books]</DefiningQuery>
     </EntitySet>
   </EntityContainer>

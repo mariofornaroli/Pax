@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaxDal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,14 @@ namespace PaxDal
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        List<Books> GetHeartBooks();
+        List<Book> GetHeartBooks();
+
+        /// <summary>
+        /// Get Heart books
+        /// </summary>
+        /// <param name="booksToAdd"></param>
+        /// <returns></returns>
+        bool AddHeartBooks(List<Book> booksToAdd);
 
         /// <summary>
         /// begin Transaction

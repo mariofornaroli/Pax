@@ -218,7 +218,7 @@ namespace PaxComputation
                     int indexImg = bookList.FindIndex(x => x.Href == href);
                     if (indexImg < 0)
                     {
-                        bookList.Add(new BookItem { Href = href, CompleteHref = PAX_WEBSITE + href, ImgSrc = imgSrc });
+                        bookList.Add(new BookItem { Href = href, CompleteHref = PAX_WEBSITE + href, ImgSrc = imgSrc, DateComputation = DateTime.Now });
                     }
                     else
                     {

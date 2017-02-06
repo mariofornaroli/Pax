@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Books.cs">
+    <Compile Include="Book.cs">
       <DependentUpon>PasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBaseManager.cs" />
@@ -98,6 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PaxWebApi\Entities\Entities.csproj">
+      <Project>{3D6F2924-0577-4BB1-BA9C-91C0D132EDB7}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
