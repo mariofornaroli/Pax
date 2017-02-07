@@ -27,3 +27,5 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\EntityFramework.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\PaxDal.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\Entities.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\EntityFramework.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\Entities.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\Entities.pdb

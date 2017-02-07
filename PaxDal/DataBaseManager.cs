@@ -5,6 +5,7 @@ using System.Data;
 using System;
 using PaxDal;
 using Entities;
+using PaxDal.Tools;
 
 namespace PaxDal
 {
@@ -39,23 +40,35 @@ namespace PaxDal
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public List<Book> GetHeartBooks()
+        public List<BookItem> GetHeartBooks()
         {
-            return dbContext.Books.ToList();
+            throw new NotImplementedException();
+            //var dbHeartBooks = dbContext.Books.ToList();
+            //return dbHeartBooks.Select(x => Tools.Mapper.DalToServiceBookMapper(x)).ToList();
         }
 
         
-        public bool AddHeartBooks(List<Book> booksToAdd)
+        public bool AddHeartBooks(List<BookItem> booksToAdd)
         {
-            //create DBContext object
-            using (var dbContext = new PAXEntities())
-            {
-                booksToAdd.ForEach( x => dbContext.Books.Add(x));                
-                // call SaveChanges method to save student into database
-                dbContext.SaveChanges();
-            }
+            throw new NotImplementedException();
+
+            //// add books to db
+            //var dbBooks = booksToAdd.Select(x => Mapper.ServiceToDalBookMapper(x)).ToList();
+
+            ////create DBContext object
+            //using (var dbContext = new PAXEntities())
+            //{
+            //    dbBooks.ForEach( x => dbContext.Books.Add(x));                
+            //    // call SaveChanges method to save student into database
+            //    dbContext.SaveChanges();
+            //}
 
             return true;
+        }
+
+        public BookDetailsItem GetBookDetails(string completeHref)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

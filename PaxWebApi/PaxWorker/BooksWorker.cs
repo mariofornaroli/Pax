@@ -1,7 +1,6 @@
 ﻿using Entities;
 using PaxComputation;
 using PaxDal;
-using PaxServices.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace PaxWorker
 {
     public class BooksWorker
     {
-        private IDataBaseManager dataBaseManager = new DataBaseManager();
+        private IDataBaseManager dataBaseManager = new BooksComputationManager();
 
         //public BooksWorker(IDataBaseManager _dataBaseManager)
         //{
@@ -25,8 +24,11 @@ namespace PaxWorker
             IEnumerable<BookItem> resultCompute = BooksComputation.ComputeHeartBooks();
 
             // add books to db
-            var booksToAdd = resultCompute.Select(x => Mapper.ServiceToDalBookMapper(x)).ToList();
-            return dataBaseManager.AddHeartBooks(booksToAdd);
+            return dataBaseManager.AddHeartBooks(resultCompute.ToList());
+
+            //// add books to db
+            //var booksToAdd = resultCompute.Select(x => Mapper.ServiceToDalBookMapper(x)).ToList();
+            //return dataBaseManager.AddHeartBooks(booksToAdd);
         }
     }
 }

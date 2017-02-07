@@ -26,3 +26,5 @@ C:\mfo\Projects\PAX\PaxDal\obj\Debug\PaxDal.dll
 C:\mfo\Projects\PAX\PaxDal\obj\Debug\PaxDal.pdb
 C:\mfo\Projects\PAX\PaxDal\bin\Debug\Entities.dll
 C:\mfo\Projects\PAX\PaxDal\bin\Debug\Entities.pdb
+E:\Mario\Projects\PAX\PaxDal\bin\Debug\Entities.dll
+E:\Mario\Projects\PAX\PaxDal\bin\Debug\Entities.pdb

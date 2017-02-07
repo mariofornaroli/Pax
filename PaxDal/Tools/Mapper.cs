@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaxServices.Tools
+namespace PaxDal.Tools
 {
     public static class Mapper
     {
@@ -32,7 +32,8 @@ namespace PaxServices.Tools
         {
             return new Book
             {
-                Id = book.Id != null ? Int32.Parse(book.Id) : -1,
+                //Id = book.Id != null ? Int32.Parse(book.Id) : -1,
+                Id = book.Id,
                 Title = book.Title,
                 Description = book.Description,
                 Author = book.Author,

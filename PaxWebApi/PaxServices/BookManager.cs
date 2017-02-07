@@ -23,8 +23,7 @@ namespace PaxServices
         /// <returns>List of heart books</returns>
         public List<BookItem> GetHeartBooks()
         {
-            var dalBooks = myDatabaseManager.GetHeartBooks();
-            return dalBooks.Select(x => Tools.Mapper.DalToServiceBookMapper(x)).ToList();
+            return myDatabaseManager.GetHeartBooks();
         }
     }
 }
