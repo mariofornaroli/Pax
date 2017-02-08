@@ -11,11 +11,11 @@
         /* jshint validthis:true */
         self.getItems = getItems;
         self.getDetails = _getDetails;
-        self.allDocuments = [];
+        self.heartBooks = [];
         /* Current document selected for item loading */
         self.currentDoc;
-        /* Books loading */
-        self.loading = false;
+        /* Books loaded */
+        self.booksLoaded = false;
         /* callbacks to be called on documents status changes */
         self.observerCallbacks = [];
         //register an observer
@@ -39,7 +39,7 @@
 
         /* Get loaded documents */
         function getItems() {
-            return self.allDocuments;
+            return self.heartBooks;
         };
 
         /* Get Details */
@@ -69,13 +69,11 @@
             };
             return $http(req).then(function (response) {
                 self.notifyObservers();
-                self.loading = false;
                 // promise is fulfilled
                 deferredLoadItems.resolve(response.data);
                 // promise is returned
                 return deferredLoadItems.promise;
             }, function (response) {
-                self.loading = false;
                 // the following line rejects the promise 
                 deferredLoadItems.reject(response.data);
                 // promise is returned

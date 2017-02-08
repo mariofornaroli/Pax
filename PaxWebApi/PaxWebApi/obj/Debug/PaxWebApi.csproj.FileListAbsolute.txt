@@ -237,10 +237,8 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\obj\Debug\PaxWebApi.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\obj\Debug\PaxWebApi.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\Entities.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\PaxServices.dll
-C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\PaxDal.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\Entities.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\PaxServices.pdb
-C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\PaxDal.pdb
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\Entities.dll
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\PaxServices.dll
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\Entities.pdb
@@ -256,3 +254,14 @@ E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\Ninject.Web.Common.xml
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\Ninject.Web.WebApi.xml
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\HtmlAgilityPack.pdb
 E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\HtmlAgilityPack.xml
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\Ninject.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\Ninject.Web.Common.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\Ninject.Web.WebApi.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\PaxComputation.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\HtmlAgilityPack.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\PaxComputation.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\Ninject.xml
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\Ninject.Web.Common.xml
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\Ninject.Web.WebApi.xml
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\HtmlAgilityPack.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\HtmlAgilityPack.xml

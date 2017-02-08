@@ -108,8 +108,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         url: '/profile',
         views: {
             'menuContent': {
-                templateUrl: 'templates/profile.html',
-                controller: 'ProfileCtrl'
+                templateUrl: 'templates/profile.html'
+                //,controller: 'ProfileCtrl'
             },
             'fabContent': {
                 template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',

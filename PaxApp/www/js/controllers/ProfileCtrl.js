@@ -7,7 +7,7 @@
         
         var vm = this;
 
-        vm.loading = false;
+        vm.booksLoaded = false;
 
         /* all document table data */
         vm.heartBooks = [];
@@ -18,8 +18,10 @@
         /* Load all heart books */
         vm.loadHeartBooks = function () {
             // If data has not been loaded yet, then load it from server
-            if (Books.loading === false) {
+            if (Books.booksLoaded === false) {
                 vm.loadBooks();
+            } else {
+                vm.heartBooks = Books.heartBooks;
             };
         };
 
@@ -27,22 +29,26 @@
         vm.loadBooks = function () {
             Books.GetHeartBooks().then(
                 function (result) {
-                    if (result.error === false) {
-                        vm.heartBooks = result.data;
-                        vm.loading = false;
+                    if (result.operationResult === true) {
+                        Books.heartBooks = result.resultData;
+                        Books.booksLoaded = true;
 
                     } else {
-                        vm.loading = false;
                         // handle error here
                         ErrorMng.showSystemError(result.msg);
                     };
-
+                    /* Save vm state */
+                    vm.booksLoaded = Books.booksLoaded;
+                    vm.heartBooks = result.resultData;
                 },
                 function (error) {
-                    vm.loading = false;
                     // handle error here
                     ErrorMng.showSystemError(error.msg);
                 });
+        };
+
+        vm.goToBookDetails = function (book) {
+            alert("Go to book details: " + book.title);
         };
 
         /*  --------------------------------------------------------------------------------------------------------------------------------------------*/
