@@ -250,7 +250,7 @@ namespace PaxComputation
                     var descriptionItem = descrItem
                     .Descendants("p").FirstOrDefault();
                     if (descriptionItem != null)
-                        description = descriptionItem.InnerHtml;
+                        description = descriptionItem.InnerText;
 
                     /* If description does not exist yet, then add it */
                     int indexDescr = bookList.FindIndex(x => x.Href == href);

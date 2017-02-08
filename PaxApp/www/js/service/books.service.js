@@ -13,7 +13,7 @@
         self.getDetails = _getDetails;
         self.heartBooks = [];
         /* Current document selected for item loading */
-        self.currentDoc;
+        self.currentBook;
         /* Books loaded */
         self.booksLoaded = false;
         /* callbacks to be called on documents status changes */
@@ -43,12 +43,12 @@
         };
 
         /* Get Details */
-        function _getDetails(doc) {
+        function _getDetails(book) {
             var req = {
                 method: 'POST',
                 url: paxGlobal.getAppUrl() + 'Books/GetDetails',
                 data: {
-                    currentDoc: doc
+                    currentBook: book
                 }
             };
             return $http(req).then(function (response) {

@@ -37,12 +37,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         controller: 'AppCtrl'
     })
 
-    .state('app.activity', {
-        url: '/activity',
+    .state('app.events', {
+        url: '/events',
         views: {
             'menuContent': {
-                templateUrl: 'templates/activity.html',
-                controller: 'ActivityCtrl'
+                templateUrl: 'templates/events.html',
+                controller: 'EventsCtrl'
             },
             'fabContent': {
                 template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
@@ -55,12 +55,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         }
     })
 
-    .state('app.friends', {
-        url: '/friends',
+    .state('app.books', {
+        url: '/books',
         views: {
             'menuContent': {
-                templateUrl: 'templates/friends.html',
-                controller: 'FriendsCtrl'
+                templateUrl: 'templates/books.html',
+                controller: 'BooksCtrl'
             },
             'fabContent': {
                 template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
@@ -112,7 +112,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
                 //,controller: 'ProfileCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
+                template: '<button id="fab-profile" class="button button-positive button-fab button-fab-bottom-right"><i class="icon ion-social-twitter"></i></button>',
                 controller: function ($timeout) {
                     /*$timeout(function () {
                         document.getElementById('fab-profile').classList.toggle('on');
