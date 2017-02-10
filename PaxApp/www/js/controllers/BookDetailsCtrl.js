@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('BookDetailsCtrl', BookDetailsCtrl);
-    BookDetailsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books'];
+    BookDetailsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books', '$ionicLoading'];
 
-    function BookDetailsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books) {
+    function BookDetailsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books, $ionicLoading) {
 
         var vm = this;
 
@@ -37,6 +37,7 @@
 
         /* Load all heart books */
         vm.loadBookDetails = function () {
+            vm.showLoading();
             /* Call server to get book details */
             Books.getBookDetails().then(
                 function (result) {
@@ -49,6 +50,7 @@
                     vm.singleBooksDetailLoaded = true;
                     vm.currentBookDetail = result.resultData;
                     vm.setMotion();
+                    $ionicLoading.hide();
                 },
                 function (error) {
                     // handle error here
@@ -56,6 +58,11 @@
                 });
         };
 
+        vm.showLoading = function () {
+            $ionicLoading.show({
+                template: '<div class="loader"><svg class="circular"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg></div>'
+            });
+        };
 
         /* Init controller function */
         vm.initController = function () {
