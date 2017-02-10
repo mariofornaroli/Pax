@@ -20,6 +20,8 @@ namespace Entities
         public Dictionary<string, string> AdditionalDescriptionItems { get; set; }
         public string DescrptionTitle { get; set; }
         public string Descrption { get; set; }
+        public string PublishedDate { get; set; }
+        public string TraductionInfo { get; set; }
         public List<BookDetailsItem> LastBooksOfThisAuthor { get; set; }
     }
 }

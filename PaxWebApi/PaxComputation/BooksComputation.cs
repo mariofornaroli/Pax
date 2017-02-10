@@ -55,7 +55,10 @@ namespace PaxComputation
             FillTitle(detailTableDoc, bookDetails);
             FillImgSrc(detailTableDoc, bookDetails);
             FillAuthor(detailTableDoc, bookDetails);
-
+            FillEditeur(detailTableDoc, bookDetails);
+            FillDateParution(detailTableDoc, bookDetails);
+            FillGenre(detailTableDoc, bookDetails);
+            FillTraduction(detailTableDoc, bookDetails);
 
             return bookDetails;
 
@@ -103,7 +106,7 @@ namespace PaxComputation
             }
         }
 
-        /* Author */
+        /* auteur */
         private static void FillAuthor(HtmlDocument tableDoc, BookDetailsItem bookDetails)
         {
             HtmlNode autheurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='auteur']//a");
@@ -111,6 +114,46 @@ namespace PaxComputation
             {
                 bookDetails.AuthorHref = autheurNode.HasAttributes ? autheurNode.Attributes["href"].Value : string.Empty;
                 bookDetails.Author = autheurNode.InnerText;
+            }
+        }
+
+        /* editeur_collection */
+        private static void FillEditeur(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode editeurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='editeur_collection']//span[@class='editeur']");
+            if (editeurNode != null)
+            {
+                bookDetails.Editor = editeurNode.InnerText;
+            }
+        }
+
+        /* date_parution */
+        private static void FillDateParution(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode dateNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='date_parution']");
+            if (dateNode != null)
+            {
+                bookDetails.PublishedDate = dateNode.InnerText;
+            }
+        }
+
+        /* genre */
+        private static void FillGenre(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode genreNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='genre']");
+            if (genreNode != null)
+            {
+                bookDetails.Type = genreNode.InnerText;
+            }
+        }
+
+        /* traduction */
+        private static void FillTraduction(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode traductionNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='traduction']");
+            if (traductionNode != null)
+            {
+                bookDetails.TraductionInfo = traductionNode.InnerText;
             }
         }
 

@@ -7,10 +7,10 @@
                             <img class="book-det-img" ng-src="{{vm.currentBookDetail.imgSrc}}" />
                         </div>
                         <div class="img-item">
-                            <p class="text-muted">Gallmeister - Noire</p>
-                            <p class="text-muted">Policier / Thriller Grand Format</p>
-                            <p class="text-muted">400 pages, 20.5 X 14 cm, 419 grammes</p>
-                            <p class="text-muted">Traduit par Mailhos, Jacques de Anglais (etats-unis)</p>
+                            <p class="text-muted">{{vm.currentBookDetail.editor}}</p>
+                            <p class="text-muted">{{vm.currentBookDetail.type}}</p>
+                            <p class="text-muted">{{vm.currentBookDetail.publishedDate}}</p>
+                            <p class="text-muted">{{vm.currentBookDetail.traductionInfo}}</p>
                         </div>
                 </div>
             </div>
