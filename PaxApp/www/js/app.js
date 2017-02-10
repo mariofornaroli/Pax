@@ -73,6 +73,27 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         }
     })
 
+        .state('app.book-details', {
+            url: '/book-details',
+            views: {
+                'menuContent': {
+                    //templateUrl: 'templates/books.html',
+                    //controller: 'BooksCtrl'
+                    templateUrl: 'templates/book-details.html',
+                    //controller: 'BookDetailsCtrl'
+                }
+                //,
+                //'fabContent': {
+                //    template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
+                //    controller: function ($timeout) {
+                //        $timeout(function () {
+                //            document.getElementById('fab-friends').classList.toggle('on');
+                //        }, 900);
+                //    }
+                //}
+            }
+        })
+
     .state('app.gallery', {
         url: '/gallery',
         views: {

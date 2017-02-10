@@ -1,3 +1,34 @@
+
+/* PAX
+======================================================================================================*/
+
+.hero.h230 {
+    height: 230px;
+}
+.content.book-det-img-content {
+    top: 28px;
+    background-color: #ffffff;
+    display: flex; /* or inline-flex */
+    justify-content: space-around;
+}
+
+.book-det-img-content .img-item {
+    padding-left: 20px;
+}
+
+.book-det-img-content p {
+    margin-bottom: 4px;
+    text-align: left;
+    color:#000;
+    font-size: 13px;
+}
+
+.book-det-img-content img.book-det-img {
+    max-height: 170px;
+}
+
+
+
 /* General
 ==================================*/
 h1 {

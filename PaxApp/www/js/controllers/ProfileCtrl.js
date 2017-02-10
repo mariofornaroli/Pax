@@ -69,17 +69,8 @@
         vm.goToBookDetails = function (book) {
             /* First set current book */
             Books.currentBook = book;
-            /* Call server to get book details */
-            Books.GetHeartBooks().then(
-                function (result) {
-                    if (result.operationResult === true) {
 
-                    }
-                });
-
-
-            alert("Go to book details: " + book.title);
-            $state.go('app.books');
+            $state.go('app.book-details');
         };
 
         /* Load all heart books */
@@ -91,6 +82,14 @@
                 vm.heartBooks = Books.heartBooks;
             };
         };
+
+        /* Init controller function */
+        vm.initController = function () {
+            vm.loadHeartBooks();
+        };
+
+        /* Call init controller */
+        vm.initController();
 
         /*  --------------------------------------------------------------------------------------------------------------------------------------------*/
         /*  ------------------------------------------------------  STYLE - Animations - Headers  ------------------------------------------------------*/
@@ -123,14 +122,6 @@
         /*  ------------------------------------------------------  STYLE - Animations - Headers  ------------------------------------------------------*/
         /*  --------------------------------------------------------------------------------------------------------------------------------------------*/
 
-
-        /* Init controller function */
-        vm.initController = function () {
-            vm.loadHeartBooks();
-        };
-
-        /* Call init controller */
-        vm.initController();
     };
 
 })();

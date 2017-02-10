@@ -16,6 +16,7 @@
         self.currentBook;
         /* Books loaded */
         self.booksLoaded = false;
+        self.singleBookDetailsLoaded = false;
         /* callbacks to be called on documents status changes */
         self.observerCallbacks = [];
         //register an observer
@@ -44,13 +45,11 @@
 
         /* Get Details */
         function _getBookDetails(book) {
-            var _book = book!==undefined ? book : self.currentBook;
+            var bookItem = book !== undefined ? book : self.currentBook;
             var req = {
                 method: 'POST',
                 url: paxGlobal.getAppUrl() + 'api/BookDetails',
-                data: {
-                    completeHref: _book.completeHref
-                }
+                data: bookItem
             };
             return $http(req).then(function (response) {
                 return response.data;

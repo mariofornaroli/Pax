@@ -17,7 +17,7 @@ namespace PaxComputation
         {
             return BooksComputation.ComputeHeartBooks();
         }
-
+        
         public BookDetailsItem GetDetailsBook(string completeHref)
         {
             return BooksComputation.ComputeBookDetails(completeHref);

@@ -18,10 +18,11 @@ namespace PaxWebApi.Controllers
             bookManager = _bookManager;
         }
 
-        public ResultModel<BookDetailsItem> Post([FromBody]string completeHref)
+        //public ResultModel<BookDetailsItem> Post([FromBody]string completeHref)
+        public ResultModel<BookDetailsItem> Post(BookItem bookItem)
         {
             var resultModel = new ResultModel<BookDetailsItem>();
-            resultModel.ResultData = bookManager.GetDetailsBook(completeHref);
+            resultModel.ResultData = bookManager.GetDetailsBook(bookItem.CompleteHref);
 
             /* Return data */
             resultModel.OperationResult = true;
