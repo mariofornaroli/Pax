@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('ProfileCtrl', ProfileCtrl);
-    ProfileCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', 'Books'];
+    ProfileCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', 'Books', '$state'];
 
-    function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, Books) {
+    function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, Books, $state) {
         
         var vm = this;
 
@@ -16,6 +16,21 @@
         /* Link to pax global object to allow binding to the view */
         vm.paxGlobal = paxGlobal;
 
+        vm.setMotion = function () {
+            // Set Motion
+            $timeout(function () {
+                ionicMaterialMotion.slideUp({
+                    selector: '.slide-up'
+                });
+            }, 300);
+            
+            $timeout(function () {
+                ionicMaterialMotion.fadeSlideInRight({
+                    startVelocity: 3000
+                });
+            }, 700);
+        };
+
         /* Load all heart books */
         vm.loadHeartBooks = function () {
             // If data has not been loaded yet, then load it from server
@@ -23,6 +38,8 @@
                 vm.loadBooks();
             } else {
                 vm.heartBooks = Books.heartBooks;
+                vm.setMotion();
+
             };
         };
 
@@ -41,6 +58,7 @@
                     /* Save vm state */
                     vm.booksLoaded = Books.booksLoaded;
                     vm.heartBooks = result.resultData;
+                    vm.setMotion();
                 },
                 function (error) {
                     // handle error here
@@ -61,6 +79,7 @@
 
 
             alert("Go to book details: " + book.title);
+            $state.go('app.books');
         };
 
         /* Load all heart books */
@@ -84,18 +103,18 @@
         $scope.$parent.setExpanded(false);
         $scope.$parent.setHeaderFab(false);
 
-        // Set Motion
-        $timeout(function () {
-            ionicMaterialMotion.slideUp({
-                selector: '.slide-up'
-            });
-        }, 300);
-
-        $timeout(function () {
-            ionicMaterialMotion.fadeSlideInRight({
-                startVelocity: 3000
-            });
-        }, 700);
+//        // Set Motion
+//        $timeout(function () {
+//            ionicMaterialMotion.slideUp({
+//                selector: '.slide-up'
+//            });
+//        }, 10000);
+//
+//        $timeout(function () {
+//            ionicMaterialMotion.fadeSlideInRight({
+//                startVelocity: 3000
+//            });
+//        }, 10000);
 
         // Set Ink
         ionicMaterialInk.displayEffect();

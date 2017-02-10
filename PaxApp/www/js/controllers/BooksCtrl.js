@@ -1,9 +1,9 @@
 ﻿(function () {
 
-    app.controller('FriendsCtrl', FriendsCtrl);
-    FriendsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion'];
+    app.controller('BooksCtrl', BooksCtrl);
+    BooksCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion'];
 
-    function FriendsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+    function BooksCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
 
         // Set Header
         $scope.$parent.showHeader();
