@@ -11,5 +11,7 @@ namespace PaxServices
     public interface IBookManager
     {
         List<BookItem> GetHeartBooks();
+
+        BookDetailsItem GetDetailsBook(string completeHref);
     }
 }

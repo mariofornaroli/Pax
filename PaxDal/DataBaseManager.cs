@@ -66,7 +66,7 @@ namespace PaxDal
             return true;
         }
 
-        public BookDetailsItem GetBookDetails(string completeHref)
+        public BookDetailsItem GetDetailsBook(string completeHref)
         {
             throw new NotImplementedException();
         }

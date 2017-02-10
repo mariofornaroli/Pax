@@ -26,7 +26,7 @@ namespace Entities
         /// </summary>
         /// <param name="completeHref"></param>
         /// <returns></returns>
-        BookDetailsItem GetBookDetails(string completeHref);
+        BookDetailsItem GetDetailsBook(string completeHref);
 
         /// <summary>
         /// begin Transaction

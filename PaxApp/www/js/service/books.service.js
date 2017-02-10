@@ -10,10 +10,10 @@
 
         /* jshint validthis:true */
         self.getItems = getItems;
-        self.getDetails = _getDetails;
+        self.getBookDetails = _getBookDetails;
         self.heartBooks = [];
         /* Current document selected for item loading */
-        self.currentDoc;
+        self.currentBook;
         /* Books loaded */
         self.booksLoaded = false;
         /* callbacks to be called on documents status changes */
@@ -43,18 +43,36 @@
         };
 
         /* Get Details */
-        function _getDetails(doc) {
+        function _getBookDetails(book) {
+            var _book = book!==undefined ? book : self.currentBook;
             var req = {
                 method: 'POST',
-                url: paxGlobal.getAppUrl() + 'Books/GetDetails',
+                url: paxGlobal.getAppUrl() + 'api/BookDetails',
                 data: {
-                    currentDoc: doc
+                    completeHref: _book.completeHref
                 }
             };
             return $http(req).then(function (response) {
                 return response.data;
             }, function (response) {
                 return response.data;
+            });
+        };
+
+        function _loadDetailsOfHeartBooks() {
+
+            var promises = [];
+
+            self.heartBooks.forEach(function (book) {
+                promises.push(_getBookDetails(book));
+            });
+
+            $q.all(promises).then((values) => {
+                console.log(values[0]); // value alpha
+                console.log(values[1]); // value beta
+                console.log(values[2]); // value gamma
+
+                complete();
             });
         };
         

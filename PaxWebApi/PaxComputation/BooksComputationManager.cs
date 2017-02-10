@@ -18,14 +18,10 @@ namespace PaxComputation
             return BooksComputation.ComputeHeartBooks();
         }
 
-        /// <summary>
-        /// Get Heart book details
-        /// </summary>
-        /// <returns>Book details</returns>
-        public BookDetailsItem GetBookDetails(string completeHref)
+        public BookDetailsItem GetDetailsBook(string completeHref)
         {
             return BooksComputation.ComputeBookDetails(completeHref);
-        }
+        }        
 
         public bool AddHeartBooks(List<BookItem> booksToAdd)
         {

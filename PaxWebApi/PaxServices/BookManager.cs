@@ -25,5 +25,10 @@ namespace PaxServices
         {
             return myDatabaseManager.GetHeartBooks();
         }
+
+        public BookDetailsItem GetDetailsBook(string completeHref)
+        {
+            return myDatabaseManager.GetDetailsBook(completeHref);
+        }
     }
 }
