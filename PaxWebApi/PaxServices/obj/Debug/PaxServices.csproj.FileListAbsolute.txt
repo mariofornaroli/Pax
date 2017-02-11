@@ -21,7 +21,6 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\PaxServices.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\PaxServices.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\Entities.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\PaxDal.dll
-C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\EntityFramework.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\PaxDal.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\Entities.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\obj\Debug\PaxServices.csprojResolveAssemblyReference.cache
