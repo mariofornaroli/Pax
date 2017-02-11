@@ -60,6 +60,15 @@ namespace PaxComputation
             FillGenre(detailTableDoc, bookDetails);
             FillTraduction(detailTableDoc, bookDetails);
 
+            /* mot_du_libraire */
+            bookDetails.AdditionalDescriptionItems = new List<DescriptionItem>();
+            FillAdditionalInfoSection(doc, bookDetails);
+
+            /* global info */
+            bookDetails.GlobalInfoDescriptionItems = new List<DescriptionItem>();
+            FillEditorWord(doc, bookDetails);
+            FillBiography(doc, bookDetails);
+
             return bookDetails;
 
             /* Get coeurTdDoc Block list */
@@ -70,6 +79,49 @@ namespace PaxComputation
             //GetGeneralBookListItem(groupBlocksList, ref bookList);
             //
             //return bookList;
+        }
+
+        private static void FillEditorWord(HtmlDocument doc, BookDetailsItem bookDetails)
+        {
+            var addItem = new DescriptionItem();
+            HtmlNode globbalInfoNode = doc.DocumentNode
+                .SelectSingleNode("//div[@class='bloc_presa']//p");
+            if (globbalInfoNode != null)
+            {
+                addItem.Title = "Le mot de l'éditeur";
+                addItem.Content = globbalInfoNode.InnerText;
+            }
+        }
+
+        private static void FillBiography(HtmlDocument doc, BookDetailsItem bookDetails)
+        {
+            var addItem = new DescriptionItem();
+            HtmlNode globbalInfoNode = doc.DocumentNode
+                .SelectSingleNode("//div[@class='bloc_biographie']//p");
+            if (globbalInfoNode != null)
+            {
+                addItem.Title = "Biographie";
+                addItem.Content = globbalInfoNode.InnerText;
+            }
+            bookDetails.GlobalInfoDescriptionItems.Add(addItem);
+        }
+
+        private static void FillAdditionalInfoSection(HtmlDocument doc, BookDetailsItem bookDetails)
+        {
+            var addItem = new DescriptionItem();
+            HtmlNode titleNode = doc.DocumentNode
+                .SelectSingleNode("//div[@class='bloc_mot_du_libraire']//h2");
+            if (titleNode != null)
+            {
+                addItem.Title = titleNode.InnerText;
+            }
+            HtmlNode contentNode = doc.DocumentNode
+                .SelectSingleNode("//div[@class='bloc_mot_du_libraire']//div[@class='contenu_mdl']");
+            if (contentNode != null)
+            {
+                addItem.Content = contentNode.InnerText;
+            }
+            bookDetails.AdditionalDescriptionItems.Add(addItem);
         }
 
         private static HtmlDocument GetDetailTableObj(HtmlDocument doc)

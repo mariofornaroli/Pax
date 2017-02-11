@@ -58,7 +58,7 @@
                     /* Save vm state */
                     vm.booksLoaded = Books.booksLoaded;
                     vm.heartBooks = result.resultData;
-                    vm.setMotion();
+                     vm.setMotion();
                 },
                 function (error) {
                     // handle error here

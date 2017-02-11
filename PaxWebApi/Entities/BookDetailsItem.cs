@@ -17,7 +17,8 @@ namespace Entities
         public string Editor { get; set; }
         public string Price { get; set; }
         public List<string> TypeExisting { get; set; }
-        public Dictionary<string, string> AdditionalDescriptionItems { get; set; }
+        public List<DescriptionItem> AdditionalDescriptionItems { get; set; }
+        public List<DescriptionItem> GlobalInfoDescriptionItems { get; set; }
         public string DescrptionTitle { get; set; }
         public string Descrption { get; set; }
         public string PublishedDate { get; set; }

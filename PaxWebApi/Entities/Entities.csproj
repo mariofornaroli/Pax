@@ -44,6 +44,7 @@
     <Compile Include="BaseResultModel.cs" />
     <Compile Include="BookDetailsItem.cs" />
     <Compile Include="BookItem.cs" />
+    <Compile Include="DescriptionItem.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="IDataBaseManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

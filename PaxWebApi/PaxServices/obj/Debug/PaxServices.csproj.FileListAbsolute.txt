@@ -12,7 +12,6 @@ E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\PaxServices.pdb
 E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\PaxDal.dll
 E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\EntityFramework.dll
 E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\PaxDal.pdb
-E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Debug\EntityFramework.xml
 E:\Mario\Projects\PAX\PaxWebApi\PaxServices\obj\Debug\PaxServices.csprojResolveAssemblyReference.cache
 E:\Mario\Projects\PAX\PaxWebApi\PaxServices\obj\Debug\PaxServices.dll
 E:\Mario\Projects\PAX\PaxWebApi\PaxServices\obj\Debug\PaxServices.pdb

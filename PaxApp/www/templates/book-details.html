@@ -19,26 +19,18 @@
                 <p>{{vm.currentBookDetail.author}}</p>
             </div>
             <div class="content double-padding">
-                <h4 class="positive">Book The Trek</h4>
-                <p class="text-muted">
-                    Immerse yourself in the scenic beauty of the Hallstatt region in Gosau am Dachstein. Decide for yourself whether or not you agree that this is the most beautiful spot in Austria.
-                </p>
-                <h4 class="positive">Book The Trek</h4>
-                <p class="text-muted">
-                    Immerse yourself in the scenic beauty of the Hallstatt region in Gosau am Dachstein. Decide for yourself whether or not you agree that this is the most beautiful spot in Austria.
-                </p>
-                <h4 class="positive">Book The Trek</h4>
-                <p class="text-muted">
-                    Immerse yourself in the scenic beauty of the Hallstatt region in Gosau am Dachstein. Decide for yourself whether or not you agree that this is the most beautiful spot in Austria.
-                </p>
-                <h4 class="positive">Book The Trek</h4>
-                <p class="text-muted">
-                    Immerse yourself in the scenic beauty of the Hallstatt region in Gosau am Dachstein. Decide for yourself whether or not you agree that this is the most beautiful spot in Austria.
-                </p>
-                <h4 class="positive">Book The Trek</h4>
-                <p class="text-muted">
-                    Immerse yourself in the scenic beauty of the Hallstatt region in Gosau am Dachstein. Decide for yourself whether or not you agree that this is the most beautiful spot in Austria.
-                </p>
+                <div ng-repeat="addInfo in vm.currentBookDetail.additionalDescriptionItems">
+                    <h4 class="positive">{{addInfo.title}}</h4>
+                    <p class="text-muted">
+                        {{addInfo.content}}
+                    </p>
+                </div>
+                <div ng-repeat="addInfo in vm.currentBookDetail.globalInfoDescriptionItems">
+                    <h4 class="positive">{{addInfo.title}}</h4>
+                    <p class="text-muted">
+                        {{addInfo.content}}
+                    </p>
+                </div>
             </div>
         </div>
     </ion-content>

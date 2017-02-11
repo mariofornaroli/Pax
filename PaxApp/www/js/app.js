@@ -59,17 +59,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         url: '/books',
         views: {
             'menuContent': {
-                templateUrl: 'templates/books.html',
-                controller: 'BooksCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-friends').classList.toggle('on');
-                    }, 900);
-                }
+                templateUrl: 'templates/books.html'
+                //, controller: 'BooksCtrl'
             }
+            //, 'fabContent': {
+            //    template: '<button id="fab-books" class="button button-fab button-fab-bottom-right expanded button-energized-900 fade"><i class="icon ion-heart"></i></button>',
+            //    controller: function ($timeout) {
+            //        $timeout(function () {
+            //            document.getElementById('fab-books').classList.toggle('on');
+            //        }, 900);
+            //    }
+            //}
         }
     })
 
@@ -82,15 +82,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
                     templateUrl: 'templates/book-details.html',
                     //controller: 'BookDetailsCtrl'
                 }
-                //,
-                //'fabContent': {
-                //    template: '<button id="fab-friends" class="button button-fab button-fab-top-left expanded button-energized-900 spin"><i class="icon ion-chatbubbles"></i></button>',
-                //    controller: function ($timeout) {
-                //        $timeout(function () {
-                //            document.getElementById('fab-friends').classList.toggle('on');
-                //        }, 900);
-                //    }
-                //}
+                , 'fabContent': {
+                    template: '<button id="fab-book-details" class="button button-fab button-fab-bottom-right expanded button-energized-900 fade"><i class="icon ion-forward"></i></button>',
+                    controller: function ($timeout) {
+                        $timeout(function () {
+                            document.getElementById('fab-book-details').classList.toggle('fade');
+                        }, 900);
+                    }
+                }
             }
         })
 
