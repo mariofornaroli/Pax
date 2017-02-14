@@ -7,16 +7,16 @@
                             <img class="book-det-img" ng-src="{{vm.currentBookDetail.imgSrc}}" />
                         </div>
                         <div class="img-item">
-                            <p class="text-muted">{{vm.currentBookDetail.editor}}</p>
-                            <p class="text-muted">{{vm.currentBookDetail.type}}</p>
-                            <p class="text-muted">{{vm.currentBookDetail.publishedDate}}</p>
-                            <p class="text-muted">{{vm.currentBookDetail.traductionInfo}}</p>
+                            <p class="text-muted" ng-bind-html="vm.currentBookDetail.editor"></p>
+                            <p class="text-muted" ng-bind-html="vm.currentBookDetail.type"></p>
+                            <p class="text-muted" ng-bind-html="vm.currentBookDetail.publishedDate"></p>
+                            <p class="text-muted" ng-bind-html="vm.currentBookDetail.traductionInfo"></p>
                         </div>
                 </div>
             </div>
             <div class="mid-bar dark-bg z1 padding">
-                <h3>{{vm.currentBookDetail.title}}</h3>
-                <p>{{vm.currentBookDetail.author}}</p>
+                <h3 ng-bind-html="vm.currentBookDetail.title"></h3>
+                <p ng-bind-html="vm.currentBookDetail.author"></p>
             </div>
             <div class="content double-padding">
                 <div ng-repeat="addInfo in vm.currentBookDetail.additionalDescriptionItems">

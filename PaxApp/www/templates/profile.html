@@ -28,8 +28,8 @@
                 <a ng-repeat="hBook in vm.heartBooks"
                    ng-click="vm.goToBookDetails(hBook)" class="item item-avatar item-icon-right">
                     <img ng-src="{{hBook.imgSrc}}">
-                    <h2>{{hBook.title}}</h2>
-                    <p>{{hBook.shortDescription}}</p>
+                    <h2 ng-bind-html="hBook.title"></h2>
+                    <p ng-bind-html="hBook.shortDescription"></p>
                     <i class="icon ion-chatbubble muted"></i>
                 </a>
                 <!--<a ui-sref="app.books" class="item item-avatar item-icon-right">
