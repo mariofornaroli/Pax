@@ -8,9 +8,9 @@
 
         $scope.$parent.showHeader();
         $scope.$parent.clearFabs();
-        $scope.isExpanded = true;
-        $scope.$parent.setExpanded(true);
-        $scope.$parent.setHeaderFab('right');
+        //$scope.isExpanded = true;
+        //$scope.$parent.setExpanded(true);
+        //$scope.$parent.setHeaderFab('right');
 
         $timeout(function () {
             ionicMaterialMotion.fadeSlideIn({
