@@ -48,6 +48,7 @@
     <Compile Include="AgilityTool.cs" />
     <Compile Include="BooksComputation.cs" />
     <Compile Include="BooksComputationManager.cs" />
+    <Compile Include="HttpDownloader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

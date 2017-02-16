@@ -1,0 +1,10 @@
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\PaxComputation.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\PaxComputation.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\Entities.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\HtmlAgilityPack.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\Entities.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\HtmlAgilityPack.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\HtmlAgilityPack.xml
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.csprojResolveAssemblyReference.cache
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.pdb

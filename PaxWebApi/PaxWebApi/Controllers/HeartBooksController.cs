@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PaxWebApi.Controllers
 {
@@ -18,6 +19,8 @@ namespace PaxWebApi.Controllers
             bookManager = _bookManager;
         }
 
+        // Allow CORS for all origins. (Caution!)
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public ResultModel<List<BookItem>> Get()
         {
             var resultModel = new ResultModel<List<BookItem>>();

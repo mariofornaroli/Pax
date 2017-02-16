@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,8 +39,9 @@ namespace PaxComputation
 
         private static BookDetailsItem _ComputeBookDetails(string completeHref)
         {
-            HtmlWeb web = new HtmlWeb();
-            HtmlDocument doc = web.Load(completeHref);
+            HtmlDocument doc = new HtmlDocument();
+            HttpDownloader downloader = new HttpDownloader(completeHref, null, null);
+            doc.LoadHtml(downloader.GetPage());
 
             return GetBookDetailsObj(doc);
         }
@@ -70,15 +72,6 @@ namespace PaxComputation
             FillBiography(doc, bookDetails);
 
             return bookDetails;
-
-            /* Get coeurTdDoc Block list */
-            //var groupBlocksList = GetGroupBlocksList(coeurTdDoc);
-            //
-            ///* Get coeurTdDoc Img list and Description list */
-            //var bookList = new List<BookItem>();
-            //GetGeneralBookListItem(groupBlocksList, ref bookList);
-            //
-            //return bookList;
         }
 
         private static void FillEditorWord(HtmlDocument doc, BookDetailsItem bookDetails)
@@ -220,8 +213,9 @@ namespace PaxComputation
 
         private static List<BookItem> _ComputeHeartBooks()
         {
-            HtmlWeb web = new HtmlWeb();
-            HtmlDocument doc = web.Load(PAX_WEBSITE);
+            HtmlDocument doc = new HtmlDocument();
+            HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE, null, null);
+            doc.LoadHtml(downloader.GetPage());
 
             return GetBookObjList(doc);
         }
@@ -278,6 +272,7 @@ namespace PaxComputation
         {
             foreach (var tr in groupBlocksList)
             {
+               var test =  tr.Encoding;
                 var tdBlocks = tr.DocumentNode
                     .Descendants("td");
                 foreach (var td in tdBlocks)

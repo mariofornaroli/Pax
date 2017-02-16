@@ -57,7 +57,7 @@ p {
 
 /* Menu
 ==================================*/
-.menu .bar.bar-header.expanded {
+/*.menu .bar.bar-header.expanded {
     transition: all .5s ease-in-out;
 }
 
@@ -89,7 +89,7 @@ p {
 
 .menu-open .ion-navicon:before {
     content: "\f2ca";
-}
+}*/
 
 
 /* Login
@@ -107,4 +107,65 @@ p {
 .social-login {
     position: fixed;
     bottom: 0;
+}
+
+
+
+/* Menu */
+
+.menu .bar.bar-header.expanded {
+    background-image: url('../img/material-graphite.jpg');
+    background-size: 120%;
+    background-position: 0%;
+    transition: all .5s ease-in-out;
+}
+
+.menu.menu-left * {
+    font-weight: bold;
+}
+
+.item-radio input:checked ~ .item-content {
+    background: transparent;
+}
+
+.menu-open .ion-navicon {
+    transform: rotate(-360deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-open .ion-navicon:before {
+    content: "\f2ca";
+}
+
+/*.side-menu .list .item,
+.side-menu ion-header-bar {
+    text-align: right;
+}*/
+
+/*  ----------------------------------   AGENDA    -----------------------------------  */
+
+.agenda-container .card .image {
+    text-align: center;
+}
+
+.agenda-container .card img {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*  ----------------------------------   ABOUT PAX    -----------------------------------  */
+
+
+.about-pax-content .hero {
+    height: 220px;
+}
+
+.info-openings-content {
+    text-align: center;
+}
+
+.info-openings h5{
+    color: #555;
 }

@@ -1,0 +1,9 @@
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Release\PaxServices.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Release\PaxServices.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Release\Entities.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Release\PaxDal.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Release\PaxDal.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Release\Entities.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.csprojResolveAssemblyReference.cache
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.pdb
