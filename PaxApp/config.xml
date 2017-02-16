@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.sample374926" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-
-<!-- A wildcard can be used to whitelist the entire network,
+  <!-- A wildcard can be used to whitelist the entire network,
      over HTTP and HTTPS.
      *NOT RECOMMENDED* -->
-<allow-navigation href="*" />
-  <name>sample</name>
+  <allow-navigation href="*" />
+  <name>Pax App</name>
   <description>
-        An Ionic Framework and Cordova project.
+       Librerie Pax - Application
     </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+      Mario Fornaroli
     </author>
   <content src="index.html" />
   <access origin="*" />

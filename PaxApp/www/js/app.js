@@ -4,10 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic','ionic-material', 'ionMdInput'])
+var app = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
 
 app.run(function ($ionicPlatform) {
-    $ionicPlatform.ready(function() {
+    $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -37,23 +37,23 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         controller: 'AppCtrl'
     })
 
-    .state('app.events', {
-        url: '/events',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/events.html',
-                controller: 'EventsCtrl'
+        .state('app.events', {
+            url: '/events',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/events.html'
+                    //,controller: 'EventsOldCtrl'
+                }
+                //,'fabContent': {
+                //    template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
+                //    controller: function ($timeout) {
+                //        $timeout(function () {
+                //            document.getElementById('fab-activity').classList.toggle('on');
+                //        }, 200);
+                //    }
+                //}
             }
-            //,'fabContent': {
-            //    template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
-            //    controller: function ($timeout) {
-            //        $timeout(function () {
-            //            document.getElementById('fab-activity').classList.toggle('on');
-            //        }, 200);
-            //    }
-            //}
-        }
-    })
+        })
 
     .state('app.books', {
         url: '/books',
@@ -129,6 +129,24 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         views: {
             'menuContent': {
                 templateUrl: 'templates/profile.html'
+                //,controller: 'ProfileCtrl'
+            },
+            'fabContent': {
+                template: '<button id="fab-profile" class="button button-positive button-fab button-fab-bottom-right" href="https://twitter.com/librairiepax"><i class="icon ion-social-twitter"></i></button>',
+                controller: function ($timeout) {
+                    $timeout(function () {
+                        document.getElementById('fab-profile').classList.toggle('on');
+                    }, 800);
+                }
+            }
+        }
+    })
+
+    .state('app.about-pax', {
+        url: '/about-pax',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/about-pax.html'
                 //,controller: 'ProfileCtrl'
             },
             'fabContent': {
