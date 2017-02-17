@@ -19,11 +19,12 @@ namespace PaxWebApi.Tests.Controllers
         public void ComputeHeartBooksOk()
         {
             // Act
-            IEnumerable<BookItem> result = BooksComputation.ComputeHeartBooks();
+            HeartBooksModel result = BooksComputation.ComputeHeartBooks();
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(12, result.Count());
+            Assert.IsNotNull(result.HeartBooks);
+            Assert.AreEqual(12, result.HeartBooks.Count());
         }
 
         [TestMethod]
@@ -40,7 +41,7 @@ namespace PaxWebApi.Tests.Controllers
         private string getFirstBookCompleteHref()
         {
             var booksList = BooksComputation.ComputeHeartBooks();
-            return booksList.FirstOrDefault().CompleteHref;
+            return booksList.HeartBooks.FirstOrDefault().CompleteHref;
 
         }
     }

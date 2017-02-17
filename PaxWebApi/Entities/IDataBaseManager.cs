@@ -12,7 +12,7 @@ namespace Entities
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        List<BookItem> GetHeartBooks();
+        HeartBooksModel GetHeartBooks();
 
         /// <summary>
         /// Get Heart books

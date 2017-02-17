@@ -13,6 +13,10 @@
         
         /* Link to pax global object to allow binding to the view */
         vm.paxGlobal = paxGlobal;
+         
+        vm.getPageTitle = function () {
+            return Books.currentBook.isPocheDuMois === true ? 'Poche du mois' : vm.currentBookDetail.title;
+        };
 
         vm.setMotion = function () {
             // Set Motion
@@ -28,7 +32,7 @@
                 //});
             }, 300);
 
-            //$timeout(function () {
+            //$timeout(function () { 
             //    ionicMaterialMotion.fadeSlideInRight({
             //        startVelocity: 3000
             //    });
@@ -36,7 +40,7 @@
         };
 
         /* Load all heart books */
-        vm.loadBookDetails = function () {
+        vm.loadBookDetails = function () { 
             vm.showLoading();
             /* Call server to get book details */
             Books.getBookDetails().then(

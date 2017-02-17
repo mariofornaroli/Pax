@@ -19,9 +19,11 @@ namespace PaxServices
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public List<BookItem> GetHeartBooks()
+        public HeartBooksModel GetHeartBooks()
         {
-            return new List<BookItem> {
+            return new HeartBooksModel
+            {
+                HeartBooks = new List<BookItem> {
                 new BookItem {
                     Id = "1",
                     Author = "Arthur Fox",
@@ -46,6 +48,7 @@ namespace PaxServices
                     Description="L'extrait standard de Lorem Ipsum utilisé depuis le XVIè siècle est reproduit ci-dessous pour les curieux. Les sections 1.10.32 et 1.10.33 du Cicéron sont aussi reproduites dans leur version originale, accompagnée de la traduction anglaise de H. Rackham (1914).",
                     Title = "Paragraphes"
                 }
+            }
             };
         }
     }

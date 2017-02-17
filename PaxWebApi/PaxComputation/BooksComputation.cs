@@ -20,7 +20,7 @@ namespace PaxComputation
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public static List<BookItem> ComputeHeartBooks()
+        public static HeartBooksModel ComputeHeartBooks()
         {
             return _ComputeHeartBooks();
         }
@@ -84,6 +84,7 @@ namespace PaxComputation
                 addItem.Title = "Le mot de l'éditeur";
                 addItem.Content = globbalInfoNode.InnerText;
             }
+            bookDetails.GlobalInfoDescriptionItems.Add(addItem);
         }
 
         private static void FillBiography(HtmlDocument doc, BookDetailsItem bookDetails)
@@ -211,7 +212,7 @@ namespace PaxComputation
 
         #region Private ComputeHeartBooks Methods
 
-        private static List<BookItem> _ComputeHeartBooks()
+        private static HeartBooksModel _ComputeHeartBooks()
         {
             HtmlDocument doc = new HtmlDocument();
             HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE, null, null);
@@ -220,8 +221,10 @@ namespace PaxComputation
             return GetBookObjList(doc);
         }
 
-        public static List<BookItem> GetBookObjList(HtmlDocument doc)
+        public static HeartBooksModel GetBookObjList(HtmlDocument doc)
         {
+            var retData = new HeartBooksModel();
+
             /* Get coeurTdDoc object */
             var coeurTdDoc = GetCoeurTdObj(doc);
 
@@ -232,7 +235,14 @@ namespace PaxComputation
             var bookList = new List<BookItem>();
             GetGeneralBookListItem(groupBlocksList, ref bookList);
 
-            return bookList;
+            /* Compute here the book of the month */
+            var monthBook = GetMonthBookTdObj(doc);
+
+            /* Assign return variables */
+            retData.HeartBooks = bookList;
+            retData.MonthBook = monthBook;
+
+            return retData;
         }
 
         public static HtmlDocument GetCoeurTdObj(HtmlDocument doc)
@@ -245,6 +255,38 @@ namespace PaxComputation
                 d.Attributes["class"].Value.Contains(HTML_COERU_TD_CLASS)
                 ).FirstOrDefault().InnerHtml;
             return AgilityTool.LoadFromString(coeurTdObj);
+        }
+
+        public static BookItem GetMonthBookTdObj(HtmlDocument doc)
+        {
+            var retMonthBook = new BookItem();
+            HtmlNode monthBookNode = doc.DocumentNode
+                .SelectSingleNode("//table[@class='blocLibre']//td[@class='LibreCorpus']");
+
+            /* Fill title */
+            HtmlNode titleNode = monthBookNode.SelectSingleNode("//span[@class='LibreTitre']");
+            if (titleNode != null)
+            {
+                retMonthBook.Title = titleNode.InnerText;
+            }
+            /* Fill img */
+            HtmlNode imgNode = monthBookNode.SelectSingleNode("//table[@class='blocLibre']//td[@class='LibreCorpus']//div//a//img");
+            if (imgNode != null)
+            {
+                retMonthBook.ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
+            }
+            /* Fill href */
+            HtmlNode hrefNode = monthBookNode.SelectSingleNode("//table[@class='blocLibre']//td[@class='LibreCorpus']//div//a");
+            if (hrefNode != null)
+            {
+                retMonthBook.Href = hrefNode.HasAttributes ? hrefNode.Attributes["href"].Value : string.Empty;
+            }
+            /**/
+            retMonthBook.CompleteHref = retMonthBook.Href;
+            retMonthBook.DateComputation = DateTime.Now;
+
+            /* Return computed book of the month */
+            return retMonthBook;
         }
 
         private static List<HtmlDocument> GetGroupBlocksList(HtmlDocument coeurTdDoc)

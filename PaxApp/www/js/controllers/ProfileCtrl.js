@@ -12,6 +12,7 @@
 
         /* all document table data */
         vm.heartBooks = [];
+        vm.pocheDuMois = {};
 
         /* Link to pax global object to allow binding to the view */
         vm.paxGlobal = paxGlobal;
@@ -31,34 +32,38 @@
             }, 700);
         };
 
-        /* Load all heart books */
+        /* Load all heart books */ 
         vm.loadHeartBooks = function () {
             // If data has not been loaded yet, then load it from server
             if (Books.booksLoaded === false) {
-                vm.loadBooks();
-            } else {
+                vm.loadBooks(); 
+            } else { 
                 vm.heartBooks = Books.heartBooks;
+                vm.pocheDuMois = Books.pocheDuMois;
                 vm.setMotion();
 
             };
-        };
+        }; 
 
         /* Load all books data from server */
         vm.loadBooks = function () {
             Books.GetHeartBooks().then(
                 function (result) {
                     if (result.operationResult === true) {
-                        Books.heartBooks = result.resultData;
+                        /* service state */
+                        Books.heartBooks = result.resultData.heartBooks;
+                        Books.pocheDuMois = result.resultData.monthBook;
                         Books.booksLoaded = true;
+                        /* vm state */
+                        vm.booksLoaded = Books.booksLoaded;
+                        vm.heartBooks = Books.heartBooks;
+                        vm.pocheDuMois = Books.pocheDuMois;
+                        vm.setMotion();
 
                     } else {
                         // handle error here
                         ErrorMng.showSystemError(result.msg);
                     };
-                    /* Save vm state */
-                    vm.booksLoaded = Books.booksLoaded;
-                    vm.heartBooks = result.resultData;
-                     vm.setMotion();
                 },
                 function (error) { 
                     // handle error here
@@ -69,7 +74,13 @@
         vm.goToBookDetails = function (book) {
             /* First set current book */
             Books.currentBook = book;
+            $state.go('app.book-details');
+        };
 
+        vm.goToPocheDuMois = function () { 
+            /* First set current book */
+            Books.currentBook = vm.pocheDuMois;
+            Books.currentBook.isPocheDuMois = true;
             $state.go('app.book-details');
         };
 

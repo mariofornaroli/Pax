@@ -13,7 +13,7 @@ namespace PaxComputation
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public List<BookItem> GetHeartBooks()
+        public HeartBooksModel GetHeartBooks()
         {
             return BooksComputation.ComputeHeartBooks();
         }

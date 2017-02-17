@@ -21,7 +21,7 @@ namespace PaxServices
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public List<BookItem> GetHeartBooks()
+        public HeartBooksModel GetHeartBooks()
         {
             return myDatabaseManager.GetHeartBooks();
         }

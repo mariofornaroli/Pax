@@ -10,7 +10,7 @@ namespace PaxServices
 {
     public interface IBookManager
     {
-        List<BookItem> GetHeartBooks();
+        HeartBooksModel GetHeartBooks();
 
         BookDetailsItem GetDetailsBook(string completeHref);
     }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BaseResultModel.cs" />
     <Compile Include="BookDetailsItem.cs" />
+    <Compile Include="HeartBooksModel.cs" />
     <Compile Include="BookItem.cs" />
     <Compile Include="DescriptionItem.cs" />
     <Compile Include="Enum.cs" />
