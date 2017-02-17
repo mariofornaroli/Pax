@@ -60,7 +60,7 @@
                     vm.heartBooks = result.resultData;
                      vm.setMotion();
                 },
-                function (error) {
+                function (error) { 
                     // handle error here
                     ErrorMng.showSystemError(error.msg);
                 });
