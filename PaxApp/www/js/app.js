@@ -83,11 +83,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
                     //controller: 'BookDetailsCtrl'
                 }
                 , 'fabContent': {
-                    template: '<button id="fab-book-details" class="button button-fab button-fab-bottom-right expanded button-energized-900 fade"><i class="icon ion-forward"></i></button>',
-                    controller: function ($timeout) {
+                    template: '<button id="fab-book-details" data-to-href="test" class="button button-fab button-fab-bottom-right expanded button-energized-900 fade" ng-click="gePaxLink()"><i class="icon ion-forward"></i></button>',
+                    controller: function ($timeout, $scope, Books, $window) {
                         $timeout(function () {
                             document.getElementById('fab-book-details').classList.toggle('fade');
                         }, 900);
+                        $scope.gePaxLink = function () {
+                            dataToHref = Books.currentBook.completeHref;
+                            $window.open(dataToHref);
+                            //console.log(Books.currentBook.completeHref);
+                            //var dataToHref = $('#fab-book-details').attr("title");
+                            //alert(dataToHref);
+                            //$window.open(dataToHref);
+                        };
                     }
                 }
             }
@@ -161,14 +169,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             },
             'fabContent': {
                 template: '<button id="fab-profile" class="button button-positive button-fab button-fab-bottom-right" ng-click="goTest()"><i class="icon ion-social-twitter"></i></button>',
-                controller: function ($timeout, $window, $scope, $state, $location) {
+                controller: function ($timeout, $window, $scope) {
                     $timeout(function () {
                         document.getElementById('fab-profile').classList.toggle('on');
                     }, 800);
                     $scope.goTest = function () {
-                        //$state.go('externalGoTwitter');
                         $window.open('https://twitter.com/librairiepax');
-                        //$location.url('https://twitter.com/librairiepax');
                     };
                 }
             }

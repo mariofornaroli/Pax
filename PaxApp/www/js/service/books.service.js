@@ -46,6 +46,7 @@
         /* Get Details */
         function _getBookDetails(book) {
             var bookItem = book !== undefined ? book : self.currentBook;
+            self.currentBook = bookItem;
             var req = {
                 method: 'POST',
                 url: paxGlobal.getAppUrl() + 'api/BookDetails',
