@@ -32,6 +32,7 @@ namespace Entities
         /// begin Transaction
         /// </summary>
         void BeginDBTransaction();
+        EventsModel GetEventss();
 
         /// <summary>
         /// End Transaction

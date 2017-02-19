@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('BaseBooksCtrl', BaseBooksCtrl);
-    BaseBooksCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books'];
+    BaseBooksCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books', 'ErrorMng'];
 
-    function BaseBooksCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books) {
+    function BaseBooksCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books, ErrorMng) {
         var vm = this;
 
         vm.loading = false;

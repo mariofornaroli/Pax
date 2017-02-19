@@ -30,5 +30,10 @@ namespace PaxServices
         {
             return myDatabaseManager.GetDetailsBook(completeHref);
         }
+
+        public EventsModel GetEvents()
+        {
+            return myDatabaseManager.GetEventss();
+        }
     }
 }

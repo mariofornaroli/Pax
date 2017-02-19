@@ -13,5 +13,7 @@ namespace PaxServices
         HeartBooksModel GetHeartBooks();
 
         BookDetailsItem GetDetailsBook(string completeHref);
+
+        EventsModel GetEvents();
     }
 }

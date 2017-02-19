@@ -7,3 +7,12 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxServices\bin\Release\Entities.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.csprojResolveAssemblyReference.cache
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Release\PaxServices.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Release\PaxServices.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Release\Entities.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Release\PaxDal.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Release\PaxDal.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\bin\Release\Entities.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.csprojResolveAssemblyReference.cache
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxServices\obj\Release\PaxServices.pdb

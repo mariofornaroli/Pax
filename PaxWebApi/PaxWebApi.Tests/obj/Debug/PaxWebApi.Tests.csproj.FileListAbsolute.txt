@@ -232,3 +232,6 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\obj\Debug\PaxWebApi.Tests.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\System.Web.Http.Cors.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\System.Web.Cors.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\System.Web.Http.Cors.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\System.Web.Http.Cors.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\System.Web.Cors.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi.Tests\bin\Debug\System.Web.Http.Cors.xml

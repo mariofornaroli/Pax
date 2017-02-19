@@ -21,8 +21,13 @@ namespace PaxComputation
         public BookDetailsItem GetDetailsBook(string completeHref)
         {
             return BooksComputation.ComputeBookDetails(completeHref);
-        }        
+        }
 
+        public EventsModel GetEventss()
+        {
+            return EventsComputation.ComputeEvents();
+        }
+        
         public bool AddHeartBooks(List<BookItem> booksToAdd)
         {
             throw new NotImplementedException();

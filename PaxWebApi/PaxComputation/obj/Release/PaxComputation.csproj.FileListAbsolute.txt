@@ -8,3 +8,13 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\HtmlAgilityPack.xml
 C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.csprojResolveAssemblyReference.cache
 C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\PaxComputation.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\PaxComputation.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\Entities.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\HtmlAgilityPack.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\Entities.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\HtmlAgilityPack.pdb
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\bin\Release\HtmlAgilityPack.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.csprojResolveAssemblyReference.cache
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxComputation\obj\Release\PaxComputation.pdb

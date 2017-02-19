@@ -15,15 +15,8 @@ namespace PaxComputation
         private const string HTML_COERU_TD_CLASS = "CoeurCorpus";
         private const int MAX_COERU_BLOCS_NUM = 10;
         private const string HTML_COERU_TITLE_CLASS = "CoeurTitre";
-
-        /// <summary>
-        /// Get Heart books
-        /// </summary>
-        /// <returns>List of heart books</returns>
-        public static HeartBooksModel ComputeHeartBooks()
-        {
-            return _ComputeHeartBooks();
-        }
+        
+        #region ComputeBookDetails Methods
 
         /// <summary>
         /// Get Heart book details
@@ -33,9 +26,6 @@ namespace PaxComputation
         {
             return _ComputeBookDetails(completeHref);
         }
-
-
-        #region Private ComputeBookDetails Methods
 
         private static BookDetailsItem _ComputeBookDetails(string completeHref)
         {
@@ -208,9 +198,16 @@ namespace PaxComputation
         #endregion
 
 
+        #region ComputeHeartBooks Methods
 
-
-        #region Private ComputeHeartBooks Methods
+        /// <summary>
+        /// Get Heart books
+        /// </summary>
+        /// <returns>List of heart books</returns>
+        public static HeartBooksModel ComputeHeartBooks()
+        {
+            return _ComputeHeartBooks();
+        }
 
         private static HeartBooksModel _ComputeHeartBooks()
         {

@@ -15,6 +15,11 @@ namespace PaxServices
             throw new NotImplementedException();
         }
 
+        public EventsModel GetEvents()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Get Heart books
         /// </summary>

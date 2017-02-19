@@ -268,3 +268,6 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\obj\Debug\PaxWebApi.pdb
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\System.Web.Cors.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\System.Web.Http.Cors.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWebApi\bin\System.Web.Http.Cors.xml
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\System.Web.Cors.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\System.Web.Http.Cors.dll
+E:\Mario\Projects\PAX\PaxWebApi\PaxWebApi\bin\System.Web.Http.Cors.xml

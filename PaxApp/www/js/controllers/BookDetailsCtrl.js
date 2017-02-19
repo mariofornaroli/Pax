@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('BookDetailsCtrl', BookDetailsCtrl);
-    BookDetailsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books', '$ionicLoading'];
+    BookDetailsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books', '$ionicLoading', 'ErrorMng'];
 
-    function BookDetailsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books, $ionicLoading) {
+    function BookDetailsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books, $ionicLoading, ErrorMng) {
 
         var vm = this;
 
@@ -15,7 +15,7 @@
         vm.paxGlobal = paxGlobal;
          
         vm.getPageTitle = function () {
-            return Books.currentBook.isPocheDuMois === true ? 'Poche du mois' : vm.currentBookDetail.title;
+            return Books.currentBook && Books.currentBook.isPocheDuMois === true ? 'Poche du mois' : vm.currentBookDetail.title;
         };
 
         vm.setMotion = function () {

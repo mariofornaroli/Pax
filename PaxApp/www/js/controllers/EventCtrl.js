@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('EventCtrl', EventCtrl);
-    EventCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', '$state'];
+    EventCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', '$state', 'Events', 'ErrorMng'];
 
-    function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, $state) {
+    function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, $state, Events, ErrorMng) {
 
         var vm = this;
 
@@ -12,6 +12,7 @@
 
         /* all document table data */
         vm.heartEvents = [];
+        vm.eventsLoaded = false;
         /* Mock Events */
         vm.mockEvents = [
             {
@@ -56,13 +57,13 @@
         /* Load all heart events */
         vm.loadHeartEvents = function () {
             /* At the moment return mockEvents */
-            vm.heartEvents = vm.mockEvents;
-            vm.setMotion();
-            return;
+            //vm.heartEvents = vm.mockEvents;
+            //vm.setMotion();
+            //return;
             /* end mock */
 
             // If data has not been loaded yet, then load it from server
-            if (Events.eventsLoaded === false) {
+            if (Events.eventsLoaded != false) {
                 vm.loadEvents();
             } else {
                 vm.heartEvents = Events.heartEvents;
@@ -73,19 +74,19 @@
 
         /* Load all events data from server */
         vm.loadEvents = function () {
-            Events.GetHeartEvents().then(
+            Events.GetEvents().then(
                 function (result) {
                     if (result.operationResult === true) {
-                        Events.heartEvents = result.resultData;
+                        Events.heartEvents = result.resultData.events;
                         Events.eventsLoaded = true;
 
                     } else {
                         // handle error here
                         ErrorMng.showSystemError(result.msg);
                     };
-                    /* Save vm state */
+                    /* Save vm state */ 
                     vm.eventsLoaded = Events.eventsLoaded;
-                    vm.heartEvents = result.resultData;
+                    vm.heartEvents = Events.heartEvents;
                     vm.setMotion();
                 },
                 function (error) {

@@ -3,3 +3,8 @@ C:\mfo\Projects\PAX\PaxWebApi\Entities\bin\Release\Entities.pdb
 C:\mfo\Projects\PAX\PaxWebApi\Entities\obj\Release\Entities.csprojResolveAssemblyReference.cache
 C:\mfo\Projects\PAX\PaxWebApi\Entities\obj\Release\Entities.dll
 C:\mfo\Projects\PAX\PaxWebApi\Entities\obj\Release\Entities.pdb
+E:\Mario\Projects\PAX\PaxWebApi\Entities\bin\Release\Entities.dll
+E:\Mario\Projects\PAX\PaxWebApi\Entities\bin\Release\Entities.pdb
+E:\Mario\Projects\PAX\PaxWebApi\Entities\obj\Release\Entities.csprojResolveAssemblyReference.cache
+E:\Mario\Projects\PAX\PaxWebApi\Entities\obj\Release\Entities.dll
+E:\Mario\Projects\PAX\PaxWebApi\Entities\obj\Release\Entities.pdb
