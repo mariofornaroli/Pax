@@ -158,9 +158,9 @@ p {
 /*  ----------------------------------   ABOUT PAX    -----------------------------------  */
 
 
-.about-pax-content .hero {
+/*.about-pax-content .hero {
     height: 220px;
-}
+}*/
 
 .info-openings-content {
     text-align: center;
@@ -168,4 +168,8 @@ p {
 
 .info-openings h5{
     color: #555;
+}
+
+.about-pax-content .info-openings-content h4{
+    margin-top: 0;
 }
