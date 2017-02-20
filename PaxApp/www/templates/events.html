@@ -9,7 +9,7 @@
                     <a class="image">
                         <img ng-src="{{event.imgSrc}}">
                     </a>
-                    <span ng-bind-html="event.shortDescription"></span>
+                    <span ng-bind-html="sanitizeMe(event.shortDescription)"></span>
 
                     <!--<div class="card-footer text-right">
                         <div class="pull-left">

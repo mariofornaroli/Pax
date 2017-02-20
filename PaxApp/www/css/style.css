@@ -173,3 +173,13 @@ p {
 .about-pax-content .info-openings-content h4{
     margin-top: 0;
 }
+
+/*  ----------------------------------   EVENT DETAILS    -----------------------------------  */
+
+.event-descr-container {
+    padding: 20px 15px;
+}
+
+.event-descr-container p {
+    font-size: 16px;
+}

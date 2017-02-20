@@ -42,6 +42,10 @@
             }
         ];
 
+        vm.sanitizeMe = function (text) {
+            return $sce.trustAsHtml(text)
+        };
+
 
         /* Link to pax global object to allow binding to the view */
         vm.paxGlobal = paxGlobal;

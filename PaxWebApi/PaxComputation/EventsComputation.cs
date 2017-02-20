@@ -122,6 +122,7 @@ namespace PaxComputation
                     if (events.Count > i)
                     {
                         events[i].Description = descrNode.InnerText;
+                        events[i].Description = events[i].Description.Replace("\r\n", "<br>");
                         events[i].ShortDescription = events[i].Description.Replace("\r\n", " ").Substring(0, 100);
                         events[i].ShortDescription += " [...]";
                     }
