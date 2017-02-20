@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="PaxWebApi" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^E:\\Mario\\Projects\\PAX\\PaxWebApi\\PaxWebApi\\obj\\Release\\Package\\PackageTmp$" />
-    <parameterEntry kind="ProviderPath" scope="setAcl" match="^E:\\Mario\\Projects\\PAX\\PaxWebApi\\PaxWebApi\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\mfo\\Projects\\PAX\\PaxWebApi\\PaxWebApi\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\mfo\\Projects\\PAX\\PaxWebApi\\PaxWebApi\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
   <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-PaxWebApi-20170110053442.mdf;Initial Catalog=aspnet-PaxWebApi-20170110053442;Integrated Security=True" tags="">
-    <parameterEntry kind="XmlFile" scope="E:\\Mario\\Projects\\PAX\\PaxWebApi\\PaxWebApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\mfo\\Projects\\PAX\\PaxWebApi\\PaxWebApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
 </parameters>

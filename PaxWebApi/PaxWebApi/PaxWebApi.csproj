@@ -283,8 +283,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\PaxWebApi - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\PaxWebApi - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
