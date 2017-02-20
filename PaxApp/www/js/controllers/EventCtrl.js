@@ -13,6 +13,7 @@
         /* all document table data */
         vm.heartEvents = [];
         vm.eventsLoaded = false;
+        vm.currentEvent = {};
         /* Mock Events */
         vm.mockEvents = [
             {
@@ -100,6 +101,10 @@
             Events.currentEvent = event;
 
             $state.go('app.event-details');
+        };
+
+        vm.setVmCurrentEvent = function () {
+            vm.currentEvent = Events.currentEvent;
         };
 
         /* Load all heart events */

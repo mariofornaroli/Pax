@@ -1,6 +1,6 @@
 <ion-view view-title="Agenda" ng-controller="EventCtrl as vm">
     <ion-content class="animate-fade-slide-in agenda-container">
-        <div class="item card-item" ng-repeat="event in vm.heartEvents">
+        <div class="item card-item" ng-repeat="event in vm.heartEvents" ng-click="vm.goToEventDetails(event)">
             <!--<div ui-sref="app.gallery" class="card stable-bg ink ink-dark">-->
             <div class="card stable-bg ink ink-dark">
                 <div class="item item-text-wrap">
