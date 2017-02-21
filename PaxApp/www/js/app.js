@@ -73,6 +73,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             }
         })
 
+    .state('app.best-sellers', {
+        url: '/best-sellers',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/best-sellers-books.html'
+            }
+        }
+    })
+
     .state('app.books', {
         url: '/books',
         views: {

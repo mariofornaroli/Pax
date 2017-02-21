@@ -45,7 +45,7 @@
             /* Call server to get book details */
             Books.getBookDetails().then(
                 function (result) {
-                    if (result.operationResult === true) {
+                    if (result.operationResult === true) { 
                     } else {
                         // handle error here
                         ErrorMng.showSystemError(result.msg);

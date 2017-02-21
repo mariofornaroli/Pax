@@ -1,4 +1,4 @@
-<ion-view view-title="Livre du coeur" ng-controller="ProfileCtrl as vm">
+<ion-view view-title="Coups de Coeur" ng-controller="ProfileCtrl as vm">
     <ion-content ng-class="{expanded:$scope.isExpanded}">
         <div class="hero slide-up" style="background-image: url('img/photo-liege-pax-4.jpg');">
             <div class="content">
@@ -15,8 +15,8 @@
             <a ui-sref="app.events" class="tab-item">
                 <i class="icon ion-arrow-graph-up-right"></i> Agenda
             </a>
-            <a ui-sref="app.books" class="tab-item">
-                <i class="icon ion-aperture"></i> Livres Conseill&eacute;
+            <a ui-sref="app.best-sellers" class="tab-item">
+                <i class="icon ion-aperture"></i> Meilleures ventes
             </a>
             <a ng-click="vm.goToPocheDuMois()" class="tab-item">
                 <i class="icon ion-wand"></i> Poche du mois

@@ -8,10 +8,12 @@
         var vm = this;
 
         vm.booksLoaded = false;
+        vm.bestSellersBooksLoaded = false;
         vm.booksDetailsLoaded = false;
 
         /* all document table data */
-        vm.heartBooks = [];
+        vm.heartBooks = []; 
+        vm.bestSellersBooks = [];
         vm.pocheDuMois = {};
 
         /* Link to pax global object to allow binding to the view */
@@ -51,7 +53,7 @@
 
         /* Load all books data from server */
         vm.loadBooks = function () {
-            Books.GetHeartBooks().then(
+            Books.GetBooks(paxGlobal.BookListTypeEnum.HEART).then(
                 function (result) {
                     if (result.operationResult === true) {
                         /* service state */
@@ -75,6 +77,43 @@
                 });
         };
 
+        /* Load all heart books */
+        vm.loadBestSellers = function () {
+            // If data has not been loaded yet, then load it from server
+            if (Books.bestSellersBooksLoaded === false) {
+                vm.loadBestSellersBooks();
+            } else {
+                vm.bestSellersBooks = Books.bestSellersBooks;
+                vm.setMotion();
+
+            };
+        };
+
+        /* Load all books data from server */ 
+        vm.loadBestSellersBooks = function () {
+            Books.GetBooks(paxGlobal.BookListTypeEnum.BEST_SELLERS).then(
+                function (result) {
+                    if (result.operationResult === true) {
+                        /* service state */
+                        Books.bestSellersBooks = result.resultData.bestSellers;
+                        Books.bestSellersBooksLoaded = true;
+                        /* vm state */
+                        vm.bestSellersBooksLoaded = Books.bestSellersBooksLoaded;
+                        vm.bestSellersBooks = Books.bestSellersBooks;
+                        vm.setMotion();
+
+                    } else {
+                        // handle error here
+                        ErrorMng.showSystemError(result.msg);
+                    };
+                },
+                function (error) {
+                    // handle error here
+                    ErrorMng.showSystemError(error.msg);
+                });
+        };
+
+        /* Go to details book */
         vm.goToBookDetails = function (book) {
             /* First set current book */
             Books.currentBook = book;
@@ -99,8 +138,9 @@
         };
 
         /* Init controller function */
-        vm.initController = function () {
+        vm.initController = function () { 
             vm.loadHeartBooks();
+            vm.loadBestSellers();
         };
 
         /* Call init controller */

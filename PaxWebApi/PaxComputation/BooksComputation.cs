@@ -453,11 +453,13 @@ namespace PaxComputation
 
         private static BookItem fillBestSellerItem(HtmlNode bookNode)
         {
+            var bookNodeDocument = AgilityTool.LoadFromString(bookNode.InnerHtml);
+
             var retBook = new BookItem();
-            if (bookNode != null)
+            if (bookNodeDocument != null)
             {
                 /* Fill title and href */
-                var titleNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='titre_auteur']//span[@class='titre']//a");
+                var titleNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='titre_auteur']//span[@class='titre']//a");
                 if (titleNode != null)
                 {
                     retBook.Title = titleNode.InnerText;
@@ -466,7 +468,7 @@ namespace PaxComputation
                     retBook.CompleteHref = retBook.Href;
                 }
                 /* Fill Autheur */
-                var autheurNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='titre_auteur']//span[@class='auteur']//a");
+                var autheurNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='titre_auteur']//span[@class='auteur']//a");
                 if (autheurNode != null)
                 {
                     retBook.Author = autheurNode.InnerText;
@@ -474,25 +476,25 @@ namespace PaxComputation
                     retBook.AuthorHref = PAX_WEBSITE + retBook.Href;
                 }
                 /* Fill img */
-                var imgNode = bookNode.SelectSingleNode("//td[@class='visu']//img");
+                var imgNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='visu']//img");
                 if (imgNode != null)
                 {
                     retBook.ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
                 }
                 /* Fill editor */
-                var editorNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='editeur']");
+                var editorNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='editeur']");
                 if (editorNode != null)
                 {
                     retBook.Editor = editorNode.InnerText;
                 }
                 /* Fill published date */
-                var pubDateNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='date_parution']");
+                var pubDateNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='date_parution']");
                 if (pubDateNode != null)
                 {
                     retBook.PublishedDate = pubDateNode.InnerText;
                 }
                 /* Fill price */
-                var priceNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='prix']//span[@class='prix_indicatif']");
+                var priceNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='prix']//span[@class='prix_indicatif']");
                 if (priceNode != null)
                 {
                     retBook.Price = priceNode.InnerText;

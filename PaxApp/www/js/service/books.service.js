@@ -15,7 +15,8 @@
         /* Current document selected for item loading */
         self.currentBook;
         /* Books loaded */
-        self.booksLoaded = false;
+        self.booksLoaded = false; 
+        self.bestSellersBooksLoaded = false;
         self.singleBookDetailsLoaded = false;
         /* callbacks to be called on documents status changes */
         self.observerCallbacks = [];
@@ -77,12 +78,18 @@
         };
         
         /* Get Heart Books */
-        self.GetHeartBooks = function () {
+        self.GetBooks = function (bookTypeEnumValue) {
             var deferredLoadItems = $q.defer();
 
+            var urlToCall = 'api/HeartBooks';
+            if (bookTypeEnumValue === paxGlobal.BookListTypeEnum.HEART) {
+                urlToCall = 'api/HeartBooks';
+            } else if (bookTypeEnumValue === paxGlobal.BookListTypeEnum.BEST_SELLERS) {
+                urlToCall = 'api/BestSellers';
+            };
             var req = {
                 method: 'GET',
-                url: paxGlobal.getAppUrl() + 'api/HeartBooks'
+                url: paxGlobal.getAppUrl() + urlToCall
 
             };
             return $http(req).then(function (response) {

@@ -24,7 +24,7 @@
 
         /* Load all books data from server */
         vm.loadBooks = function () {
-            Books.GetHeartBooks().then(
+            Books.GetBooks().then(
                 function (result) {
                     if (result.error === false) {
                         vm.heartBooks = result.data;
