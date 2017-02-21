@@ -45,6 +45,7 @@
     <Compile Include="BookDetailsItem.cs" />
     <Compile Include="EventItem.cs" />
     <Compile Include="EventsModel.cs" />
+    <Compile Include="BestSellersModel.cs" />
     <Compile Include="HeartBooksModel.cs" />
     <Compile Include="BookItem.cs" />
     <Compile Include="DescriptionItem.cs" />

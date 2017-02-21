@@ -35,5 +35,10 @@ namespace PaxServices
         {
             return myDatabaseManager.GetEventss();
         }
+
+        public BestSellersModel GetBestSellers()
+        {
+            return myDatabaseManager.GetBestSellers();
+        }
     }
 }

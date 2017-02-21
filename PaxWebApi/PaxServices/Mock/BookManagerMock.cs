@@ -10,6 +10,11 @@ namespace PaxServices
 {
     public class BookManagerMock : IBookManager
     {
+        public BestSellersModel GetBestSellers()
+        {
+            throw new NotImplementedException();
+        }
+
         public BookDetailsItem GetDetailsBook(string completeHref)
         {
             throw new NotImplementedException();

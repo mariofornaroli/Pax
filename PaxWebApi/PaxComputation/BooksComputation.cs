@@ -12,6 +12,7 @@ namespace PaxComputation
     public static class BooksComputation
     {
         private const string PAX_WEBSITE = "http://www.librairiepax.be/";
+        private const string PAX_WEBSITE_BEST_SELLERS = "http://www.librairiepax.be/topfrance.php";
         private const string HTML_COERU_TD_CLASS = "CoeurCorpus";
         private const int MAX_COERU_BLOCS_NUM = 10;
         private const string HTML_COERU_TITLE_CLASS = "CoeurTitre";
@@ -398,6 +399,111 @@ namespace PaxComputation
         }
 
         #endregion
+
+
+
+
+        #region ComputeBestSellers Methods
+
+        private const string PAX_EVENTS_WEBSITE = "http://www.librairiepax.be/events.php?blid=5808";
+
+        /// <summary>
+        /// Get Heart books
+        /// </summary>
+        /// <returns>List of heart books</returns>
+        public static BestSellersModel ComputeBestSellers()
+        {
+            return _ComputeBestSellers();
+        }
+
+        private static BestSellersModel _ComputeBestSellers()
+        {
+            HtmlDocument doc = new HtmlDocument();
+            HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE_BEST_SELLERS, null, null);
+            doc.LoadHtml(downloader.GetPage());
+
+            return GetBestSellersObjList(doc);
+        }
+
+        public static BestSellersModel GetBestSellersObjList(HtmlDocument doc)
+        {
+            var retData = new BestSellersModel() { BestSellers = new List<BookItem>() };
+
+            /* Fill Best Sellers */
+            FillBestSellers(doc, retData.BestSellers);            
+
+            return retData;
+        }
+
+        private static void FillBestSellers(HtmlDocument doc, List<BookItem> bestSellers)
+        {
+            HtmlNodeCollection bsRows = doc.DocumentNode.SelectNodes("//table[@class='tab_listlivre']//tr");
+
+            var countEvents = bsRows.Count;
+
+            for (int i = 0; i < countEvents; i++)
+            {
+                var bookToAdd = fillBestSellerItem(bsRows[i]);
+
                 
+                /* Add event to list */
+                bestSellers.Add(bookToAdd);
+            }
+        }
+
+        private static BookItem fillBestSellerItem(HtmlNode bookNode)
+        {
+            var retBook = new BookItem();
+            if (bookNode != null)
+            {
+                /* Fill title and href */
+                var titleNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='titre_auteur']//span[@class='titre']//a");
+                if (titleNode != null)
+                {
+                    retBook.Title = titleNode.InnerText;
+                    retBook.Href = titleNode.HasAttributes ? titleNode.Attributes["href"].Value : string.Empty;
+                    retBook.Href = PAX_WEBSITE + retBook.Href;
+                    retBook.CompleteHref = retBook.Href;
+                }
+                /* Fill Autheur */
+                var autheurNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='titre_auteur']//span[@class='auteur']//a");
+                if (autheurNode != null)
+                {
+                    retBook.Author = autheurNode.InnerText;
+                    retBook.AuthorHref = autheurNode.HasAttributes ? autheurNode.Attributes["href"].Value : string.Empty;
+                    retBook.AuthorHref = PAX_WEBSITE + retBook.Href;
+                }
+                /* Fill img */
+                var imgNode = bookNode.SelectSingleNode("//td[@class='visu']//img");
+                if (imgNode != null)
+                {
+                    retBook.ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
+                }
+                /* Fill editor */
+                var editorNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='editeur']");
+                if (editorNode != null)
+                {
+                    retBook.Editor = editorNode.InnerText;
+                }
+                /* Fill published date */
+                var pubDateNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='date_parution']");
+                if (pubDateNode != null)
+                {
+                    retBook.PublishedDate = pubDateNode.InnerText;
+                }
+                /* Fill price */
+                var priceNode = bookNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='prix']//span[@class='prix_indicatif']");
+                if (priceNode != null)
+                {
+                    retBook.Price = priceNode.InnerText;
+                }
+            }
+
+            retBook.DateComputation = DateTime.Now;
+            return retBook;
+        }
+
+
+        #endregion
     }
 }

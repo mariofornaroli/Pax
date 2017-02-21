@@ -15,5 +15,8 @@ namespace PaxServices
         BookDetailsItem GetDetailsBook(string completeHref);
 
         EventsModel GetEvents();
+
+        BestSellersModel GetBestSellers();
+        
     }
 }

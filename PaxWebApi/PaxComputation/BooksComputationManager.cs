@@ -27,7 +27,12 @@ namespace PaxComputation
         {
             return EventsComputation.ComputeEvents();
         }
-        
+
+        public BestSellersModel GetBestSellers()
+        {
+            return BooksComputation.ComputeBestSellers();
+        }
+
         public bool AddHeartBooks(List<BookItem> booksToAdd)
         {
             throw new NotImplementedException();

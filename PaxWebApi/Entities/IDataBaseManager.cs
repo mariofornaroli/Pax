@@ -29,10 +29,16 @@ namespace Entities
         BookDetailsItem GetDetailsBook(string completeHref);
 
         /// <summary>
-        /// begin Transaction
+        /// Get Events
         /// </summary>
         void BeginDBTransaction();
         EventsModel GetEventss();
+
+        /// <summary>
+        /// Get Heart books
+        /// </summary>
+        /// <returns>List of heart books</returns>
+        BestSellersModel GetBestSellers();
 
         /// <summary>
         /// End Transaction

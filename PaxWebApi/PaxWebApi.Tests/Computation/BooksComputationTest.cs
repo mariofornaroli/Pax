@@ -42,7 +42,35 @@ namespace PaxWebApi.Tests.Controllers
         {
             var booksList = BooksComputation.ComputeHeartBooks();
             return booksList.HeartBooks.FirstOrDefault().CompleteHref;
-
         }
+
+        [TestMethod]
+        public void ComputeBestSellersOk()
+        {
+            // Act
+            BestSellersModel result = BooksComputation.ComputeBestSellers();
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.BestSellers);
+        }
+
+        [TestMethod]
+        public void ComputeBestSellerDetailsOk()
+        {
+            string bookDetail = getFirstBestSellerHref();
+            // Act
+            BookDetailsItem bookDetails = BooksComputation.ComputeBookDetails(bookDetail);
+
+            // Assert
+            Assert.IsNotNull(bookDetails);
+        }
+
+        private string getFirstBestSellerHref()
+        {
+            var booksList = BooksComputation.ComputeBestSellers();
+            return booksList.BestSellers.FirstOrDefault().CompleteHref;
+        }
+
     }
 }
