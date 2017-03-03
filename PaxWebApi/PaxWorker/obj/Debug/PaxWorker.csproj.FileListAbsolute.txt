@@ -40,3 +40,7 @@ C:\mfo\Projects\PAX\PaxWebApi\PaxWorker\bin\Debug\HtmlAgilityPack.xml
 C:\mfo\Projects\PAX\PaxWebApi\PaxWorker\obj\Debug\PaxWorker.csprojResolveAssemblyReference.cache
 C:\mfo\Projects\PAX\PaxWebApi\PaxWorker\obj\Debug\PaxWorker.dll
 C:\mfo\Projects\PAX\PaxWebApi\PaxWorker\obj\Debug\PaxWorker.pdb
+C:\mfo\Projects\PAX\PaxWebApi\PaxWorker\bin\Debug\System.Web.Http.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWorker\bin\Debug\System.Net.Http.Formatting.dll
+C:\mfo\Projects\PAX\PaxWebApi\PaxWorker\bin\Debug\System.Web.Http.xml
+C:\mfo\Projects\PAX\PaxWebApi\PaxWorker\bin\Debug\System.Net.Http.Formatting.xml
