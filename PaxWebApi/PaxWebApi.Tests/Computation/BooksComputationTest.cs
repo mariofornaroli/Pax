@@ -28,6 +28,18 @@ namespace PaxWebApi.Tests.Controllers
         }
 
         [TestMethod]
+        public void ComputeHeartBooksToFileOk()
+        {
+            // Act
+            HeartBooksModel result = BooksComputation.ComputeHeartBooksToFile();
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.HeartBooks);
+            Assert.AreEqual(12, result.HeartBooks.Count());
+        }
+
+        [TestMethod]
         public void ComputeBookDetailsOk()
         {
             string bookDetail = getFirstBookCompleteHref();

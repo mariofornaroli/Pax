@@ -1,0 +1,15 @@
+apk-signer -f android-release-unsigned.apk -a phoenix -k PaxDeCoeur.keystore -s ph03n!X
+
+
+jarsigner -verbose -keystore PaxDeCoeur.keystore -storepass Maomao@01 -keypass Maomao@01 android-release-unsigned.apk PaxDeCoeur
+
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore PaxDeCoeur.keystore android-release-unsigned.apk PaxDeCoeur
+
+
+zipalign -v 4 android-release-unsigned.apk PaxDeCoeur.apk
+
+
+
+Your APK needs to have the package name io.cordova.PaxDeCoeur2785d518e9f4578943055878dd7a400.
+You need to use a different version code for your APK because you already have one with version code 18.

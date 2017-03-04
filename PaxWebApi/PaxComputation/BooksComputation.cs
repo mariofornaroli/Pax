@@ -1,5 +1,6 @@
 ﻿using Entities;
 using HtmlAgilityPack;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,189 +17,44 @@ namespace PaxComputation
         private const string HTML_COERU_TD_CLASS = "CoeurCorpus";
         private const int MAX_COERU_BLOCS_NUM = 10;
         private const string HTML_COERU_TITLE_CLASS = "CoeurTitre";
-        
-        #region ComputeBookDetails Methods
 
-        /// <summary>
-        /// Get Heart book details
-        /// </summary>
-        /// <returns>Book details</returns>
-        public static BookDetailsItem ComputeBookDetails(string completeHref)
-        {
-            return _ComputeBookDetails(completeHref);
-        }
+        #region properties
 
-        private static BookDetailsItem _ComputeBookDetails(string completeHref)
-        {
-            HtmlDocument doc = new HtmlDocument();
-            HttpDownloader downloader = new HttpDownloader(completeHref, null, null);
-            doc.LoadHtml(downloader.GetPage());
-
-            return GetBookDetailsObj(doc);
-        }
-
-        private static BookDetailsItem GetBookDetailsObj(HtmlDocument doc)
-        {
-            var bookDetails = new BookDetailsItem();
-
-            /* Get coeurTdDoc object */
-            var detailTableDoc = GetDetailTableObj(doc);
-
-            /* Fill properties */
-            FillTitle(detailTableDoc, bookDetails);
-            FillImgSrc(detailTableDoc, bookDetails);
-            FillAuthor(detailTableDoc, bookDetails);
-            FillEditeur(detailTableDoc, bookDetails);
-            FillDateParution(detailTableDoc, bookDetails);
-            FillGenre(detailTableDoc, bookDetails);
-            FillTraduction(detailTableDoc, bookDetails);
-
-            /* mot_du_libraire */
-            bookDetails.AdditionalDescriptionItems = new List<DescriptionItem>();
-            FillAdditionalInfoSection(doc, bookDetails);
-
-            /* global info */
-            bookDetails.GlobalInfoDescriptionItems = new List<DescriptionItem>();
-            FillEditorWord(doc, bookDetails);
-            FillBiography(doc, bookDetails);
-
-            return bookDetails;
-        }
-
-        private static void FillEditorWord(HtmlDocument doc, BookDetailsItem bookDetails)
-        {
-            var addItem = new DescriptionItem();
-            HtmlNode globbalInfoNode = doc.DocumentNode
-                .SelectSingleNode("//div[@class='bloc_presa']//p");
-            if (globbalInfoNode != null)
-            {
-                addItem.Title = "Le mot de l'éditeur";
-                addItem.Content = globbalInfoNode.InnerText;
-            }
-            bookDetails.GlobalInfoDescriptionItems.Add(addItem);
-        }
-
-        private static void FillBiography(HtmlDocument doc, BookDetailsItem bookDetails)
-        {
-            var addItem = new DescriptionItem();
-            HtmlNode globbalInfoNode = doc.DocumentNode
-                .SelectSingleNode("//div[@class='bloc_biographie']//p");
-            if (globbalInfoNode != null)
-            {
-                addItem.Title = "Biographie";
-                addItem.Content = globbalInfoNode.InnerText;
-            }
-            bookDetails.GlobalInfoDescriptionItems.Add(addItem);
-        }
-
-        private static void FillAdditionalInfoSection(HtmlDocument doc, BookDetailsItem bookDetails)
-        {
-            var addItem = new DescriptionItem();
-            HtmlNode titleNode = doc.DocumentNode
-                .SelectSingleNode("//div[@class='bloc_mot_du_libraire']//h2");
-            if (titleNode != null)
-            {
-                addItem.Title = titleNode.InnerText;
-            }
-            HtmlNode contentNode = doc.DocumentNode
-                .SelectSingleNode("//div[@class='bloc_mot_du_libraire']//div[@class='contenu_mdl']");
-            if (contentNode != null)
-            {
-                addItem.Content = contentNode.InnerText;
-            }
-            bookDetails.AdditionalDescriptionItems.Add(addItem);
-        }
-
-        private static HtmlDocument GetDetailTableObj(HtmlDocument doc)
-        {
-            var className = "tab_detaillivre";
-            var detailTable = doc.DocumentNode
-                .Descendants("table")
-                .Where(d =>
-                d.Attributes.Contains("class")
-                &&
-                d.Attributes["class"].Value.Contains(className)
-                ).Select(x => AgilityTool.LoadFromString(x.InnerHtml));
-            return detailTable.FirstOrDefault();
-        }
-
-        /* Title */
-        private static void FillTitle(HtmlDocument tableDoc, BookDetailsItem bookDetails)
-        {
-            HtmlNode titleNode = tableDoc.DocumentNode
-                .SelectSingleNode("//td[@class='tab_detaillivre_metabook']//span[@class='titre']");
-            if (titleNode != null) {
-                bookDetails.Title = titleNode.InnerText;
-            }
-        }
-
-        /* ImgSrc */
-        private static void FillImgSrc(HtmlDocument tableDoc, BookDetailsItem bookDetails)
-        {
-            HtmlNode imgNode = tableDoc.DocumentNode
-                .SelectSingleNode("//td[@class='visu']//img");
-            if (imgNode != null)
-            {
-                bookDetails.ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
-            }
-        }
-
-        /* auteur */
-        private static void FillAuthor(HtmlDocument tableDoc, BookDetailsItem bookDetails)
-        {
-            HtmlNode autheurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='auteur']//a");
-            if (autheurNode != null)
-            {
-                bookDetails.AuthorHref = autheurNode.HasAttributes ? autheurNode.Attributes["href"].Value : string.Empty;
-                bookDetails.Author = autheurNode.InnerText;
-            }
-        }
-
-        /* editeur_collection */
-        private static void FillEditeur(HtmlDocument tableDoc, BookDetailsItem bookDetails)
-        {
-            HtmlNode editeurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='editeur_collection']//span[@class='editeur']");
-            if (editeurNode != null)
-            {
-                bookDetails.Editor = editeurNode.InnerText;
-            }
-        }
-
-        /* date_parution */
-        private static void FillDateParution(HtmlDocument tableDoc, BookDetailsItem bookDetails)
-        {
-            HtmlNode dateNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='date_parution']");
-            if (dateNode != null)
-            {
-                bookDetails.PublishedDate = dateNode.InnerText;
-            }
-        }
-
-        /* genre */
-        private static void FillGenre(HtmlDocument tableDoc, BookDetailsItem bookDetails)
-        {
-            HtmlNode genreNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='genre']");
-            if (genreNode != null)
-            {
-                bookDetails.Type = genreNode.InnerText;
-            }
-        }
-
-        /* traduction */
-        private static void FillTraduction(HtmlDocument tableDoc, BookDetailsItem bookDetails)
-        {
-            HtmlNode traductionNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='traduction']");
-            if (traductionNode != null)
-            {
-                bookDetails.TraductionInfo = traductionNode.InnerText;
-            }
-        }
-
-
+        private static FileComputation fileComputation = new FileComputation();
 
         #endregion
 
+        #region Compute and save to file
 
+        /// <summary>
+        /// Get Heart books and store result to file
+        /// </summary>
+        /// <returns>List of heart books</returns>
+        public static HeartBooksModel ComputeHeartBooksToFile()
+        {
+            string resultJsonStringified;
+
+            /* Compute HEART BOOKS and save into "heartBooks.txt" file */
+            HeartBooksModel hn = _ComputeHeartBooks();
+            resultJsonStringified = JsonConvert.SerializeObject(hn);
+            fileComputation.writeFile("", "", "heartBooks.txt", resultJsonStringified);
+
+            /* Compute DETAILS FOR HEART BOOKS and save into "heartBooks.txt" file */
+            var bookDetailsList = new List<BookDetailsItem>();
+            foreach (var bookItem in hn.HeartBooks)
+            {
+                bookDetailsList.Add(ComputeBookDetails(bookItem.CompleteHref));
+            }
+
+            resultJsonStringified = JsonConvert.SerializeObject(hn);
+            fileComputation.writeFile("", "", "heartBooksDetails.txt", resultJsonStringified);
+            
+            return hn;
+        }
+
+
+        #endregion
+                
         #region ComputeHeartBooks Methods
 
         /// <summary>
@@ -209,7 +65,7 @@ namespace PaxComputation
         {
             return _ComputeHeartBooks();
         }
-
+        
         private static HeartBooksModel _ComputeHeartBooks()
         {
             HtmlDocument doc = new HtmlDocument();
@@ -400,6 +256,186 @@ namespace PaxComputation
 
         #endregion
 
+
+        #region ComputeBookDetails Methods
+
+        /// <summary>
+        /// Get Heart book details
+        /// </summary>
+        /// <returns>Book details</returns>
+        public static BookDetailsItem ComputeBookDetails(string completeHref)
+        {
+            return _ComputeBookDetails(completeHref);
+        }
+
+        private static BookDetailsItem _ComputeBookDetails(string completeHref)
+        {
+            HtmlDocument doc = new HtmlDocument();
+            HttpDownloader downloader = new HttpDownloader(completeHref, null, null);
+            doc.LoadHtml(downloader.GetPage());
+
+            return GetBookDetailsObj(doc);
+        }
+
+        private static BookDetailsItem GetBookDetailsObj(HtmlDocument doc)
+        {
+            var bookDetails = new BookDetailsItem();
+
+            /* Get coeurTdDoc object */
+            var detailTableDoc = GetDetailTableObj(doc);
+
+            /* Fill properties */
+            FillTitle(detailTableDoc, bookDetails);
+            FillImgSrc(detailTableDoc, bookDetails);
+            FillAuthor(detailTableDoc, bookDetails);
+            FillEditeur(detailTableDoc, bookDetails);
+            FillDateParution(detailTableDoc, bookDetails);
+            FillGenre(detailTableDoc, bookDetails);
+            FillTraduction(detailTableDoc, bookDetails);
+
+            /* mot_du_libraire */
+            bookDetails.AdditionalDescriptionItems = new List<DescriptionItem>();
+            FillAdditionalInfoSection(doc, bookDetails);
+
+            /* global info */
+            bookDetails.GlobalInfoDescriptionItems = new List<DescriptionItem>();
+            FillEditorWord(doc, bookDetails);
+            FillBiography(doc, bookDetails);
+
+            return bookDetails;
+        }
+
+        private static void FillEditorWord(HtmlDocument doc, BookDetailsItem bookDetails)
+        {
+            var addItem = new DescriptionItem();
+            HtmlNode globbalInfoNode = doc.DocumentNode
+                .SelectSingleNode("//div[@class='bloc_presa']//p");
+            if (globbalInfoNode != null)
+            {
+                addItem.Title = "Le mot de l'éditeur";
+                addItem.Content = globbalInfoNode.InnerText;
+            }
+            bookDetails.GlobalInfoDescriptionItems.Add(addItem);
+        }
+
+        private static void FillBiography(HtmlDocument doc, BookDetailsItem bookDetails)
+        {
+            var addItem = new DescriptionItem();
+            HtmlNode globbalInfoNode = doc.DocumentNode
+                .SelectSingleNode("//div[@class='bloc_biographie']//p");
+            if (globbalInfoNode != null)
+            {
+                addItem.Title = "Biographie";
+                addItem.Content = globbalInfoNode.InnerText;
+            }
+            bookDetails.GlobalInfoDescriptionItems.Add(addItem);
+        }
+
+        private static void FillAdditionalInfoSection(HtmlDocument doc, BookDetailsItem bookDetails)
+        {
+            var addItem = new DescriptionItem();
+            HtmlNode titleNode = doc.DocumentNode
+                .SelectSingleNode("//div[@class='bloc_mot_du_libraire']//h2");
+            if (titleNode != null)
+            {
+                addItem.Title = titleNode.InnerText;
+            }
+            HtmlNode contentNode = doc.DocumentNode
+                .SelectSingleNode("//div[@class='bloc_mot_du_libraire']//div[@class='contenu_mdl']");
+            if (contentNode != null)
+            {
+                addItem.Content = contentNode.InnerText;
+            }
+            bookDetails.AdditionalDescriptionItems.Add(addItem);
+        }
+
+        private static HtmlDocument GetDetailTableObj(HtmlDocument doc)
+        {
+            var className = "tab_detaillivre";
+            var detailTable = doc.DocumentNode
+                .Descendants("table")
+                .Where(d =>
+                d.Attributes.Contains("class")
+                &&
+                d.Attributes["class"].Value.Contains(className)
+                ).Select(x => AgilityTool.LoadFromString(x.InnerHtml));
+            return detailTable.FirstOrDefault();
+        }
+
+        /* Title */
+        private static void FillTitle(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode titleNode = tableDoc.DocumentNode
+                .SelectSingleNode("//td[@class='tab_detaillivre_metabook']//span[@class='titre']");
+            if (titleNode != null)
+            {
+                bookDetails.Title = titleNode.InnerText;
+            }
+        }
+
+        /* ImgSrc */
+        private static void FillImgSrc(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode imgNode = tableDoc.DocumentNode
+                .SelectSingleNode("//td[@class='visu']//img");
+            if (imgNode != null)
+            {
+                bookDetails.ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
+            }
+        }
+
+        /* auteur */
+        private static void FillAuthor(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode autheurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='auteur']//a");
+            if (autheurNode != null)
+            {
+                bookDetails.AuthorHref = autheurNode.HasAttributes ? autheurNode.Attributes["href"].Value : string.Empty;
+                bookDetails.Author = autheurNode.InnerText;
+            }
+        }
+
+        /* editeur_collection */
+        private static void FillEditeur(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode editeurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='editeur_collection']//span[@class='editeur']");
+            if (editeurNode != null)
+            {
+                bookDetails.Editor = editeurNode.InnerText;
+            }
+        }
+
+        /* date_parution */
+        private static void FillDateParution(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode dateNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='date_parution']");
+            if (dateNode != null)
+            {
+                bookDetails.PublishedDate = dateNode.InnerText;
+            }
+        }
+
+        /* genre */
+        private static void FillGenre(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode genreNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='genre']");
+            if (genreNode != null)
+            {
+                bookDetails.Type = genreNode.InnerText;
+            }
+        }
+
+        /* traduction */
+        private static void FillTraduction(HtmlDocument tableDoc, BookDetailsItem bookDetails)
+        {
+            HtmlNode traductionNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='traduction']");
+            if (traductionNode != null)
+            {
+                bookDetails.TraductionInfo = traductionNode.InnerText;
+            }
+        }
+
+        #endregion
 
 
 
