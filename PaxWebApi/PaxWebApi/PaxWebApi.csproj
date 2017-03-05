@@ -245,6 +245,8 @@
     <Compile Include="Controllers\BookDetailsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\BestSellersController.cs" />
+    <Compile Include="Controllers\ComputeAllToFileController.cs" />
+    <Compile Include="Controllers\DetailsHeartBooksListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HeartBooksController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -289,9 +291,13 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - FTP %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\PaxWebApi - FTP %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\PaxWebApi - FTP %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\PaxWebApi - Web Deploy %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\PaxWebApi - Web Deploy %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\PaxWebApi - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

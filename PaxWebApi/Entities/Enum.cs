@@ -11,4 +11,11 @@ namespace Entities
     {
         GENERIC_ERROR = 0
     };
+
+    public enum BookTypeEnum
+    {
+        HEART_BOOK = 0,
+        MONTH_BOOK = 1,
+        BEST_SELLER_BOOK = 2
+    };
 }

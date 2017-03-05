@@ -1,4 +1,5 @@
 ﻿using Entities;
+using PaxComputation;
 using PaxDal;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,24 @@ namespace PaxServices
         public HeartBooksModel GetHeartBooks()
         {
             return myDatabaseManager.GetHeartBooks();
+        }
+
+        /// <summary>
+        /// Get Details for heart books and details and store result to file
+        /// </summary>
+        /// <returns></returns>
+        public DetailsBooksModel ComputeDetailsHeartBooks()
+        {
+            return BooksComputation.ComputeDetailsHeartBooks();
+        }
+
+        /// <summary>
+        /// Get Heart books and details and store result to file
+        /// </summary>
+        /// <returns></returns>
+        public BaseResultModel ComputeHeartBooksAndDetailsToFile()
+        {
+            return BooksComputation.ComputeHeartBooksToFile();
         }
 
         public BookDetailsItem GetDetailsBook(string completeHref)

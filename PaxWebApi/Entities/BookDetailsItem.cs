@@ -9,6 +9,7 @@ namespace Entities
     public class BookDetailsItem
     {
         public string Href { get; set; }
+        public string CompleteHref { get; set; }
         public string Title { get; set; }
         public string ImgSrc { get; set; }
         public string Author { get; set; }

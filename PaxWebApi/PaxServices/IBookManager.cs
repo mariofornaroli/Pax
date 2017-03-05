@@ -12,6 +12,10 @@ namespace PaxServices
     {
         HeartBooksModel GetHeartBooks();
 
+        DetailsBooksModel ComputeDetailsHeartBooks();
+
+        BaseResultModel ComputeHeartBooksAndDetailsToFile();
+
         BookDetailsItem GetDetailsBook(string completeHref);
 
         EventsModel GetEvents();

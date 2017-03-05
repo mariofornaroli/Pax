@@ -1,6 +1,3 @@
-apk-signer -f android-release-unsigned.apk -a phoenix -k PaxDeCoeur.keystore -s ph03n!X
-
-
 jarsigner -verbose -keystore PaxDeCoeur.keystore -storepass Maomao@01 -keypass Maomao@01 android-release-unsigned.apk PaxDeCoeur
 
 

@@ -24,48 +24,78 @@ namespace PaxComputation
 
         #endregion
 
-        #region Compute and save to file
+        #region Compute, save to file and get from file
 
         /// <summary>
-        /// Get Heart books and store result to file
+        /// Get Heart books and details and store result to file
         /// </summary>
         /// <returns>List of heart books</returns>
-        public static HeartBooksModel ComputeHeartBooksToFile()
+        public static BaseResultModel ComputeHeartBooksToFile()
         {
+            var ret = new BaseResultModel();
             string resultJsonStringified;
 
             /* Compute HEART BOOKS and save into "heartBooks.txt" file */
             HeartBooksModel hn = _ComputeHeartBooks();
             resultJsonStringified = JsonConvert.SerializeObject(hn);
+
             fileComputation.writeFile("", "", "heartBooks.txt", resultJsonStringified);
 
-            /* Compute DETAILS FOR HEART BOOKS and save into "heartBooks.txt" file */
+            /* Compute DETAILS FOR HEART BOOKS and save into "heartBooksDetails.txt" file */
+            DetailsBooksModel detList = new DetailsBooksModel
+            {
+                DetailsBooks = new List<BookDetailsItem>(),
+                BookType = BookTypeEnum.HEART_BOOK
+            };
             var bookDetailsList = new List<BookDetailsItem>();
             foreach (var bookItem in hn.HeartBooks)
             {
-                bookDetailsList.Add(ComputeBookDetails(bookItem.CompleteHref));
+                detList.DetailsBooks.Add(ComputeBookDetails(bookItem.CompleteHref));
             }
-
-            resultJsonStringified = JsonConvert.SerializeObject(hn);
+            resultJsonStringified = JsonConvert.SerializeObject(detList);
             fileComputation.writeFile("", "", "heartBooksDetails.txt", resultJsonStringified);
-            
-            return hn;
+
+            ret.OperationResult = true;
+            return ret;
         }
 
-
-        #endregion
-                
-        #region ComputeHeartBooks Methods
-
         /// <summary>
-        /// Get Heart books
+        /// Get Heart books from file, deserialize JSON result string into model and return the model
         /// </summary>
         /// <returns>List of heart books</returns>
         public static HeartBooksModel ComputeHeartBooks()
         {
-            return _ComputeHeartBooks();
+            /* next row TO BE REMOVED */
+            //return _ComputeHeartBooks();
+
+            /* Get HeartBooks from file, deserialize JSON result string into model and return the model */
+            var resultJsonStringFormat = fileComputation.getFile("", "", "heartBooks.txt");
+            /* Test */
+            HeartBooksModel resDeserialized = JsonConvert.DeserializeObject<HeartBooksModel>(resultJsonStringFormat);
+            return resDeserialized;
         }
-        
+
+        /// <summary>
+        /// Get Details of feart books from file, deserialize JSON result string into model and return the model
+        /// </summary>
+        /// <returns>List of heart books</returns>
+        public static DetailsBooksModel ComputeDetailsHeartBooks()
+        {
+            /* next row TO BE REMOVED */
+            //return _ComputeHeartBooks();
+
+            /* Get HeartBooks from file, deserialize JSON result string into model and return the model */
+            var resultJsonStringFormat = fileComputation.getFile("", "", "heartBooksDetails.txt");
+            /* Test */
+            DetailsBooksModel resDeserialized = JsonConvert.DeserializeObject<DetailsBooksModel>(resultJsonStringFormat);
+            return resDeserialized;
+        }
+
+
+        #endregion
+
+        #region ComputeHeartBooks Methods
+
         private static HeartBooksModel _ComputeHeartBooks()
         {
             HtmlDocument doc = new HtmlDocument();
@@ -168,7 +198,7 @@ namespace PaxComputation
         {
             foreach (var tr in groupBlocksList)
             {
-               var test =  tr.Encoding;
+                var test = tr.Encoding;
                 var tdBlocks = tr.DocumentNode
                     .Descendants("td");
                 foreach (var td in tdBlocks)
@@ -265,7 +295,9 @@ namespace PaxComputation
         /// <returns>Book details</returns>
         public static BookDetailsItem ComputeBookDetails(string completeHref)
         {
-            return _ComputeBookDetails(completeHref);
+            var retDetail =  _ComputeBookDetails(completeHref);
+            retDetail.CompleteHref = completeHref;
+            return retDetail;
         }
 
         private static BookDetailsItem _ComputeBookDetails(string completeHref)
@@ -466,7 +498,7 @@ namespace PaxComputation
             var retData = new BestSellersModel() { BestSellers = new List<BookItem>() };
 
             /* Fill Best Sellers */
-            FillBestSellers(doc, retData.BestSellers);            
+            FillBestSellers(doc, retData.BestSellers);
 
             return retData;
         }
@@ -481,7 +513,7 @@ namespace PaxComputation
             {
                 var bookToAdd = fillBestSellerItem(bsRows[i]);
 
-                
+
                 /* Add event to list */
                 bestSellers.Add(bookToAdd);
             }

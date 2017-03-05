@@ -77,7 +77,15 @@
                 });
         };
 
-        /* Load all heart books */
+        /* Load all details for heart books */
+        vm.loadDetailsForHeartBooks = function () {
+            // If data has not been loaded yet, then load it from server
+            if (Books.detailsForHeartBooksLoaded === false) {
+                Books.getDetailsForHeartBooks();
+            };
+        };
+
+        /* Load all best sellers books */
         vm.loadBestSellers = function () {
             // If data has not been loaded yet, then load it from server
             if (Books.bestSellersBooksLoaded === false) {
@@ -140,6 +148,7 @@
         /* Init controller function */
         vm.initController = function () { 
             vm.loadHeartBooks();
+            vm.loadDetailsForHeartBooks();
             vm.loadBestSellers();
         };
 

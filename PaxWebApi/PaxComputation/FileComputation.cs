@@ -1,17 +1,5 @@
-﻿using Entities;
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Script.Serialization;
-using Microsoft.Azure; // Namespace for Azure Configuration Manager
+﻿using System.IO;
 using Microsoft.WindowsAzure.Storage; // Namespace for Storage Client Library
-using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage
 using Microsoft.WindowsAzure.Storage.File; // Namespace for File storage
 
 namespace PaxComputation

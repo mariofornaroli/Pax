@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +54,10 @@
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{3D6F2924-0577-4BB1-BA9C-91C0D132EDB7}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PaxComputation\PaxComputation.csproj">
+      <Project>{E4D970E2-1A88-4A7E-9191-0E547EAE1034}</Project>
+      <Name>PaxComputation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

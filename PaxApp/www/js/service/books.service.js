@@ -3,20 +3,22 @@
 
     app.service('Books', Books);
 
-    Books.$inject = ['$q', '$http'];
+    Books.$inject = ['$q', '$http', '$timeout'];
 
-    function Books($q, $http) {
+    function Books($q, $http, $timeout) {
         var self = this;
 
         /* jshint validthis:true */
         self.getItems = getItems;
         self.getBookDetails = _getBookDetails;
         self.heartBooks = [];
+        self.detailsForHeartBooks = [];
         /* Current document selected for item loading */
         self.currentBook;
         /* Books loaded */
         self.booksLoaded = false; 
-        self.bestSellersBooksLoaded = false;
+        self.bestSellersBooksLoaded = false; 
+        self.detailsForHeartBooksLoaded = false;
         self.singleBookDetailsLoaded = false;
         /* callbacks to be called on documents status changes */
         self.observerCallbacks = [];
@@ -46,6 +48,29 @@
 
         /* Get Details */
         function _getBookDetails(book) {
+            /* First find the book details in the loaded details list (detailsForHeartBooks),
+               based on the 'completeHref' property.
+               If the book is not found there, then search it in the server ('_getBookDetailsFromServer' function)
+            */
+            var bookItem = book !== undefined ? book : self.currentBook;
+            var foundDetailsArray = self.detailsForHeartBooks.filter(function (book) {
+                return bookItem.completeHref == book.completeHref;
+            });
+            if (foundDetailsArray && foundDetailsArray.length > 0) {
+                var deferredDetailsItem = $q.defer();
+                $timeout(function () {
+                    deferredDetailsItem.resolve({ operationResult: true, resultData: foundDetailsArray[0] });
+                }, 700);
+                return deferredDetailsItem.promise;
+
+                //return foundDetailsArray[0];
+            } else {
+                return _getBookDetailsFromServer(book);
+            };
+        };
+
+        /* Get Details from server */
+        function _getBookDetailsFromServer(book) {
             var bookItem = book !== undefined ? book : self.currentBook;
             self.currentBook = bookItem;
             var req = {
@@ -79,7 +104,7 @@
         
         /* Get Heart Books */
         self.GetBooks = function (bookTypeEnumValue) {
-            var deferredLoadItems = $q.defer();
+            var deferredLoadItems = $q.defer(); 
 
             var urlToCall = 'api/HeartBooks';
             if (bookTypeEnumValue === paxGlobal.BookListTypeEnum.HEART) {
@@ -94,6 +119,36 @@
             };
             return $http(req).then(function (response) {
                 self.notifyObservers();
+                // promise is fulfilled
+                deferredLoadItems.resolve(response.data);
+                // promise is returned
+                return deferredLoadItems.promise;
+            }, function (response) {
+                // the following line rejects the promise 
+                deferredLoadItems.reject(response.data);
+                // promise is returned
+                return deferredLoadItems.promise;
+            });
+        };
+
+        /* Get Details for Heart Books */
+        self.getDetailsForHeartBooks = function (bookTypeEnumValue) {
+            var deferredLoadItems = $q.defer();
+
+            var urlToCall = 'api/DetailsHeartBooksList';
+            var req = {
+                method: 'GET',
+                url: paxGlobal.getAppUrl() + urlToCall
+
+            };
+            return $http(req).then(function (response) {
+                self.notifyObservers();
+                /* Data correctly received, then fill heart books details array */
+                if (response.data.operationResult) {
+                    self.detailsForHeartBooksLoaded = true;
+                    self.detailsForHeartBooks = response.data.resultData.detailsBooks;
+                };
+
                 // promise is fulfilled
                 deferredLoadItems.resolve(response.data);
                 // promise is returned

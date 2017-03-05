@@ -1,6 +1,6 @@
 ﻿paxGlobal = {};
 
-/* ---- App url ---- */
+/* ---- App url ---- */ 
 //paxGlobal.appUrl = '';
 // Debug
 //paxGlobal.appUrl = 'http://localhost:51267/';
