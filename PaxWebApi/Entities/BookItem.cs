@@ -21,5 +21,6 @@ namespace Entities
         public string Price { get; set; }
         public string PublishedDate { get; set; }
         public DateTime? DateComputation { get; set; }
+        public bool IsNewAdded { get; set; }
     }
 }

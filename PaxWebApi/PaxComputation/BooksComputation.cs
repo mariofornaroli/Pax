@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace PaxComputation
 {
@@ -24,6 +25,7 @@ namespace PaxComputation
 
         #endregion
 
+
         #region Compute, save to file and get from file
 
         /// <summary>
@@ -35,11 +37,12 @@ namespace PaxComputation
             var ret = new BaseResultModel();
             string resultJsonStringified;
 
-            /* Compute HEART BOOKS and save into "heartBooks.txt" file */
-            HeartBooksModel hn = _ComputeHeartBooks();
-            resultJsonStringified = JsonConvert.SerializeObject(hn);
+            /* Compute HEART BOOKS and save into "heartBooks.txt" file (first check for notifications) */
+            //HeartBooksModel hn = _ComputeHeartBooks();
+            //resultJsonStringified = JsonConvert.SerializeObject(hn);                        
+            //fileComputation.writeFile("", "", "heartBooks.txt", resultJsonStringified);
 
-            fileComputation.writeFile("", "", "heartBooks.txt", resultJsonStringified);
+            HeartBooksModel hn = ComputeNotifications();
 
             /* Compute DETAILS FOR HEART BOOKS and save into "heartBooksDetails.txt" file */
             DetailsBooksModel detList = new DetailsBooksModel
@@ -93,6 +96,79 @@ namespace PaxComputation
 
 
         #endregion
+
+        #region Notifications
+
+        /// <summary>
+        /// Get notifications if present, save information into files and notify users
+        /// </summary>
+        /// <returns>List of heart books</returns>
+        public static HeartBooksModel ComputeNotifications()
+        {
+            var ret = new BaseResultModel();
+            string jsonStringified;
+            HeartBooksModel newEntriesHeartBooks = new HeartBooksModel { HeartBooks = new List<BookItem>() };
+
+            /* Compute new heart books */
+            HeartBooksModel newHeartBooks = _ComputeHeartBooks();
+
+            /* Compute old heart books */
+            var resultJsonStringFormat = fileComputation.getFile("", "", "heartBooks.txt");
+            HeartBooksModel oldHeartBooks = JsonConvert.DeserializeObject<HeartBooksModel>(resultJsonStringFormat);
+
+            // First compute the new entroes, if any
+            var newEntries = newHeartBooks.HeartBooks.Where(newB => oldHeartBooks.HeartBooks.Count(oldB => oldB.CompleteHref == newB.CompleteHref) > 0).ToList();
+            // Are there any notifications? 
+            if (newEntries != null && newEntries.Count > 0)
+            {
+                /* Save newentries into model */
+                newEntriesHeartBooks.HeartBooks = newEntries;
+
+                /* Execute device notifications */
+                executeHeartNotifications();
+
+                /* Then, modify the new read heart books adding the info isNewAdded = true/false 
+                 * and save new version into file
+                 */
+                foreach (var newItem in newEntries)
+                {
+                    foreach (var book in newHeartBooks.HeartBooks)
+                    {
+                        if (book.CompleteHref == newItem.CompleteHref)
+                        {
+                            book.IsNewAdded = true;
+                        };
+                    }
+                }
+                jsonStringified = JsonConvert.SerializeObject(newHeartBooks);
+                fileComputation.writeFile("", "", "heartBooks.txt", jsonStringified);
+
+                /* Then, save last notifications file ("lastNotifications.txt") */
+                jsonStringified = JsonConvert.SerializeObject(newEntriesHeartBooks);
+                fileComputation.writeFile("", "", "lastNotifications.txt", jsonStringified);
+            }
+
+            return newHeartBooks;
+        }
+
+        private static void executeHeartNotifications()
+        {
+            NotifComputation notiffComputation = new NotifComputation(new HttpConfiguration());
+            object defaultsNotif = new
+            {
+                body = "Nouveaux livres conseillés apparu",
+                title = "Librairie Pax",
+                icon = "myicon"
+            };
+
+            var ret = notiffComputation.executeNotif(defaultsNotif);
+
+        }
+
+
+
+        #endregion
+
 
         #region ComputeHeartBooks Methods
 
@@ -295,7 +371,7 @@ namespace PaxComputation
         /// <returns>Book details</returns>
         public static BookDetailsItem ComputeBookDetails(string completeHref)
         {
-            var retDetail =  _ComputeBookDetails(completeHref);
+            var retDetail = _ComputeBookDetails(completeHref);
             retDetail.CompleteHref = completeHref;
             return retDetail;
         }
