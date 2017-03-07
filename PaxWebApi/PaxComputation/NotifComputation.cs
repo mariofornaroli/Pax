@@ -11,8 +11,10 @@ namespace PaxComputation
     public class NotifComputation
     {
         private string FCM_SEND_API = "https://fcm.googleapis.com/fcm/send";
-        private string SERVER_KEY = "AAAA4db8KbY:APA91bF17AT3HwYU_DCL6Nw93usEPbOiOwdz3bYuQbkEiWeskfn_iNuIvI4YrMiI9vQBkAD0xPuYF5WVo2N-t1tgbyc62u0Lm4eurL9fBBe0bsRhTAZ38b1s_hKaE_ypKof7BJFEB2I0";
-        private string SENDER_ID = "969974491574";
+        //private string SERVER_KEY = "AAAA4db8KbY:APA91bF17AT3HwYU_DCL6Nw93usEPbOiOwdz3bYuQbkEiWeskfn_iNuIvI4YrMiI9vQBkAD0xPuYF5WVo2N-t1tgbyc62u0Lm4eurL9fBBe0bsRhTAZ38b1s_hKaE_ypKof7BJFEB2I0";
+        //private string SENDER_ID = "969974491574";
+        private string SERVER_KEY = "AAAAaa8gkUU:APA91bEMVNitP2fTr6djxOp6nPv_IVJP-bGg0zMYpYd74WXeXSyhi56G2iltW2cQgArqGYRHH5fpoEIKhowAnUPEGSy1HRPOIIhXf1UbTrelRXl8uN1djxEoA-a0NTd196SOl07FXdR0";
+        private string SENDER_ID = "453909713221";
         private string TOPICS = "/topics/paxNewHeratBooks";
 
         private HttpConfiguration config;
@@ -21,9 +23,9 @@ namespace PaxComputation
 
         private object defaultsNotif = new
         {
-            body = "Defauls body msg 2",
-            title = "Default title msg 2",
-            icon = "myicon"
+            body = "Des livres récents ont été conseillés",
+            title = "Librairie Pax",
+            icon = "fcm_push_icon"
         };
 
         private object defaultData = new

@@ -4,9 +4,62 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput'])
+var app = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput']);
 
 app.run(function ($ionicPlatform) {
+    
+    /* When platform is ready, then add notification plug in registration */
+    window.ionic.Platform.ready(function () {
+
+        /*  --------------------- PUSH NOTIFICATION --------------------- */
+        
+        //FCMPlugin.onTokenRefresh( onTokenRefreshCallback(token) );
+        //Note that this callback will be fired everytime a new token is generated, including the first time.
+        FCMPlugin.onTokenRefresh(function (token) {
+            //console.log('onTokenRefresh:');
+            //console.log(token);
+            //alert(token);
+        });
+
+        //FCMPlugin.getToken( successCallback(token), errorCallback(err) );
+        //Keep in mind the function will return null if the token has not been established yet.
+        FCMPlugin.getToken(function (token) {
+            //console.log('getToken:');
+            //console.log(token);
+            //alert(token);
+        });
+
+        //FCMPlugin.subscribeToTopic( topic, successCallback(msg), errorCallback(err) );
+        //All devices are subscribed automatically to 'all' and 'ios' or 'android' topic respectively.
+        //Must match the following regular expression: "[a-zA-Z0-9-_.~%]{1,900}".
+        FCMPlugin.subscribeToTopic('paxNewHeratBooks');
+
+        ////FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
+        ////Here you define your application behaviour based on the notification data.
+        //FCMPlugin.onNotification(function (data) {
+        //    if (data.wasTapped) {
+        //        //Notification was received on device tray and tapped by the user.
+        //        //console.log("Was tapped:");
+        //        //console.log(JSON.stringify(data));
+        //    } else {
+        //        //Notification was received in foreground. Maybe the user needs to be notified.
+        //        //console.log("Wasn't tapped:");
+        //        //console.log(JSON.stringify(data));
+        //    }
+        //}, function (data) {
+        //    if (data.wasTapped) {
+        //        //Notification was received on device tray and tapped by the user.
+        //        //console.log("Was tapped:");
+        //        //console.log(JSON.stringify(data));
+        //    } else {
+        //        //Notification was received in foreground. Maybe the user needs to be notified.
+        //        //console.log("Wasn't tapped:");
+        //        //console.log(JSON.stringify(data));
+        //    }
+        //});
+
+    });
+
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -17,8 +70,6 @@ app.run(function ($ionicPlatform) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         };
-
-
     });
 })
 

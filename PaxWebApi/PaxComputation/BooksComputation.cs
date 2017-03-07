@@ -117,7 +117,7 @@ namespace PaxComputation
             HeartBooksModel oldHeartBooks = JsonConvert.DeserializeObject<HeartBooksModel>(resultJsonStringFormat);
 
             // First compute the new entroes, if any
-            var newEntries = newHeartBooks.HeartBooks.Where(newB => oldHeartBooks.HeartBooks.Count(oldB => oldB.CompleteHref == newB.CompleteHref) > 0).ToList();
+            var newEntries = newHeartBooks.HeartBooks.Where(newB => oldHeartBooks.HeartBooks.Count(oldB => oldB.CompleteHref == newB.CompleteHref) == 0).ToList();
             // Are there any notifications? 
             if (newEntries != null && newEntries.Count > 0)
             {
@@ -156,7 +156,7 @@ namespace PaxComputation
             NotifComputation notiffComputation = new NotifComputation(new HttpConfiguration());
             object defaultsNotif = new
             {
-                body = "Nouveaux livres conseillés apparu",
+                body = "Des livres récents ont été conseillés",
                 title = "Librairie Pax",
                 icon = "myicon"
             };

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "453909713221",
+    "firebase_url": "https://librairiepaxnotif.firebaseio.com",
+    "project_id": "librairiepaxnotif",
+    "storage_bucket": "librairiepaxnotif.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453909713221:android:d9c8dd8ce4529e61",
+        "android_client_info": {
+          "package_name": "io.cordova.PaxDeCoeur2785d518e9f4578943055878dd7a400"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453909713221-o8fbcfi6clui407trhsi63jr2j7htgh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOw3e7iAitj8KIX_M6D_W1FwP_BaCmzs8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
