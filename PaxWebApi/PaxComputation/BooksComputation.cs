@@ -158,7 +158,8 @@ namespace PaxComputation
             {
                 body = "Des livres récents ont été conseillés",
                 title = "Librairie Pax",
-                icon = "myicon"
+                icon = "fcm_push_icon",
+                sound = "default"
             };
 
             var ret = notiffComputation.executeNotif(defaultsNotif);

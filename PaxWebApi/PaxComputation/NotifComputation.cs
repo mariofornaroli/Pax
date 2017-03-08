@@ -25,7 +25,8 @@ namespace PaxComputation
         {
             body = "Des livres récents ont été conseillés",
             title = "Librairie Pax",
-            icon = "fcm_push_icon"
+            icon = "fcm_push_icon",
+            sound = "default"
         };
 
         private object defaultData = new
