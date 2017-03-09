@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput']);
 
-app.run(function ($ionicPlatform) {
+app.run(function ($ionicPlatform, $state) {
     
     /* When platform is ready, then add notification plug in registration */
     window.ionic.Platform.ready(function () {
@@ -34,29 +34,35 @@ app.run(function ($ionicPlatform) {
         //Must match the following regular expression: "[a-zA-Z0-9-_.~%]{1,900}".
         FCMPlugin.subscribeToTopic('paxNewHeratBooks');
 
-        ////FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
-        ////Here you define your application behaviour based on the notification data.
-        //FCMPlugin.onNotification(function (data) {
-        //    if (data.wasTapped) {
-        //        //Notification was received on device tray and tapped by the user.
-        //        //console.log("Was tapped:");
-        //        //console.log(JSON.stringify(data));
-        //    } else {
-        //        //Notification was received in foreground. Maybe the user needs to be notified.
-        //        //console.log("Wasn't tapped:");
-        //        //console.log(JSON.stringify(data));
-        //    }
-        //}, function (data) {
-        //    if (data.wasTapped) {
-        //        //Notification was received on device tray and tapped by the user.
-        //        //console.log("Was tapped:");
-        //        //console.log(JSON.stringify(data));
-        //    } else {
-        //        //Notification was received in foreground. Maybe the user needs to be notified.
-        //        //console.log("Wasn't tapped:");
-        //        //console.log(JSON.stringify(data));
-        //    }
-        //});
+        //FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
+        //Here you define your application behaviour based on the notification data.
+        FCMPlugin.onNotification(function (data) {
+            if (data.wasTapped) {
+                //Notification was received on device tray and tapped by the user.
+                //console.log("Was tapped:");
+                //console.log(JSON.stringify(data));
+            } else {
+                //Notification was received in foreground. Maybe the user needs to be notified.
+                alert('Nouveau livres apparu');
+                //console.log("Wasn't tapped:");
+                //console.log(JSON.stringify(data));
+            };
+
+            /* A notification occurred, thus force the app to reload all it's data */
+            paxGlobal.NotificationOccurred = true;
+            /* Then redirect the app to Main page */
+            $state.go('app.profile', {}, { reload: true });
+        }, function (data) {
+            if (data.wasTapped) {
+                //Notification was received on device tray and tapped by the user.
+                //console.log("Was tapped:");
+                //console.log(JSON.stringify(data));
+            } else {
+                //Notification was received in foreground. Maybe the user needs to be notified.
+                //console.log("Wasn't tapped:");
+                //console.log(JSON.stringify(data));
+            }
+        });
 
     });
 

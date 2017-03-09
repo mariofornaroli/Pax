@@ -26,7 +26,8 @@ namespace PaxComputation
             body = "Des livres récents ont été conseillés",
             title = "Librairie Pax",
             icon = "fcm_push_icon",
-            sound = "default"
+            sound = "default",
+            click_action = "FCM_PLUGIN_ACTIVITY"
         };
 
         private object defaultData = new
@@ -76,7 +77,8 @@ namespace PaxComputation
                     //to = token or topics here...,
                     to = TOPICS,
                     notification = notifContent,
-                    data = defaultData
+                    data = defaultData,
+                    priority = "high"
                 };
 
                 var serializer = new JavaScriptSerializer();

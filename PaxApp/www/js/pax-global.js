@@ -19,6 +19,10 @@ paxGlobal.getAppUrl = function getAppUrl() {
     };
 };
 /* ---- App url ---- */
+paxGlobal.NotificationOccurred = false;
+/* ---- Notifications variables ---- */
+
+/* ---- Notifications variables ---- */
 
 /* ---- BookListType Enum ---- */
 paxGlobal.BookListTypeEnum = {

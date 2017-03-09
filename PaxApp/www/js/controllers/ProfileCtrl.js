@@ -123,6 +123,7 @@
 
         /* Go to details book */
         vm.goToBookDetails = function (book) {
+
             /* First set current book */
             Books.currentBook = book;
             $state.go('app.book-details');
@@ -145,8 +146,20 @@
             };
         };
 
+        vm.initAllIsLoadedFlags = function () {
+            Books.booksLoaded = false;
+            Books.detailsForHeartBooksLoaded = false;
+            Books.bestSellersBooksLoaded = false;
+        };
+
         /* Init controller function */
-        vm.initController = function () { 
+        vm.initController = function () {
+            /* If a notification comes occurred, then reset all 'isLoaded' flags 
+             * in order to force the app to reload data from the server */
+            if (paxGlobal.NotificationOccurred === true) {
+                vm.initAllIsLoadedFlags();
+                paxGlobal.NotificationOccurred = false;
+            };
             vm.loadHeartBooks();
             vm.loadDetailsForHeartBooks();
             vm.loadBestSellers();

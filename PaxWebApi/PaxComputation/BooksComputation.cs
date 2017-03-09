@@ -299,12 +299,13 @@ namespace PaxComputation
                     /* Then, save last notifications file ("lastNotifications.txt") */
                     jsonStringified = JsonConvert.SerializeObject(newEntriesHeartBooks);
                     fileComputation.writeFile("", "", "lastSellerWordsNotifications.txt", jsonStringified);
+
+                    /* Save new seller words books */
+                    /* Order new sellers to have the new added books on top */
+                    newSellerWordsBooks.BooksList.OrderByDescending(b => b.IsNewAdded);
+                    jsonStringified = JsonConvert.SerializeObject(newSellerWordsBooks);
+                    fileComputation.writeFile("", "", "sellerWordsBooks.txt", jsonStringified);
                 }
-                /* Save new seller words books */
-                /* Order new sellers to have the new added books on top */
-                newSellerWordsBooks.BooksList.OrderByDescending(b => b.IsNewAdded);
-                jsonStringified = JsonConvert.SerializeObject(newSellerWordsBooks);
-                fileComputation.writeFile("", "", "sellerWordsBooks.txt", jsonStringified);
             }
 
             return newSellerWordsBooks;
@@ -328,7 +329,8 @@ namespace PaxComputation
                 body = msgBody,
                 title = "Librairie Pax",
                 icon = "fcm_push_icon",
-                sound = "default"
+                sound = "default",
+                click_action = "FCM_PLUGIN_ACTIVITY"
             };
 
             var ret = notiffComputation.executeNotif(defaultsNotif);
