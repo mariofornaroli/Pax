@@ -12,7 +12,7 @@ namespace Entities
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        HeartBooksModel GetHeartBooks();
+        BooksListModel GetSellerWords();
 
         /// <summary>
         /// Get Heart books
@@ -38,7 +38,7 @@ namespace Entities
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        BestSellersModel GetBestSellers();
+        BooksListModel GetBestSellers();
 
         /// <summary>
         /// End Transaction

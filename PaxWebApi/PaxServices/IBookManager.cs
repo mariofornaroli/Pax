@@ -10,17 +10,17 @@ namespace PaxServices
 {
     public interface IBookManager
     {
-        HeartBooksModel GetHeartBooks();
+        BooksListModel GetSellerWords();
 
         DetailsBooksModel ComputeDetailsHeartBooks();
 
-        BaseResultModel ComputeHeartBooksAndDetailsToFile();
+        BaseResultModel ComputePaxToFile();
 
         BookDetailsItem GetDetailsBook(string completeHref);
 
         EventsModel GetEvents();
 
-        BestSellersModel GetBestSellers();
+        BooksListModel GetBestSellers();
         
     }
 }

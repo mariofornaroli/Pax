@@ -7,7 +7,9 @@
                 <img ng-src="{{bsBook.imgSrc}}">
                 <h2 ng-bind-html="bsBook.title"></h2>
                 <p ng-bind-html="bsBook.author"></p>
-                <i class="icon ion-chatbubble muted"></i>
+                <p ng-bind-html="hBook.shortDescription"></p>
+                <img ng-if="hBook.isNewAdded == true" class="new-book-added" ng-src="img/new-book.png">
+                <!--<i class="icon ion-chatbubble muted"></i>-->
             </a>
         </div>
     </ion-content>

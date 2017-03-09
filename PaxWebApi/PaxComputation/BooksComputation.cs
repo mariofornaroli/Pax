@@ -15,9 +15,11 @@ namespace PaxComputation
     {
         private const string PAX_WEBSITE = "http://www.librairiepax.be/";
         private const string PAX_WEBSITE_BEST_SELLERS = "http://www.librairiepax.be/topfrance.php";
+        private const string PAX_WEBSITE_BOOKSELLER_WORDS = "http://www.librairiepax.be/selec-10827-mots-des-libraires/";
         private const string HTML_COERU_TD_CLASS = "CoeurCorpus";
         private const int MAX_COERU_BLOCS_NUM = 10;
         private const string HTML_COERU_TITLE_CLASS = "CoeurTitre";
+
 
         #region properties
 
@@ -26,137 +28,304 @@ namespace PaxComputation
         #endregion
 
 
-        #region Compute, save to file and get from file
+        #region Get data (from file for example)
 
         /// <summary>
-        /// Get Heart books and details and store result to file
+        /// Get Seller Words books
+        /// </summary>
+        /// <returns>List of Seller Words books</returns>
+        public static BooksListModel GetSellerWords()
+        {
+            /* Get HeartBooks from file, deserialize JSON result string into model and return the model */
+            var resultJsonStringFormat = fileComputation.getFile("", "", "sellerWordsBooks.txt");
+            /* Test */
+            BooksListModel resDeserialized = JsonConvert.DeserializeObject<BooksListModel>(resultJsonStringFormat);
+            return resDeserialized;
+        }
+
+        /// <summary>
+        /// Get Details Seller Words books from file, deserialize JSON result string into model and return the model
         /// </summary>
         /// <returns>List of heart books</returns>
-        public static BaseResultModel ComputeHeartBooksToFile()
+        public static DetailsBooksModel GetSellerWordsBooksDetails()
         {
-            var ret = new BaseResultModel();
-            string resultJsonStringified;
-
-            /* Compute HEART BOOKS and save into "heartBooks.txt" file (first check for notifications) */
-            //HeartBooksModel hn = _ComputeHeartBooks();
-            //resultJsonStringified = JsonConvert.SerializeObject(hn);                        
-            //fileComputation.writeFile("", "", "heartBooks.txt", resultJsonStringified);
-
-            HeartBooksModel hn = ComputeNotifications();
-
-            /* Compute DETAILS FOR HEART BOOKS and save into "heartBooksDetails.txt" file */
-            DetailsBooksModel detList = new DetailsBooksModel
-            {
-                DetailsBooks = new List<BookDetailsItem>(),
-                BookType = BookTypeEnum.HEART_BOOK
-            };
-            var bookDetailsList = new List<BookDetailsItem>();
-            foreach (var bookItem in hn.HeartBooks)
-            {
-                detList.DetailsBooks.Add(ComputeBookDetails(bookItem.CompleteHref));
-            }
-            resultJsonStringified = JsonConvert.SerializeObject(detList);
-            fileComputation.writeFile("", "", "heartBooksDetails.txt", resultJsonStringified);
-
-            ret.OperationResult = true;
-            return ret;
+            /* Get HeartBooks from file, deserialize JSON result string into model and return the model */
+            var resultJsonStringFormat = fileComputation.getFile("", "", "sellerWordsBooksDetails.txt");
+            /* Test */
+            DetailsBooksModel resDeserialized = JsonConvert.DeserializeObject<DetailsBooksModel>(resultJsonStringFormat);
+            return resDeserialized;
         }
 
         /// <summary>
         /// Get Heart books from file, deserialize JSON result string into model and return the model
         /// </summary>
         /// <returns>List of heart books</returns>
-        public static HeartBooksModel ComputeHeartBooks()
+        public static BooksListModel GetAdvicedBooks()
         {
-            /* next row TO BE REMOVED */
-            //return _ComputeHeartBooks();
-
             /* Get HeartBooks from file, deserialize JSON result string into model and return the model */
-            var resultJsonStringFormat = fileComputation.getFile("", "", "heartBooks.txt");
+            var resultJsonStringFormat = fileComputation.getFile("", "", "advicedBooks.txt");
             /* Test */
-            HeartBooksModel resDeserialized = JsonConvert.DeserializeObject<HeartBooksModel>(resultJsonStringFormat);
+            BooksListModel resDeserialized = JsonConvert.DeserializeObject<BooksListModel>(resultJsonStringFormat);
             return resDeserialized;
         }
 
         /// <summary>
-        /// Get Details of feart books from file, deserialize JSON result string into model and return the model
+        /// Get adviced books details from file, deserialize JSON result string into model and return the model
         /// </summary>
-        /// <returns>List of heart books</returns>
-        public static DetailsBooksModel ComputeDetailsHeartBooks()
+        /// <returns>List of adviced books details</returns>
+        public static DetailsBooksModel GetAdvicedBooksDetails()
         {
-            /* next row TO BE REMOVED */
-            //return _ComputeHeartBooks();
-
-            /* Get HeartBooks from file, deserialize JSON result string into model and return the model */
-            var resultJsonStringFormat = fileComputation.getFile("", "", "heartBooksDetails.txt");
+            /* Get adviced books details from file, deserialize JSON result string into model and return the model */
+            var resultJsonStringFormat = fileComputation.getFile("", "", "advicedBooksDetails.txt");
             /* Test */
             DetailsBooksModel resDeserialized = JsonConvert.DeserializeObject<DetailsBooksModel>(resultJsonStringFormat);
             return resDeserialized;
         }
 
 
+        /// <summary>
+        /// Get Best Sellers books
+        /// </summary>
+        /// <returns>List of Best Sellers books</returns>
+        public static BooksListModel GetBestSellers()
+        {
+            //return _ComputeBestSellers();
+
+            /* Get HeartBooks from file, deserialize JSON result string into model and return the model */
+            var resultJsonStringFormat = fileComputation.getFile("", "", "bestSellerBooks.txt");
+            /* Test */
+            BooksListModel resDeserialized = JsonConvert.DeserializeObject<BooksListModel>(resultJsonStringFormat);
+            return resDeserialized;
+        }
+
+        /// <summary>
+        /// Get Best Sellers books details from file, deserialize JSON result string into model and return the model
+        /// </summary>
+        /// <returns>List of Best Sellers books details</returns>
+        public static DetailsBooksModel GetBestSellersBooksDetails()
+        {
+            /* Get Best Sellers details from file, deserialize JSON result string into model and return the model */
+            var resultJsonStringFormat = fileComputation.getFile("", "", "bestSellerBooksDetails.txt");
+            /* Test */
+            DetailsBooksModel resDeserialized = JsonConvert.DeserializeObject<DetailsBooksModel>(resultJsonStringFormat);
+            return resDeserialized;
+        }
+
+        /// <summary>
+        /// Get book details
+        /// </summary>
+        /// <returns>Book details</returns>
+        public static BookDetailsItem GetBookDetails(string completeHref)
+        {
+            var retDetail = _ComputeBookDetails(completeHref);
+            retDetail.CompleteHref = completeHref;
+            return retDetail;
+        }
+
         #endregion
 
-        #region Notifications
+
+        #region Compute, save to file and get from file
+
+        /// <summary>
+        /// Compute pax books and details and insert information into files
+        /// </summary>
+        /// <returns>List of Seller Words books</returns>
+        public static BaseResultModel ComputePaxToFile()
+        {
+            var ret = new BaseResultModel();
+
+            /* SELLER WORDS BOOKS and SELLER WORDS BOOKS NOTIFICATION */
+            var sbRes = ComputeSellerBooksToFileAndNotification();
+
+            /* ADVICED BOOKS */
+            var adbRes = ComputeAdvicedBooksToFile();
+
+            /* BEST SELLER BOOKS */
+            var bsRes = ComputeBestSellerBooksToFile();
+
+            /* RETURN */
+            if (sbRes.OperationResult && sbRes.OperationResult)
+            {
+                ret.OperationResult = true;
+            }
+            else
+            {
+                ret.OperationResult = false;
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Compute seller books and details and insert information into files
+        /// </summary>
+        /// <returns>BaseResultModel with result information</returns>
+        public static BaseResultModel ComputeSellerBooksToFileAndNotification()
+        {
+            var ret = new BaseResultModel();
+            string resultJsonStringified;
+
+            BooksListModel hn = ComputeSellerWordsBooksNotifications();
+
+            /* Compute DETAILS FOR HEART BOOKS and save into "sellerWordsBooksDetails.txt" file */
+            DetailsBooksModel detList = new DetailsBooksModel
+            {
+                DetailsBooks = new List<BookDetailsItem>(),
+                BookType = BookTypeEnum.HEART_BOOK
+            };
+            var bookDetailsList = new List<BookDetailsItem>();
+            foreach (var bookItem in hn.BooksList)
+            {
+                detList.DetailsBooks.Add(GetBookDetails(bookItem.CompleteHref));
+            }
+            resultJsonStringified = JsonConvert.SerializeObject(detList);
+            fileComputation.writeFile("", "", "sellerWordsBooksDetails.txt", resultJsonStringified);
+
+            ret.OperationResult = true;
+            return ret;
+        }
+
+        /// <summary>
+        /// Compute adviced books and details and insert information into files
+        /// </summary>
+        /// <returns>BaseResultModel with result information</returns>
+        private static BaseResultModel ComputeAdvicedBooksToFile()
+        {
+            var ret = new BaseResultModel();
+            string resultJsonStringified;
+
+            /* Compute new books and save it to file */
+            BooksListModel hn = _ComputeHeartBooks();
+            resultJsonStringified = JsonConvert.SerializeObject(hn);
+            fileComputation.writeFile("", "", "advicedBooks.txt", resultJsonStringified);
+
+            /* Compute DETAILS FOR HEART BOOKS and save into "advicedBooks.txt" file */
+            DetailsBooksModel detList = new DetailsBooksModel
+            {
+                DetailsBooks = new List<BookDetailsItem>(),
+                BookType = BookTypeEnum.HEART_BOOK
+            };
+            var bookDetailsList = new List<BookDetailsItem>();
+            foreach (var bookItem in hn.BooksList)
+            {
+                detList.DetailsBooks.Add(GetBookDetails(bookItem.CompleteHref));
+            }
+            resultJsonStringified = JsonConvert.SerializeObject(detList);
+            fileComputation.writeFile("", "", "advicedBooksDetails.txt", resultJsonStringified);
+
+            ret.OperationResult = true;
+            return ret;
+        }
+
+        /// <summary>
+        /// Compute best seller books and details and insert information into files
+        /// </summary>
+        /// <returns>BaseResultModel with result information</returns>
+        private static BaseResultModel ComputeBestSellerBooksToFile()
+        {
+            var ret = new BaseResultModel();
+            string resultJsonStringified;
+
+            /* Compute new books and save it to file */
+            BooksListModel hn = _ComputeBestSellers();
+            resultJsonStringified = JsonConvert.SerializeObject(hn);
+            fileComputation.writeFile("", "", "bestSellerBooks.txt", resultJsonStringified);
+
+
+            /* Compute DETAILS FOR HEART BOOKS and save into "bestSellerBooks.txt" file */
+            DetailsBooksModel detList = new DetailsBooksModel
+            {
+                DetailsBooks = new List<BookDetailsItem>(),
+                BookType = BookTypeEnum.HEART_BOOK
+            };
+            var bookDetailsList = new List<BookDetailsItem>();
+            foreach (var bookItem in hn.BooksList)
+            {
+                detList.DetailsBooks.Add(GetBookDetails(bookItem.CompleteHref));
+            }
+            resultJsonStringified = JsonConvert.SerializeObject(detList);
+            fileComputation.writeFile("", "", "bestSellerBooksDetails.txt", resultJsonStringified);
+
+            ret.OperationResult = true;
+            return ret;
+        }
+
 
         /// <summary>
         /// Get notifications if present, save information into files and notify users
         /// </summary>
         /// <returns>List of heart books</returns>
-        public static HeartBooksModel ComputeNotifications()
+        public static BooksListModel ComputeSellerWordsBooksNotifications()
         {
             var ret = new BaseResultModel();
             string jsonStringified;
-            HeartBooksModel newEntriesHeartBooks = new HeartBooksModel { HeartBooks = new List<BookItem>() };
+            BooksListModel newEntriesHeartBooks = new BooksListModel { BooksList = new List<BookItem>() };
 
             /* Compute new heart books */
-            HeartBooksModel newHeartBooks = _ComputeHeartBooks();
+            BooksListModel newSellerWordsBooks = _ComputeSellerWords();
 
             /* Compute old heart books */
-            var resultJsonStringFormat = fileComputation.getFile("", "", "heartBooks.txt");
-            HeartBooksModel oldHeartBooks = JsonConvert.DeserializeObject<HeartBooksModel>(resultJsonStringFormat);
+            var resultJsonStringFormat = fileComputation.getFile("", "", "sellerWordsBooks.txt");
+            BooksListModel oldHeartBooks = JsonConvert.DeserializeObject<BooksListModel>(resultJsonStringFormat);
 
-            // First compute the new entroes, if any
-            var newEntries = newHeartBooks.HeartBooks.Where(newB => oldHeartBooks.HeartBooks.Count(oldB => oldB.CompleteHref == newB.CompleteHref) == 0).ToList();
-            // Are there any notifications? 
-            if (newEntries != null && newEntries.Count > 0)
+            /* ------  seller words books NOTIFICATION ----- */
+            if (newSellerWordsBooks != null && oldHeartBooks != null)
             {
-                /* Save newentries into model */
-                newEntriesHeartBooks.HeartBooks = newEntries;
-
-                /* Execute device notifications */
-                executeHeartNotifications();
-
-                /* Then, modify the new read heart books adding the info isNewAdded = true/false 
-                 * and save new version into file
-                 */
-                foreach (var newItem in newEntries)
+                // First compute the new entroes, if any
+                var newEntries = newSellerWordsBooks.BooksList.Where(newB => oldHeartBooks.BooksList.Count(oldB => oldB.CompleteHref == newB.CompleteHref) == 0).ToList();
+                // Are there any notifications? 
+                if (newEntries != null && newEntries.Count > 0)
                 {
-                    foreach (var book in newHeartBooks.HeartBooks)
-                    {
-                        if (book.CompleteHref == newItem.CompleteHref)
-                        {
-                            book.IsNewAdded = true;
-                        };
-                    }
-                }
-                jsonStringified = JsonConvert.SerializeObject(newHeartBooks);
-                fileComputation.writeFile("", "", "heartBooks.txt", jsonStringified);
+                    /* Save newentries into model */
+                    newEntriesHeartBooks.BooksList = newEntries;
 
-                /* Then, save last notifications file ("lastNotifications.txt") */
-                jsonStringified = JsonConvert.SerializeObject(newEntriesHeartBooks);
-                fileComputation.writeFile("", "", "lastNotifications.txt", jsonStringified);
+                    /* Execute device notifications */
+                    executeHeartNotifications();
+
+                    /* Then, modify the new read heart books adding the info isNewAdded = true/false 
+                     * and save new version into file
+                     */
+                    foreach (var newItem in newEntries)
+                    {
+                        foreach (var book in newSellerWordsBooks.BooksList)
+                        {
+                            if (book.CompleteHref == newItem.CompleteHref)
+                            {
+                                book.IsNewAdded = true;
+                            };
+                        }
+                    }
+
+                    /* Then, save last notifications file ("lastNotifications.txt") */
+                    jsonStringified = JsonConvert.SerializeObject(newEntriesHeartBooks);
+                    fileComputation.writeFile("", "", "lastSellerWordsNotifications.txt", jsonStringified);
+                }
+                /* Save new seller words books */
+                /* Order new sellers to have the new added books on top */
+                newSellerWordsBooks.BooksList.OrderByDescending(b => b.IsNewAdded);
+                jsonStringified = JsonConvert.SerializeObject(newSellerWordsBooks);
+                fileComputation.writeFile("", "", "sellerWordsBooks.txt", jsonStringified);
             }
 
-            return newHeartBooks;
+            return newSellerWordsBooks;
         }
 
-        private static void executeHeartNotifications()
+        #endregion
+
+
+        #region Notifications
+
+        private static void executeHeartNotifications(string msgBody = "")
         {
+            if (string.IsNullOrEmpty(msgBody))
+            {
+                msgBody = "Des livres récents ont été conseillés";
+            }
+
             NotifComputation notiffComputation = new NotifComputation(new HttpConfiguration());
             object defaultsNotif = new
             {
-                body = "Des livres récents ont été conseillés",
+                body = msgBody,
                 title = "Librairie Pax",
                 icon = "fcm_push_icon",
                 sound = "default"
@@ -166,14 +335,12 @@ namespace PaxComputation
 
         }
 
-
-
         #endregion
 
 
         #region ComputeHeartBooks Methods
 
-        private static HeartBooksModel _ComputeHeartBooks()
+        private static BooksListModel _ComputeHeartBooks()
         {
             HtmlDocument doc = new HtmlDocument();
             HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE, null, null);
@@ -182,9 +349,9 @@ namespace PaxComputation
             return GetBookObjList(doc);
         }
 
-        public static HeartBooksModel GetBookObjList(HtmlDocument doc)
+        public static BooksListModel GetBookObjList(HtmlDocument doc)
         {
-            var retData = new HeartBooksModel();
+            var retData = new BooksListModel();
 
             /* Get coeurTdDoc object */
             var coeurTdDoc = GetCoeurTdObj(doc);
@@ -197,10 +364,10 @@ namespace PaxComputation
             GetGeneralBookListItem(groupBlocksList, ref bookList);
 
             /* Compute here the book of the month */
-            var monthBook = GetMonthBookTdObj(doc);
+            var monthBook = GetMonthBookTdObj();
 
             /* Assign return variables */
-            retData.HeartBooks = bookList;
+            retData.BooksList = bookList;
             retData.MonthBook = monthBook;
 
             return retData;
@@ -218,8 +385,12 @@ namespace PaxComputation
             return AgilityTool.LoadFromString(coeurTdObj);
         }
 
-        public static BookItem GetMonthBookTdObj(HtmlDocument doc)
+        public static BookItem GetMonthBookTdObj()
         {
+            HtmlDocument doc = new HtmlDocument();
+            HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE, null, null);
+            doc.LoadHtml(downloader.GetPage());
+
             var retMonthBook = new BookItem();
             HtmlNode monthBookNode = doc.DocumentNode
                 .SelectSingleNode("//table[@class='blocLibre']//td[@class='LibreCorpus']");
@@ -365,17 +536,6 @@ namespace PaxComputation
 
 
         #region ComputeBookDetails Methods
-
-        /// <summary>
-        /// Get Heart book details
-        /// </summary>
-        /// <returns>Book details</returns>
-        public static BookDetailsItem ComputeBookDetails(string completeHref)
-        {
-            var retDetail = _ComputeBookDetails(completeHref);
-            retDetail.CompleteHref = completeHref;
-            return retDetail;
-        }
 
         private static BookDetailsItem _ComputeBookDetails(string completeHref)
         {
@@ -547,21 +707,9 @@ namespace PaxComputation
         #endregion
 
 
-
         #region ComputeBestSellers Methods
 
-        private const string PAX_EVENTS_WEBSITE = "http://www.librairiepax.be/events.php?blid=5808";
-
-        /// <summary>
-        /// Get Heart books
-        /// </summary>
-        /// <returns>List of heart books</returns>
-        public static BestSellersModel ComputeBestSellers()
-        {
-            return _ComputeBestSellers();
-        }
-
-        private static BestSellersModel _ComputeBestSellers()
+        private static BooksListModel _ComputeBestSellers()
         {
             HtmlDocument doc = new HtmlDocument();
             HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE_BEST_SELLERS, null, null);
@@ -570,12 +718,12 @@ namespace PaxComputation
             return GetBestSellersObjList(doc);
         }
 
-        public static BestSellersModel GetBestSellersObjList(HtmlDocument doc)
+        public static BooksListModel GetBestSellersObjList(HtmlDocument doc)
         {
-            var retData = new BestSellersModel() { BestSellers = new List<BookItem>() };
+            var retData = new BooksListModel() { BooksList = new List<BookItem>() };
 
             /* Fill Best Sellers */
-            FillBestSellers(doc, retData.BestSellers);
+            FillBestSellers(doc, retData.BooksList);
 
             return retData;
         }
@@ -640,6 +788,113 @@ namespace PaxComputation
                 }
                 /* Fill price */
                 var priceNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='metabook']//ul[@class='listeliv_metabook']//li[@class='prix']//span[@class='prix_indicatif']");
+                if (priceNode != null)
+                {
+                    retBook.Price = priceNode.InnerText;
+                }
+            }
+
+            retBook.DateComputation = DateTime.Now;
+            return retBook;
+        }
+
+
+        #endregion
+
+
+        #region Mots des libraires Methods
+
+        public static BooksListModel _ComputeSellerWords()
+        {
+            HtmlDocument doc = new HtmlDocument();
+            HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE_BOOKSELLER_WORDS, null, null);
+            doc.LoadHtml(downloader.GetPage());
+
+            return GetBookSellerWordsObjList(doc);
+        }
+
+        public static BooksListModel GetBookSellerWordsObjList(HtmlDocument doc)
+        {
+            var retData = new BooksListModel() { BooksList = new List<BookItem>() };
+
+            /* Fill Book Seller Words */
+            FillBookSellerWords(doc, retData.BooksList);
+
+            /* Compute here the book of the month */
+            var monthBook = GetMonthBookTdObj();
+
+            /* Assign return variables */
+            retData.MonthBook = monthBook;
+
+            return retData;
+        }
+
+        private static void FillBookSellerWords(HtmlDocument doc, List<BookItem> bookSellerWords)
+        {
+            HtmlNodeCollection bsRows = doc.DocumentNode.SelectNodes("//table[@id='liste_livres']//tr");
+
+            var countEvents = bsRows.Count;
+
+            for (int i = 0; i < countEvents; i++)
+            {
+                var bookToAdd = fillBookSellerWordsItem(bsRows[i]);
+
+
+                /* Add event to list */
+                bookSellerWords.Add(bookToAdd);
+            }
+        }
+
+        private static BookItem fillBookSellerWordsItem(HtmlNode bookNode)
+        {
+            var bookNodeDocument = AgilityTool.LoadFromString(bookNode.InnerHtml);
+
+            var retBook = new BookItem();
+            if (bookNodeDocument != null)
+            {
+                /* Fill title and href */
+                var titleNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='colonne_infos']//ul[@class='listeliv_metabook']//li[@class='titre_commentaire']//span[@class='titre']//a");
+                if (titleNode != null)
+                {
+                    retBook.Title = titleNode.InnerText;
+                    retBook.Href = titleNode.HasAttributes ? titleNode.Attributes["href"].Value : string.Empty;
+                    retBook.Href = PAX_WEBSITE + retBook.Href;
+                    retBook.CompleteHref = retBook.Href;
+                }
+                /* Short Description */
+                var shortDesriptionNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='colonne_infos']//ul[@class='listeliv_metabook']//li[@class='motdulibraire']");
+                if (shortDesriptionNode != null)
+                {
+                    retBook.ShortDescription = shortDesriptionNode.InnerText;
+                }
+                /* Fill Autheur */
+                var autheurNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='colonne_infos']//ul[@class='listeliv_metabook']//li[@class='auteurs']//a");
+                if (autheurNode != null)
+                {
+                    retBook.Author = autheurNode.InnerText;
+                    retBook.AuthorHref = autheurNode.HasAttributes ? autheurNode.Attributes["href"].Value : string.Empty;
+                    retBook.AuthorHref = PAX_WEBSITE + retBook.Href;
+                }
+                /* Fill img */
+                var imgNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='colonne_image']//img");
+                if (imgNode != null)
+                {
+                    retBook.ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
+                }
+                /* Fill editor */
+                var editorNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='colonne_infos']//ul[@class='listeliv_metabook']//li[@class='editeur']");
+                if (editorNode != null)
+                {
+                    retBook.Editor = editorNode.InnerText;
+                }
+                /* Fill published date */
+                var pubDateNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='colonne_infos']//ul[@class='listeliv_metabook']//li[@class='editeur']//span[@class='date_parution']");
+                if (pubDateNode != null)
+                {
+                    retBook.PublishedDate = pubDateNode.InnerText;
+                }
+                /* Fill price */
+                var priceNode = bookNodeDocument.DocumentNode.SelectSingleNode("//td[@class='colonne_infos']//ul[@class='listeliv_metabook']//li[@class='prix']//span[@class='prix_indicatif']");
                 if (priceNode != null)
                 {
                     retBook.Price = priceNode.InnerText;

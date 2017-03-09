@@ -143,6 +143,48 @@ p {
     text-align: right;
 }*/
 
+/*  ----------------------------------   PROFILE    -----------------------------------  */
+
+h4.content.padding {
+    margin-top: 4px;
+    margin-bottom: 1px;
+    padding-top: 14px !important;
+    padding-bottom: 0px !important;
+}
+
+.card > .item-avatar, .item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
+    padding-left: 76px;
+}
+
+.item-icon-right {
+    padding-right: 15px;
+}
+
+div.list a {
+    padding-top: 11px;
+    padding-bottom: 8px;
+}
+
+div.list a:first-child {
+    margin-top:10px;
+}
+
+div.list ion-item a {
+    margin-top:5px;
+}
+
+.item-avatar .item-content .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-image, .item-avatar-left .item-content .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-image, .item-avatar-left > img:first-child, .item-avatar > img:first-child
+    ,div.list a img {
+        position: absolute;
+        top: 7px;
+    }
+
+    div.list a img.new-book-added {
+        height: 41px;
+        right: 12px;
+        top: 10px;
+        transform: rotate(-20deg);
+    }
 /*  ----------------------------------   AGENDA    -----------------------------------  */
 
 .agenda-container .card .image {

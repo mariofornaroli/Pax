@@ -225,18 +225,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
                 //,controller: 'ProfileCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-profile" class="button button-positive button-fab button-fab-bottom-right" ng-click="goTest()"><i class="icon ion-social-twitter"></i></button>',
-                controller: function ($timeout, $window, $scope, $state, $location) {
-                    $timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);
-                    $scope.goTest = function () {
-                        //$state.go('externalGoTwitter');
-                        $window.open('https://twitter.com/librairiepax');
-                        //$location.url('https://twitter.com/librairiepax');
-                    };
-                }
+                template: ''
             }
+            //'fabContent': {
+            //    template: '<button id="fab-profile" class="button button-positive button-fab button-fab-bottom-right" ng-click="goTest()"><i class="icon ion-social-twitter"></i></button>',
+            //    controller: function ($timeout, $window, $scope, $state, $location) {
+            //        $timeout(function () {
+            //            document.getElementById('fab-profile').classList.toggle('on');
+            //        }, 800);
+            //        $scope.goTest = function () {
+            //            //$state.go('externalGoTwitter');
+            //            $window.open('https://twitter.com/librairiepax');
+            //            //$location.url('https://twitter.com/librairiepax');
+            //        };
+            //    }
+            //}
         }
     })
 

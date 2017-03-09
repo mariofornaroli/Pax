@@ -13,14 +13,14 @@ namespace PaxComputation
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public HeartBooksModel GetHeartBooks()
+        public BooksListModel GetSellerWords()
         {
-            return BooksComputation.ComputeHeartBooks();
+            return BooksComputation.GetSellerWords();
         }
         
         public BookDetailsItem GetDetailsBook(string completeHref)
         {
-            return BooksComputation.ComputeBookDetails(completeHref);
+            return BooksComputation.GetBookDetails(completeHref);
         }
 
         public EventsModel GetEventss()
@@ -28,9 +28,9 @@ namespace PaxComputation
             return EventsComputation.ComputeEvents();
         }
 
-        public BestSellersModel GetBestSellers()
+        public BooksListModel GetBestSellers()
         {
-            return BooksComputation.ComputeBestSellers();
+            return BooksComputation.GetBestSellers();
         }
 
         public bool AddHeartBooks(List<BookItem> booksToAdd)

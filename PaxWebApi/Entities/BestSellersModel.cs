@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class BestSellersModel
-    {
-        public List<BookItem> BestSellers { get; set; }
-    }
+    //public class BooksListModel : BooksListModel
+    //{
+    //    public List<BookItem> BestSellers { get; set; }
+    //}
 }

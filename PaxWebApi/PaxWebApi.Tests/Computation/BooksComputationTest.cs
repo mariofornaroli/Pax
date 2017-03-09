@@ -15,35 +15,151 @@ namespace PaxWebApi.Tests.Controllers
     [TestClass]
     public class BooksComputationTest
     {
+        #region properties and constants
+
+        private const int EXPECTED_SELLER_WORDS_BOOKS = 20;
+        private const int EXPECTED_ADVICED_BOOKS = 12;
+        private const int EXPECTED_BEST_SELLERS_BOOKS = 50;
+
+        #endregion
+
         [TestMethod]
-        public void ComputeHeartBooksOk()
+        public void ComputePaxToFileOK()
         {
             // Act
-            HeartBooksModel result = BooksComputation.ComputeHeartBooks();
+            BaseResultModel result = BooksComputation.ComputePaxToFile();
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsNotNull(result.HeartBooks);
-            Assert.AreEqual(12, result.HeartBooks.Count());
+        }
+
+        #region Get Seller Words Books and Details
+
+        [TestMethod]
+        public void _ComputeSellerWordsOK()
+        {
+            // Act
+            BooksListModel result = BooksComputation._ComputeSellerWords();
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.BooksList);
+            Assert.AreEqual(EXPECTED_SELLER_WORDS_BOOKS, result.BooksList.Count());
+            Assert.IsNotNull(result.MonthBook);
+        }
+        
+
+        [TestMethod]
+        public void GetSellerWordsOK()
+        {
+            // Act
+            BooksListModel result = BooksComputation.GetSellerWords();
+            
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.BooksList);
+            Assert.AreEqual(EXPECTED_SELLER_WORDS_BOOKS, result.BooksList.Count());
+            Assert.IsNotNull(result.MonthBook);            
         }
 
         [TestMethod]
-        public void ComputeHeartBooksToFileOk()
+        public void ComputeSellerBooksToFileAndNotification()
         {
             // Act
-            BaseResultModel result = BooksComputation.ComputeHeartBooksToFile();
+            BaseResultModel result = BooksComputation.ComputeSellerBooksToFileAndNotification();
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void GetSellerWordsDetailsOK()
+        {
+            // Act
+            DetailsBooksModel bookDetails = BooksComputation.GetSellerWordsBooksDetails();
+            
+            // Assert
+            Assert.IsNotNull(bookDetails);
+            Assert.IsNotNull(bookDetails.DetailsBooks);
+            Assert.AreEqual(20, bookDetails.DetailsBooks.Count());
+        }
+
+        #endregion
+
+
+        #region Get Adviced Books and Details
+
+        [TestMethod]
+        public void GetAdvicedBooksOk()
+        {
+            // Act
+            BooksListModel result = BooksComputation.GetAdvicedBooks();
 
             // Assert
             Assert.IsNotNull(result);
-            //Assert.IsNotNull(result.HeartBooks);
-            //Assert.AreEqual(12, result.HeartBooks.Count());
+            Assert.IsNotNull(result.BooksList);
+            Assert.AreEqual(EXPECTED_ADVICED_BOOKS, result.BooksList.Count());
         }
+
+        [TestMethod]
+        public void GetAdvicedBooksDetailsOk()
+        {
+            // Act
+            DetailsBooksModel bookDetails = BooksComputation.GetAdvicedBooksDetails();
+
+            // Assert
+            Assert.IsNotNull(bookDetails);
+            Assert.IsNotNull(bookDetails.DetailsBooks);
+            Assert.AreEqual(EXPECTED_ADVICED_BOOKS, bookDetails.DetailsBooks.Count());
+        }
+
+        private string getFirstBookCompleteHref()
+        {
+            var booksList = BooksComputation.GetAdvicedBooks();
+            return booksList.BooksList.FirstOrDefault().CompleteHref;
+        }
+
+        #endregion
+        
+
+        #region Get Best Sellers Books and Details
+
+        [TestMethod]
+        public void GetBestSellersOk()
+        {
+            // Act
+            BooksListModel result = BooksComputation.GetBestSellers();
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.BooksList);
+            Assert.AreEqual(EXPECTED_BEST_SELLERS_BOOKS, result.BooksList.Count());
+        }
+
+        [TestMethod]
+        public void GetBestSellersBooksDetailsOk()
+        {
+            string bookDetail = getFirstBestSellerHref();
+            // Act
+            DetailsBooksModel bookDetails = BooksComputation.GetBestSellersBooksDetails();
+
+            // Assert
+            Assert.IsNotNull(bookDetails);
+            Assert.IsNotNull(bookDetails.DetailsBooks);
+            Assert.AreEqual(EXPECTED_BEST_SELLERS_BOOKS, bookDetails.DetailsBooks.Count());
+        }
+
+        private string getFirstBestSellerHref()
+        {
+            var booksList = BooksComputation.GetBestSellers();
+            return booksList.BooksList.FirstOrDefault().CompleteHref;
+        }
+
+        #endregion
+
+        #region other
 
         [TestMethod]
         public void DetailsBooksForHeartBooksOk()
         {
             // Act
-            DetailsBooksModel result = BooksComputation.ComputeDetailsHeartBooks();
+            DetailsBooksModel result = BooksComputation.GetSellerWordsBooksDetails();
 
             // Assert
             Assert.IsNotNull(result);
@@ -54,45 +170,13 @@ namespace PaxWebApi.Tests.Controllers
         {
             string bookDetail = getFirstBookCompleteHref();
             // Act
-            BookDetailsItem bookDetails = BooksComputation.ComputeBookDetails(bookDetail);
+            BookDetailsItem bookDetails = BooksComputation.GetBookDetails(bookDetail);
 
             // Assert
             Assert.IsNotNull(bookDetails);
         }
 
-        private string getFirstBookCompleteHref()
-        {
-            var booksList = BooksComputation.ComputeHeartBooks();
-            return booksList.HeartBooks.FirstOrDefault().CompleteHref;
-        }
-
-        [TestMethod]
-        public void ComputeBestSellersOk()
-        {
-            // Act
-            BestSellersModel result = BooksComputation.ComputeBestSellers();
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.BestSellers);
-        }
-
-        [TestMethod]
-        public void ComputeBestSellerDetailsOk()
-        {
-            string bookDetail = getFirstBestSellerHref();
-            // Act
-            BookDetailsItem bookDetails = BooksComputation.ComputeBookDetails(bookDetail);
-
-            // Assert
-            Assert.IsNotNull(bookDetails);
-        }
-
-        private string getFirstBestSellerHref()
-        {
-            var booksList = BooksComputation.ComputeBestSellers();
-            return booksList.BestSellers.FirstOrDefault().CompleteHref;
-        }
+        #endregion
 
     }
 }

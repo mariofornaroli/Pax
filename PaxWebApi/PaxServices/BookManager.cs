@@ -22,9 +22,9 @@ namespace PaxServices
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public HeartBooksModel GetHeartBooks()
+        public BooksListModel GetSellerWords()
         {
-            return myDatabaseManager.GetHeartBooks();
+            return myDatabaseManager.GetSellerWords();
         }
 
         /// <summary>
@@ -33,16 +33,16 @@ namespace PaxServices
         /// <returns></returns>
         public DetailsBooksModel ComputeDetailsHeartBooks()
         {
-            return BooksComputation.ComputeDetailsHeartBooks();
+            return BooksComputation.GetSellerWordsBooksDetails();
         }
 
         /// <summary>
         /// Get Heart books and details and store result to file
         /// </summary>
         /// <returns></returns>
-        public BaseResultModel ComputeHeartBooksAndDetailsToFile()
+        public BaseResultModel ComputePaxToFile()
         {
-            return BooksComputation.ComputeHeartBooksToFile();
+            return BooksComputation.ComputePaxToFile();
         }
 
         public BookDetailsItem GetDetailsBook(string completeHref)
@@ -55,7 +55,7 @@ namespace PaxServices
             return myDatabaseManager.GetEventss();
         }
 
-        public BestSellersModel GetBestSellers()
+        public BooksListModel GetBestSellers()
         {
             return myDatabaseManager.GetBestSellers();
         }

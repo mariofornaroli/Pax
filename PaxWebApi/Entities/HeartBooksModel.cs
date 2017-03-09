@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class HeartBooksModel
-    {
-        public List<BookItem> HeartBooks { get; set; }
-        public BookItem MonthBook { get; set; }
-    }
+    //public class BooksListModel
+    //{
+    //    public List<BookItem> HeartBooks { get; set; }
+    //    public BookItem MonthBook { get; set; }
+    //}
 }

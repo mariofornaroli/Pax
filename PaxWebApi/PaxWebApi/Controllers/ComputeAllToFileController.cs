@@ -26,7 +26,7 @@ namespace PaxWebApi.Controllers
             var resultModel = new BaseResultModel();
 
             /* Compute heart books and heart books details to file */
-            resultModel = bookManager.ComputeHeartBooksAndDetailsToFile();
+            resultModel = bookManager.ComputePaxToFile();
 
             /* Return data */
             resultModel.OperationResult = true;

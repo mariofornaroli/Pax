@@ -36,7 +36,7 @@
                     startVelocity: 3000
                 });
             }, 700);
-        };
+        }; 
 
         /* Load all heart books */ 
         vm.loadHeartBooks = function () {
@@ -57,7 +57,7 @@
                 function (result) {
                     if (result.operationResult === true) {
                         /* service state */
-                        Books.heartBooks = result.resultData.heartBooks;
+                        Books.heartBooks = result.resultData.booksList;
                         Books.pocheDuMois = result.resultData.monthBook;
                         Books.booksLoaded = true;
                         /* vm state */
@@ -103,7 +103,7 @@
                 function (result) {
                     if (result.operationResult === true) {
                         /* service state */
-                        Books.bestSellersBooks = result.resultData.bestSellers;
+                        Books.bestSellersBooks = result.resultData.booksList;
                         Books.bestSellersBooksLoaded = true;
                         /* vm state */
                         vm.bestSellersBooksLoaded = Books.bestSellersBooksLoaded;

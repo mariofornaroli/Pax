@@ -16,6 +16,8 @@ namespace Entities
     {
         HEART_BOOK = 0,
         MONTH_BOOK = 1,
-        BEST_SELLER_BOOK = 2
+        BEST_SELLER_BOOK = 2,
+        SELLER_WORDS_BOOK = 3,
+        ADVICED_BOOK = 3
     };
 }

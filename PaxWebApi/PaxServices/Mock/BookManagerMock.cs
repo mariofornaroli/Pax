@@ -15,12 +15,12 @@ namespace PaxServices
             throw new NotImplementedException();
         }
 
-        public BaseResultModel ComputeHeartBooksAndDetailsToFile()
+        public BaseResultModel ComputePaxToFile()
         {
             throw new NotImplementedException();
         }
 
-        public BestSellersModel GetBestSellers()
+        public BooksListModel GetBestSellers()
         {
             throw new NotImplementedException();
         }
@@ -39,11 +39,11 @@ namespace PaxServices
         /// Get Heart books
         /// </summary>
         /// <returns>List of heart books</returns>
-        public HeartBooksModel GetHeartBooks()
+        public BooksListModel GetSellerWords()
         {
-            return new HeartBooksModel
+            return new BooksListModel
             {
-                HeartBooks = new List<BookItem> {
+                BooksList = new List<BookItem> {
                 new BookItem {
                     Id = "1",
                     Author = "Arthur Fox",

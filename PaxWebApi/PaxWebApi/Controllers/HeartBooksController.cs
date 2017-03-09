@@ -21,10 +21,10 @@ namespace PaxWebApi.Controllers
 
         // Allow CORS for all origins. (Caution!)
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public ResultModel<HeartBooksModel> Get()
+        public ResultModel<BooksListModel> Get()
         {
-            var resultModel = new ResultModel<HeartBooksModel>();
-            resultModel.ResultData = bookManager.GetHeartBooks();
+            var resultModel = new ResultModel<BooksListModel>();
+            resultModel.ResultData = bookManager.GetSellerWords();
 
             /* Return data */
             resultModel.OperationResult = true;

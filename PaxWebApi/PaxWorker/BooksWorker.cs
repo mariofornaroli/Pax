@@ -21,10 +21,10 @@ namespace PaxWorker
         public bool HeartBooks()
         {
             // Compute books to add
-            HeartBooksModel resultCompute = BooksComputation.ComputeHeartBooks();
+            BooksListModel resultCompute = BooksComputation.GetAdvicedBooks();
 
             // add books to db
-            return dataBaseManager.AddHeartBooks(resultCompute.HeartBooks.ToList());
+            return dataBaseManager.AddHeartBooks(resultCompute.BooksList.ToList());
 
             //// add books to db
             //var booksToAdd = resultCompute.Select(x => Mapper.ServiceToDalBookMapper(x)).ToList();
