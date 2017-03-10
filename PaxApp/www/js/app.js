@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput']);
 
-app.run(function ($ionicPlatform, $state) {
+app.run(function ($ionicPlatform, $state, $ionicPopup, ionicMaterialInk, $timeout) {
     
     /* When platform is ready, then add notification plug in registration */
     window.ionic.Platform.ready(function () {
@@ -33,11 +33,12 @@ app.run(function ($ionicPlatform, $state) {
         //All devices are subscribed automatically to 'all' and 'ios' or 'android' topic respectively.
         //Must match the following regular expression: "[a-zA-Z0-9-_.~%]{1,900}".
         FCMPlugin.subscribeToTopic('paxNewHeratBooks');
+        FCMPlugin.subscribeToTopic('testPaxNewHeratBooks');
         
         /* Notification popup */
         var showNotificationPopup = function () {
             var alertPopup = $ionicPopup.alert({
-                title: 'Nouveau livres apparu'
+                title: 'Nouveaux livres apparu'
             });
 
             $timeout(function () {
@@ -45,24 +46,38 @@ app.run(function ($ionicPlatform, $state) {
             }, 0);
         };
 
+        /* Then redirect the app to Main page */
+        var refreshPaxProfile = function refreshPaxProfile(forceGoToProfile) {
+            if ($state.current.name == 'app.profile') {
+                $state.reload();
+            } else if (forceGoToProfile === true) {
+                $state.go('app.profile');
+            };
+        }
+
         //FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
         //Here you define your application behaviour based on the notification data.
         FCMPlugin.onNotification(function (data) {
+            var forceGoToProfile = false;
             if (data.wasTapped) {
                 //Notification was received on device tray and tapped by the user.
+                forceGoToProfile = true;
                 //console.log("Was tapped:");
                 //console.log(JSON.stringify(data));
             } else {
                 //Notification was received in foreground. Maybe the user needs to be notified.
-                vm.showNotificationPopup();
-                //console.log("Wasn't tapped:");
-                //console.log(JSON.stringify(data));
+                showNotificationPopup();
+                ///* A notification occurred, thus force the app to reload all it's data */
+                //paxGlobal.NotificationOccurred = true;
+                ///* Then redirect the app to Main page */
+                //$state.go('app.profile', {}, { reload: true });
             };
 
             /* A notification occurred, thus force the app to reload all it's data */
             paxGlobal.NotificationOccurred = true;
             /* Then redirect the app to Main page */
-            $state.go('app.profile', {}, { reload: true });
+            refreshPaxProfile(forceGoToProfile);
+
         }, function (data) {
             if (data.wasTapped) {
                 //Notification was received on device tray and tapped by the user.

@@ -27,7 +27,8 @@ namespace PaxComputation
             title = "Librairie Pax",
             icon = "fcm_push_icon",
             sound = "default",
-            click_action = "FCM_PLUGIN_ACTIVITY"
+            click_action = "FCM_PLUGIN_ACTIVITY",
+            color = "#B71C1C"
         };
 
         private object defaultData = new
@@ -46,11 +47,11 @@ namespace PaxComputation
 
         #region NotifComputation Methods
 
-        public async Task executeNotif(object notifContent)
+        public async Task executeNotif(object notifContent, object dataToSend = null, string topics = "")
         {
             try
             {
-                await PushNotification(notifContent);
+                await PushNotification(notifContent, dataToSend, topics);
             }
             catch (System.Exception ex)
             {
@@ -58,7 +59,7 @@ namespace PaxComputation
             }
         }
 
-        private async Task PushNotification(object notifContent)
+        private async Task PushNotification(object notifContent, object dataToSend = null, string topics = "")
         {
             try
             {
@@ -71,13 +72,20 @@ namespace PaxComputation
                 {
                     notifContent = defaultsNotif;
                 }
+                if (dataToSend == null) {
+                    dataToSend = defaultData;
+                }
+                if (string.IsNullOrEmpty(topics))
+                {
+                    topics = TOPICS;
+                }
 
                 var data = new
                 {
                     //to = token or topics here...,
-                    to = TOPICS,
+                    to = topics,
                     notification = notifContent,
-                    data = defaultData,
+                    data = dataToSend,
                     priority = "high"
                 };
 

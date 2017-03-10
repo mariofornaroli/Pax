@@ -82,8 +82,18 @@ namespace PaxWebApi.Tests.Controllers
         public void ComputeSellerBooksToFileAndNotification()
         {
             bool notificationsOccurred = false;
+            object defaultsNotif = new
+            {
+                body = "Des livres récents ont été conseillés",
+                title = "Librairie Pax",
+                icon = "fcm_push_icon",
+                sound = "default",
+                click_action = "FCM_PLUGIN_ACTIVITY",
+                color = "#B71C1C"
+            };
+            string topics = "/topics/testPaxNewHeratBooks";
             // Act
-            BaseResultModel result = BooksComputation.ComputeSellerBooksToFileAndNotification(ref notificationsOccurred);
+            BaseResultModel result = BooksComputation.ComputeSellerBooksToFileAndNotification(ref notificationsOccurred, defaultsNotif, null, topics);
 
             Assert.IsNotNull(result);
         }

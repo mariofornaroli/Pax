@@ -1,5 +1,6 @@
 To do:
 
+  -  Animation to smooth the appearance of an event details when clicked from the events list
   -  Check text in popup and discover how to show special chars
   
   -  Add notifications for all books (best sellers and book of the month)

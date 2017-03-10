@@ -214,12 +214,12 @@ namespace PaxComputation
         /// Compute seller books and details and insert information into files
         /// </summary>
         /// <returns>BaseResultModel with result information</returns>
-        public static ResultModel<BooksListModel> ComputeSellerBooksToFileAndNotification(ref bool notificationsOccurred)
+        public static ResultModel<BooksListModel> ComputeSellerBooksToFileAndNotification(ref bool notificationsOccurred, object notifContent=null, object dataToSend = null, string topics = "")
         {
             var ret = new ResultModel<BooksListModel>();
             string resultJsonStringified;
 
-            BooksListModel hn = ComputeSellerWordsBooksNotifications();
+            BooksListModel hn = ComputeSellerWordsBooksNotifications(notifContent, dataToSend, topics);
 
             /* Compute DETAILS FOR HEART BOOKS and save into "sellerWordsBooksDetails.txt" file */
             //DetailsBooksModel detList = new DetailsBooksModel
@@ -312,7 +312,7 @@ namespace PaxComputation
         /// Get notifications if present, save information into files and notify users
         /// </summary>
         /// <returns>List of heart books</returns>
-        public static BooksListModel ComputeSellerWordsBooksNotifications()
+        public static BooksListModel ComputeSellerWordsBooksNotifications(object notifContent = null, object dataToSend = null, string topics = "")
         {
             var ret = new BaseResultModel();
             string jsonStringified;
@@ -337,7 +337,7 @@ namespace PaxComputation
                     newEntriesHeartBooks.BooksList = newEntries;
 
                     /* Execute device notifications */
-                    executeHeartNotifications();
+                    executeHeartNotifications(notifContent, dataToSend, topics);
 
                     /* Then, modify the new read heart books adding the info isNewAdded = true/false 
                      * and save new version into file
@@ -373,24 +373,11 @@ namespace PaxComputation
 
         #region Notifications
 
-        private static void executeHeartNotifications(string msgBody = "")
+        private static void executeHeartNotifications(object notifContent = null, object dataToSend = null, string topics="")
         {
-            if (string.IsNullOrEmpty(msgBody))
-            {
-                msgBody = "Des livres récents ont été conseillés";
-            }
-
             NotifComputation notiffComputation = new NotifComputation(new HttpConfiguration());
-            object defaultsNotif = new
-            {
-                body = msgBody,
-                title = "Librairie Pax",
-                icon = "fcm_push_icon",
-                sound = "default",
-                click_action = "FCM_PLUGIN_ACTIVITY"
-            };
-
-            var ret = notiffComputation.executeNotif(defaultsNotif);
+            
+            var ret = notiffComputation.executeNotif(notifContent, dataToSend, topics);
 
         }
 
