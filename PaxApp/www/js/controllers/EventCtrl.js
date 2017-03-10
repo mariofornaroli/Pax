@@ -3,7 +3,7 @@
     app.controller('EventCtrl', EventCtrl);
     EventCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', '$state', 'Events', 'ErrorMng'];
 
-    function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, $state, Events, ErrorMng) {
+function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, $state, Events, ErrorMng) {
 
         var vm = this;
 
@@ -61,24 +61,18 @@
 
         /* Load all heart events */
         vm.loadHeartEvents = function () {
-            /* At the moment return mockEvents */
-            //vm.heartEvents = vm.mockEvents;
-            //vm.setMotion();
-            //return;
-            /* end mock */
-
             // If data has not been loaded yet, then load it from server
-            if (Events.eventsLoaded != false) {
-                vm.loadEvents();
+            if (Events.eventsLoaded === false) {
+                vm.loadEventsFromServer();
             } else {
                 vm.heartEvents = Events.heartEvents;
+                vm.eventsLoaded = Events.eventsLoaded;
                 vm.setMotion();
-
             };
         };
 
         /* Load all events data from server */
-        vm.loadEvents = function () {
+        vm.loadEventsFromServer = function () {
             Events.GetEvents().then(
                 function (result) {
                     if (result.operationResult === true) {
@@ -104,7 +98,8 @@
             /* First set current event */
             Events.currentEvent = event;
 
-            $state.go('app.event-details');
+            var newState = 'app.event-details';
+            $state.go(newState);
         };
 
         vm.setVmCurrentEvent = function () {
@@ -115,7 +110,7 @@
         vm.loadDetailsOfHeartEvents = function () {
             // If data has not been loaded yet, then load it from server
             if (Events.eventsLoaded === false) {
-                vm.loadEvents();
+                vm.loadEventsFromServer();
             } else {
                 vm.heartEvents = Events.heartEvents;
             };

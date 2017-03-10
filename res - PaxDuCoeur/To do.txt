@@ -1,7 +1,8 @@
 To do:
 
-  -  Event details at the moment functioning only for emulator
+  -  Check text in popup and discover how to show special chars
   
   -  Add notifications for all books (best sellers and book of the month)
   -  Compute pax books details only if there are notifications
-  -  In contact page, add button to directly call or send whatsup (if possible) or mail
+  -  In contact page, add button to directly call, send whatsup (if possible) or mail
+  -  Gestire l'errore nell'error management, ad esempio con una popup che indica che probabilmente il telefono è temporaneamente offline

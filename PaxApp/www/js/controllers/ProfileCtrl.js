@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('ProfileCtrl', ProfileCtrl);
-    ProfileCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', 'Books', '$state', 'ErrorMng', '$sce', '$ionicPopup'];
+    ProfileCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', 'Books', '$state', 'ErrorMng', '$sce', '$ionicPopup', 'Events'];
 
-    function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, Books, $state, ErrorMng, $sce, $ionicPopup) {
+    function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, Books, $state, ErrorMng, $sce, $ionicPopup, Events) {
         
         var vm = this;
 
@@ -97,6 +97,33 @@
             };
         };
 
+        /* Load all events data from server */
+        vm.loadEventsFromServer = function () {
+            Events.GetEvents().then(
+                function (result) {
+                    if (result.operationResult === true) {
+                        Events.heartEvents = result.resultData.events;
+                        Events.eventsLoaded = true;
+
+                    } else {
+                        // handle error here
+                        ErrorMng.showSystemError(result.msg);
+                    };
+                },
+                function (error) {
+                    // handle error here
+                    ErrorMng.showSystemError(error.msg);
+                });
+        };
+
+        /* Load all events */
+        vm.loadEvents = function () {
+            // If data has not been loaded yet, then load it from server
+            if (Events.eventsLoaded != true) {
+                vm.loadEventsFromServer();
+            };
+        };
+
         /* Load all books data from server */ 
         vm.loadBestSellersBooks = function () {
             Books.GetBooks(paxGlobal.BookListTypeEnum.BEST_SELLERS).then(
@@ -149,6 +176,7 @@
             Books.booksLoaded = false;
             Books.detailsForHeartBooksLoaded = false;
             Books.bestSellersBooksLoaded = false;
+            Events.eventsLoaded = false;
         };
 
         /* Init controller function */
@@ -162,6 +190,7 @@
             vm.loadHeartBooks();
             vm.loadDetailsForHeartBooks();
             vm.loadBestSellers();
+            vm.loadEvents();
         };
 
         /* Call init controller */

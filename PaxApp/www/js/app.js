@@ -129,17 +129,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/event-details',
             views: {
                 'menuContent': {
-                    templateUrl: 'templates/event-details.html'
-                    //, controller: 'BooksCtrl'
+                    templateUrl: 'templates/event-Details.html'
                 }
-                //, 'fabContent': {
-                //    template: '<button id="fab-books" class="button button-fab button-fab-bottom-right expanded button-energized-900 fade"><i class="icon ion-heart"></i></button>',
-                //    controller: function ($timeout) {
-                //        $timeout(function () {
-                //            document.getElementById('fab-books').classList.toggle('on');
-                //        }, 900);
-                //    }
-                //}
             }
         })
 
