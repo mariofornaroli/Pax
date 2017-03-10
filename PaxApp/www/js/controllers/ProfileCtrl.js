@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('ProfileCtrl', ProfileCtrl);
-    ProfileCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', 'Books', '$state', 'ErrorMng', '$sce'];
+    ProfileCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', 'Books', '$state', 'ErrorMng', '$sce', '$ionicPopup'];
 
-    function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, Books, $state, ErrorMng, $sce) {
+    function ProfileCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, Books, $state, ErrorMng, $sce, $ionicPopup) {
         
         var vm = this;
 
@@ -122,8 +122,7 @@
         };
 
         /* Go to details book */
-        vm.goToBookDetails = function (book) {
-
+        vm.goToBookDetails = function (book) {            
             /* First set current book */
             Books.currentBook = book;
             $state.go('app.book-details');

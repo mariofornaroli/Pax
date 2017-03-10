@@ -33,6 +33,17 @@ app.run(function ($ionicPlatform, $state) {
         //All devices are subscribed automatically to 'all' and 'ios' or 'android' topic respectively.
         //Must match the following regular expression: "[a-zA-Z0-9-_.~%]{1,900}".
         FCMPlugin.subscribeToTopic('paxNewHeratBooks');
+        
+        /* Notification popup */
+        var showNotificationPopup = function () {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Nouveau livres apparu'
+            });
+
+            $timeout(function () {
+                ionicMaterialInk.displayEffect();
+            }, 0);
+        };
 
         //FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
         //Here you define your application behaviour based on the notification data.
@@ -43,7 +54,7 @@ app.run(function ($ionicPlatform, $state) {
                 //console.log(JSON.stringify(data));
             } else {
                 //Notification was received in foreground. Maybe the user needs to be notified.
-                alert('Nouveau livres apparu');
+                vm.showNotificationPopup();
                 //console.log("Wasn't tapped:");
                 //console.log(JSON.stringify(data));
             };

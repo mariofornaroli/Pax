@@ -33,7 +33,7 @@ namespace PaxServices
         /// <returns></returns>
         public DetailsBooksModel ComputeDetailsHeartBooks()
         {
-            return BooksComputation.GetSellerWordsBooksDetails();
+            return BooksComputation.GetAllBooksDetails();
         }
 
         /// <summary>

@@ -23,15 +23,33 @@ namespace PaxWebApi.Tests.Controllers
 
         #endregion
 
+        #region All PAX
+
         [TestMethod]
         public void ComputePaxToFileOK()
         {
+            bool forceRefreshAllData = true;
+
             // Act
-            BaseResultModel result = BooksComputation.ComputePaxToFile();
+            BaseResultModel result = BooksComputation.ComputePaxToFile(forceRefreshAllData);
 
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void GetAllBooksDetailsOk()
+        {
+            // Act
+            DetailsBooksModel bookDetails = BooksComputation.GetAllBooksDetails();
+
+            // Assert
+            Assert.IsNotNull(bookDetails);
+            Assert.IsNotNull(bookDetails.DetailsBooks);
+            Assert.AreEqual(84, bookDetails.DetailsBooks.Count());
+        }
+
+        #endregion
 
         #region Get Seller Words Books and Details
 
@@ -46,40 +64,41 @@ namespace PaxWebApi.Tests.Controllers
             Assert.AreEqual(EXPECTED_SELLER_WORDS_BOOKS, result.BooksList.Count());
             Assert.IsNotNull(result.MonthBook);
         }
-        
+
 
         [TestMethod]
         public void GetSellerWordsOK()
         {
             // Act
             BooksListModel result = BooksComputation.GetSellerWords();
-            
+
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.BooksList);
             Assert.AreEqual(EXPECTED_SELLER_WORDS_BOOKS, result.BooksList.Count());
-            Assert.IsNotNull(result.MonthBook);            
+            Assert.IsNotNull(result.MonthBook);
         }
 
         [TestMethod]
         public void ComputeSellerBooksToFileAndNotification()
         {
+            bool notificationsOccurred = false;
             // Act
-            BaseResultModel result = BooksComputation.ComputeSellerBooksToFileAndNotification();
+            BaseResultModel result = BooksComputation.ComputeSellerBooksToFileAndNotification(ref notificationsOccurred);
 
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
-        public void GetSellerWordsDetailsOK()
-        {
-            // Act
-            DetailsBooksModel bookDetails = BooksComputation.GetSellerWordsBooksDetails();
-            
-            // Assert
-            Assert.IsNotNull(bookDetails);
-            Assert.IsNotNull(bookDetails.DetailsBooks);
-            Assert.AreEqual(20, bookDetails.DetailsBooks.Count());
-        }
+        //[TestMethod]
+        //public void GetSellerWordsDetailsOK()
+        //{
+        //    // Act
+        //    DetailsBooksModel bookDetails = BooksComputation.GetSellerWordsBooksDetails();
+
+        //    // Assert
+        //    Assert.IsNotNull(bookDetails);
+        //    Assert.IsNotNull(bookDetails.DetailsBooks);
+        //    Assert.AreEqual(20, bookDetails.DetailsBooks.Count());
+        //}
 
         #endregion
 
@@ -98,17 +117,17 @@ namespace PaxWebApi.Tests.Controllers
             Assert.AreEqual(EXPECTED_ADVICED_BOOKS, result.BooksList.Count());
         }
 
-        [TestMethod]
-        public void GetAdvicedBooksDetailsOk()
-        {
-            // Act
-            DetailsBooksModel bookDetails = BooksComputation.GetAdvicedBooksDetails();
+        //[TestMethod]
+        //public void GetAdvicedBooksDetailsOk()
+        //{
+        //    // Act
+        //    DetailsBooksModel bookDetails = BooksComputation.GetAdvicedBooksDetails();
 
-            // Assert
-            Assert.IsNotNull(bookDetails);
-            Assert.IsNotNull(bookDetails.DetailsBooks);
-            Assert.AreEqual(EXPECTED_ADVICED_BOOKS, bookDetails.DetailsBooks.Count());
-        }
+        //    // Assert
+        //    Assert.IsNotNull(bookDetails);
+        //    Assert.IsNotNull(bookDetails.DetailsBooks);
+        //    Assert.AreEqual(EXPECTED_ADVICED_BOOKS, bookDetails.DetailsBooks.Count());
+        //}
 
         private string getFirstBookCompleteHref()
         {
@@ -117,7 +136,7 @@ namespace PaxWebApi.Tests.Controllers
         }
 
         #endregion
-        
+
 
         #region Get Best Sellers Books and Details
 
@@ -132,18 +151,18 @@ namespace PaxWebApi.Tests.Controllers
             Assert.AreEqual(EXPECTED_BEST_SELLERS_BOOKS, result.BooksList.Count());
         }
 
-        [TestMethod]
-        public void GetBestSellersBooksDetailsOk()
-        {
-            string bookDetail = getFirstBestSellerHref();
-            // Act
-            DetailsBooksModel bookDetails = BooksComputation.GetBestSellersBooksDetails();
+        //[TestMethod]
+        //public void GetBestSellersBooksDetailsOk()
+        //{
+        //    string bookDetail = getFirstBestSellerHref();
+        //    // Act
+        //    DetailsBooksModel bookDetails = BooksComputation.GetBestSellersBooksDetails();
 
-            // Assert
-            Assert.IsNotNull(bookDetails);
-            Assert.IsNotNull(bookDetails.DetailsBooks);
-            Assert.AreEqual(EXPECTED_BEST_SELLERS_BOOKS, bookDetails.DetailsBooks.Count());
-        }
+        //    // Assert
+        //    Assert.IsNotNull(bookDetails);
+        //    Assert.IsNotNull(bookDetails.DetailsBooks);
+        //    Assert.AreEqual(EXPECTED_BEST_SELLERS_BOOKS, bookDetails.DetailsBooks.Count());
+        //}
 
         private string getFirstBestSellerHref()
         {
@@ -159,7 +178,7 @@ namespace PaxWebApi.Tests.Controllers
         public void DetailsBooksForHeartBooksOk()
         {
             // Act
-            DetailsBooksModel result = BooksComputation.GetSellerWordsBooksDetails();
+            DetailsBooksModel result = BooksComputation.GetAllBooksDetails();
 
             // Assert
             Assert.IsNotNull(result);
