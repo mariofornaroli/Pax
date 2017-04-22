@@ -1,25 +1,23 @@
-<ion-view view-title="Coups de Coeur" ng-controller="ProfileCtrl as vm">
+<ion-view view-title="Librairie Pax" ng-controller="ProfileCtrl as vm">
     <ion-content ng-class="{expanded:$scope.isExpanded}">
-        <div class="hero slide-up" style="background-image: url('img/photo-liege-pax-4.jpg');">
-            <div class="content">
-                <div class="avatar" style="background-image: url('img/pax-logo.png');"></div>
-                <h3><a class="light">Librairie Pax</a></h3>
-                <!--<button class="button ink-dark button-calm icon ion-social-twitter-outline"></button>
-                <button class="button ink-dark button-calm icon ion-social-fqcebook-outline"></button>-->
-                <!--<a href="https://twitter.com/intent/tweet?screen_name=librairiepax" class="twitter-mention-button" data-show-count="false">Tweet to @librairiepax</a>
-                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-                <h4>4 place Cockerill, LI&Egrave;GE</h4>
+        <div class="hero pax-bkg-img-content slide-up" style="background-image: url('img/photo-liege-pax-6.jpg');">
+            <div class="content pax-bkg-img">
+                <div class="avatar" style="background-image: url('img/pax-logo.jpg');"></div>
+                <h3><a class="light"> </a></h3>
+                <h4> </h4>
+                <!--<h3><a class="light">Librairie Pax</a></h3>               
+                <h4>4 place Cockerill, LI&Egrave;GE</h4>-->
             </div>
         </div>
         <div class="tabs tabs-dark tabs-icon-top static">
             <a ui-sref="app.events" class="tab-item">
-                <i class="icon ion-arrow-graph-up-right"></i> Agenda
+                <i class="icon ion-android-calendar"></i> Agenda
             </a>
             <a ui-sref="app.best-sellers" class="tab-item">
-                <i class="icon ion-aperture"></i> Meilleures ventes
+                <i class="icon ion-android-funnel"></i> Meilleures ventes
             </a>
             <a ng-click="vm.goToPocheDuMois()" class="tab-item">
-                <i class="icon ion-wand"></i> Poche du mois
+                <i class="icon ion-android-bulb"></i> Poche du mois
             </a>
         </div>
         <h4 class="content padding double-padding-x">Nos derniers conseils</h4>

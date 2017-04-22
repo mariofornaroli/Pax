@@ -113,6 +113,7 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Computation\test.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
