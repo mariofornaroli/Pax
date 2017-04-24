@@ -4,7 +4,7 @@
     BookDetailsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books', '$ionicLoading', 'ErrorMng'];
 
     function BookDetailsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books, $ionicLoading, ErrorMng) {
-
+        
         var vm = this;
 
         vm.booksLoaded = false;
