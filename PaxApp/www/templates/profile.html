@@ -6,6 +6,28 @@
                 <h3><a class="light"> </a></h3>
                 <h4> </h4>
             </div>-->
+
+            <!--<div class="list">
+                <div class="item item-button-right">
+                    <button class="button button-balanced ink">
+                        <i class="icon ion-ios-telephone"></i>
+                    </button>
+                </div> 
+            </div>-->
+
+
+            <div class="content list search-bar-content">
+
+                <div class="item search-bar item-input-inset item-button-right">
+                    <label class="item-input-wrapper">
+                        <input type="text" placeholder="Rechercher par titre, auteur, &eacute;diteur...">
+                    </label>
+                    <button class="button button-positive search-btn ink">
+                        <i class="icon ion-ios-search-strong"></i>
+                    </button>
+                </div>
+
+            </div>
         </div>
         <div class="tabs tabs-dark tabs-icon-top static">
             <a ui-sref="app.events" class="tab-item">
@@ -20,14 +42,14 @@
         </div>
         <h4 class="content padding double-padding-x">Nos derniers conseils</h4>
         <div class="list animate-fade-slide-in-right">
-        <!--<div class="list">-->
-                <a ng-repeat="hBook in vm.heartBooks"
-                   ng-click="vm.goToBookDetails(hBook)" class="item item-avatar item-icon-right">
-                    <img ng-src="{{hBook.imgSrc}}">
-                    <h2 ng-bind-html="hBook.title"></h2>
-                    <p ng-bind-html="hBook.shortDescription"></p>
-                    <img ng-if="hBook.isNewAdded == true" class="new-book-added" ng-src="img/new-book.png">
-                </a>
-            </div>
-</ion-content>
+            <!--<div class="list">-->
+            <a ng-repeat="hBook in vm.heartBooks"
+               ng-click="vm.goToBookDetails(hBook)" class="item item-avatar item-icon-right">
+                <img ng-src="{{hBook.imgSrc}}">
+                <h2 ng-bind-html="hBook.title"></h2>
+                <p ng-bind-html="hBook.shortDescription"></p>
+                <img ng-if="hBook.isNewAdded == true" class="new-book-added" ng-src="img/new-book.jpeg">
+            </a>
+        </div>
+    </ion-content>
 </ion-view>
