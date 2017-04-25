@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('SearchBookResultsCtrl', SearchBookResultsCtrl);
-    SearchBookResultsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books', '$ionicLoading', 'ErrorMng'];
+    SearchBookResultsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books', '$ionicLoading', 'ErrorMng', '$state'];
 
-    function SearchBookResultsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books, $ionicLoading, ErrorMng) {
+    function SearchBookResultsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books, $ionicLoading, ErrorMng, $state) {
         
         var vm = this;
 
@@ -41,13 +41,14 @@
             /* Call server to get book details */
             Books.getSearchBookResults().then(
                 function (result) {
-                    if (result.operationResult === true) { 
+                    if (result.operationResult === true) {
                     } else {
                         // handle error here
                         ErrorMng.showSystemError(result.msg);
                     };
                     /* Save vm state */
                     vm.searchResultsList = result.resultData;
+                    Books.currentSearchResults = vm.searchResultsList;
                     vm.setMotion();
                     $ionicLoading.hide();
                 },
@@ -56,6 +57,13 @@
                     ErrorMng.showSystemError(error.msg);
                     $ionicLoading.hide();
                 });
+        };
+
+        /* Go to details book */
+        vm.goToBookDetails = function (book) {
+            /* First set current book */
+            Books.currentBook = book;
+            $state.go('app.book-details');
         };
 
         vm.showLoading = function () {

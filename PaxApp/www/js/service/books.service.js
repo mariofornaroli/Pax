@@ -11,7 +11,12 @@
         /* jshint validthis:true */
         self.getItems = getItems;
         self.getBookDetails = _getBookDetails;
+        /* search books */
         self.getSearchBookResults = _getSearchBookResults;
+        self.oldSearchBookKey = '';
+        self.searchBookKey = '';
+        self.currentSearchResults = [];
+
         self.heartBooks = [];
         self.detailsForHeartBooks = [];
         /* Current document selected for item loading */
@@ -48,11 +53,31 @@
         };
 
         /* Get the list of searched books */
-        function _getSearchBookResults() {
+        function _getSearchBookResults(currentSearchKey) {
+            /* Mock input filefile */
+            //ParserSearchBook.getMockData();
+
+            /* If search key have not changed, then return the last search book result */
+            if (self.oldSearchBookKey === self.searchBookKey) {
+                var deferred = $q.defer();
+                setTimeout(function () {
+                    deferred.resolve({ resultData: self.currentSearchResults, operationResult: true });
+                }, 500);
+                return deferred.promise;
+            };
+            /* update old search key */
+            self.oldSearchBookKey = self.searchBookKey;
+            /* add '+' instead of spaces in the search key */
+            /* Mock */
+            //self.searchBookKey = 'Un paradis trompeur';
+            /* END Mock */
+            var _searchBookKey = self.searchBookKey.replace(/ /g, "+");
+
+            /* search execution */
             var searchKey = self.searchBookKey;
             var req = {
                 method: 'GET',
-                url: 'http://www.librairiepax.be/listeliv.php?RECHERCHE=simple&LIVREANCIEN=2&MOTS=Un+paradis+trompeur&x=11&y=13'
+                url: 'http://www.librairiepax.be/listeliv.php?RECHERCHE=simple&LIVREANCIEN=2&MOTS=' + _searchBookKey + '&x=11&y=13'
             };
             return $http(req).then(function (response) {
 
