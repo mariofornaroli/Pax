@@ -3,14 +3,15 @@
 
     app.service('Books', Books);
 
-    Books.$inject = ['$q', '$http', '$timeout'];
+    Books.$inject = ['$q', '$http', '$timeout', 'ParserSearchBook'];
 
-    function Books($q, $http, $timeout) {
+    function Books($q, $http, $timeout, ParserSearchBook) {
         var self = this;
 
         /* jshint validthis:true */
         self.getItems = getItems;
         self.getBookDetails = _getBookDetails;
+        self.getSearchBookResults = _getSearchBookResults;
         self.heartBooks = [];
         self.detailsForHeartBooks = [];
         /* Current document selected for item loading */
@@ -44,6 +45,27 @@
         /* Get loaded documents */
         function getItems() {
             return self.heartBooks;
+        };
+
+        /* Get the list of searched books */
+        function _getSearchBookResults() {
+            var searchKey = self.searchBookKey;
+            var req = {
+                method: 'GET',
+                url: 'http://www.librairiepax.be/listeliv.php?RECHERCHE=simple&LIVREANCIEN=2&MOTS=Un+paradis+trompeur&x=11&y=13'
+            };
+            return $http(req).then(function (response) {
+
+                if (response.data) {
+                    var retParsing = ParserSearchBook.parseResults(response.data);
+                    if (retParsing.operationResult === true) {
+                        return retParsing;
+                    }
+                }
+                return response.data;
+            }, function (response) {
+                return response.data;
+            });
         };
 
         /* Get Details */

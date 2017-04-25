@@ -155,6 +155,14 @@
             $state.go('app.book-details');
         };
 
+        /* Execute search books and go to results list */
+        vm.goToSearchBookResults = function () {
+            /* First set current book */
+            Books.searchBookKey = vm.searchBookKey;
+            $state.go('app.search-book-results');
+        };
+
+        /* Go to 'Poche du mois' page */
         vm.goToPocheDuMois = function () { 
             /* First set current book */
             Books.currentBook = vm.pocheDuMois;

@@ -176,6 +176,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         }
     })
 
+        .state('app.search-book-results', {
+            url: '/search-book-results',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/search-book-results.html'
+                }
+            }
+        })
+
         .state('app.book-details', {
             url: '/book-details',
             views: {

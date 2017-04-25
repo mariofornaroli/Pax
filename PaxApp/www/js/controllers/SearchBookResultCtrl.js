@@ -1,0 +1,97 @@
+﻿(function () {
+
+    app.controller('SearchBookResultsCtrl', SearchBookResultsCtrl);
+    SearchBookResultsCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', 'Books', '$ionicLoading', 'ErrorMng'];
+
+    function SearchBookResultsCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, Books, $ionicLoading, ErrorMng) {
+        
+        var vm = this;
+
+        vm.searchResultsLoaded = false;
+        vm.searchResultsList = {};
+        
+        /* Link to pax global object to allow binding to the view */
+        vm.paxGlobal = paxGlobal;
+        
+        /* Set motion when search results arrives */
+        vm.setMotion = function () {
+            // Set Motion
+            $timeout(function () {
+                //$scope.isExpanded = true;
+                //$scope.$parent.setExpanded(true);
+                ionicMaterialMotion.fadeSlideInRight();
+                //// Set Ink
+                ionicMaterialInk.displayEffect();
+
+                //ionicMaterialMotion.slideUp({
+                //    selector: '.slide-up'
+                //});
+            }, 300);
+
+            //$timeout(function () { 
+            //    ionicMaterialMotion.fadeSlideInRight({
+            //        startVelocity: 3000
+            //    });
+            //}, 700);
+        };
+
+        /* Compute and load search results */
+        vm.loadSearchResults = function () {
+            vm.showLoading();
+            /* Call server to get book details */
+            Books.getSearchBookResults().then(
+                function (result) {
+                    if (result.operationResult === true) { 
+                    } else {
+                        // handle error here
+                        ErrorMng.showSystemError(result.msg);
+                    };
+                    /* Save vm state */
+                    vm.searchResultsList = result.resultData;
+                    vm.setMotion();
+                    $ionicLoading.hide();
+                },
+                function (error) {
+                    // handle error here
+                    ErrorMng.showSystemError(error.msg);
+                    $ionicLoading.hide();
+                });
+        };
+
+        vm.showLoading = function () {
+            $ionicLoading.show({
+                template: '<div class="loader"><svg class="circular"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg></div>'
+            });
+        };
+
+        /* Init controller function */
+        vm.initController = function () {
+            vm.loadSearchResults();
+        };
+
+        /* Call init controller */
+        vm.initController();
+
+        /*  --------------------------------------------------------------------------------------------------------------------------------------------*/
+        /*  ------------------------------------------------------  STYLE - Animations - Headers  ------------------------------------------------------*/
+        /*  --------------------------------------------------------------------------------------------------------------------------------------------*/
+
+        // Set Header
+        //$scope.$parent.showHeader();
+        $scope.$parent.clearFabs();
+        $scope.$parent.setHeaderFab('left');
+
+        //// Delay expansion
+        //$timeout(function () {
+        //    $scope.isExpanded = true;
+        //    $scope.$parent.setExpanded(true);
+        //}, 300);
+
+        //// Set Motion
+        //ionicMaterialMotion.fadeSlideInRight();
+
+        //// Set Ink
+        //ionicMaterialInk.displayEffect();
+    };
+
+})();

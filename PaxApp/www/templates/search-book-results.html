@@ -1,0 +1,29 @@
+<!--<ion-view view-title="Meilleures ventes" ng-controller="ProfileCtrl as vm">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="list animate-fade-slide-in-right">
+            <a ng-repeat="bsBook in vm.bestSellersBooks"
+               ng-click="vm.goToBookDetails(bsBook)" class="item item-avatar item-icon-right">
+                <img ng-src="{{bsBook.imgSrc}}">
+                <h2 ng-bind-html="bsBook.title"></h2>
+                <p ng-bind-html="bsBook.author"></p>
+                <p ng-bind-html="hBook.shortDescription"></p>
+                <img ng-if="hBook.isNewAdded == true" class="new-book-added" ng-src="img/new-book.jpeg">
+            </a>
+        </div>
+    </ion-content>
+</ion-view>-->
+
+<ion-view view-title="Resultats recherce" ng-controller="SearchBookResultsCtrl as vm">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="list animate-fade-slide-in-right">
+            <a ng-repeat="hBook in vm.searchResultsList"
+               ng-click="vm.goToBookDetails(hBook)" class="item item-avatar item-icon-right">
+                <img ng-src="{{hBook.imgSrc}}">
+                <h2 ng-bind-html="hBook.title"></h2>
+                <p ng-bind-html="hBook.shortDescription"></p>
+                <img ng-if="hBook.isNewAdded == true" class="new-book-added" ng-src="img/new-book.jpeg">
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
+

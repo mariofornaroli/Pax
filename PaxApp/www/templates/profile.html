@@ -20,9 +20,9 @@
 
                 <div class="item search-bar item-input-inset item-button-right">
                     <label class="item-input-wrapper">
-                        <input type="text" placeholder="Rechercher par titre, auteur, &eacute;diteur...">
+                        <input type="text" placeholder="Rechercher par titre, auteur, &eacute;diteur..." ng-model="vm.searchBookKey">
                     </label>
-                    <button class="button button-positive search-btn ink">
+                    <button class="button button-positive search-btn ink" ng-click="vm.goToSearchBookResults()">
                         <i class="icon ion-ios-search-strong"></i>
                     </button>
                 </div>
