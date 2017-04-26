@@ -25,17 +25,17 @@
             };
 
             // Set Motion
-            $timeout(function () {
-                ionicMaterialMotion.slideUp({
-                    selector: '.slide-up'
-                });
-            }, 300);
+            //$timeout(function () {
+            //    ionicMaterialMotion.slideUp({
+            //        selector: '.slide-up'
+            //    });
+            //}, 100);
             
             $timeout(function () {
-                ionicMaterialMotion.fadeSlideInRight({
+                ionicMaterialMotion.blinds({
                     startVelocity: 3000
                 });
-            }, 700);
+            }, 100);
         }; 
 
         /* Load all heart books */ 
@@ -157,7 +157,7 @@
 
         /* Execute search books and go to results list */
         vm.goToSearchBookResults = function () {
-            /* First set current book */
+            /* First set service searchBook key */
             Books.searchBookKey = vm.searchBookKey;
             $state.go('app.search-book-results');
         };

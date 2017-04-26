@@ -1,6 +1,6 @@
 <ion-view view-title="Librairie Pax" ng-controller="ProfileCtrl as vm">
     <ion-content ng-class="{expanded:$scope.isExpanded}">
-        <div class="hero pax-bkg-img-content slide-up" style="background-image: url('img/photo-liege-pax-7.jpeg');">
+        <div class="hero pax-bkg-img-content" style="background-image: url('img/photo-liege-pax-7.jpeg');">
             <!--<div class="content pax-bkg-img">
                 <div class="avatar" style="background-image: url('img/pax-logo.jpg');"></div>
                 <h3><a class="light"> </a></h3>
@@ -14,9 +14,8 @@
                     </button>
                 </div> 
             </div>-->
-
-
-            <div class="content list search-bar-content">
+            
+            <div class="content list search-bar-content static">
 
                 <div class="item search-bar item-input-inset item-button-right">
                     <label class="item-input-wrapper">
@@ -41,7 +40,7 @@
             </a>
         </div>
         <h4 class="content padding double-padding-x">Nos derniers conseils</h4>
-        <div class="list animate-fade-slide-in-right">
+        <div class="list animate-blinds">
             <!--<div class="list">-->
             <a ng-repeat="hBook in vm.heartBooks"
                ng-click="vm.goToBookDetails(hBook)" class="item item-avatar item-icon-right">

@@ -2,9 +2,20 @@
 <ion-view view-title="Resultats de la recherce" ng-controller="SearchBookResultsCtrl as vm">
     <ion-content ng-class="{expanded:$scope.isExpanded}">
 
+        <div class="search-bar-content search-result-page">
+            <div class="item search-bar item-input-inset item-button-right">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="Rechercher par titre, auteur, &eacute;diteur..." ng-model="vm.searchBookKey">
+                </label>
+                <button class="button button-positive search-btn ink" ng-click="vm.executeSearchBookResults()">
+                    <i class="icon ion-ios-search-strong"></i>
+                </button>
+            </div>
+        </div>
+
         <h4 class="content padding double-padding-x" ng-show="!vm.searchResultsList || vm.searchResultsList.length<=0">Aucun livre trouv&eacute;</h4>
 
-        <div class="list animate-fade-slide-in-right" ng-if="vm.searchResultsList.length>0">
+        <div class="list search-result-list animate-blinds" ng-if="vm.searchResultsList.length>0">
             <a ng-repeat="hBook in vm.searchResultsList"
                ng-click="vm.goToBookDetails(hBook)" class="item item-avatar item-icon-right">
                 <img ng-src="{{hBook.imgSrc}}">

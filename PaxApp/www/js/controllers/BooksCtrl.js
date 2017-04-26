@@ -17,7 +17,7 @@
         }, 300);
 
         // Set Motion
-        ionicMaterialMotion.fadeSlideInRight();
+        ionicMaterialMotion.blinds();
 
         // Set Ink
         ionicMaterialInk.displayEffect();

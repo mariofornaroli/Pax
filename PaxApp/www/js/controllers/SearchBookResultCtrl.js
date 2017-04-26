@@ -19,20 +19,27 @@
             $timeout(function () {
                 //$scope.isExpanded = true;
                 //$scope.$parent.setExpanded(true);
-                ionicMaterialMotion.fadeSlideInRight();
+                ionicMaterialMotion.blinds();
                 //// Set Ink
                 ionicMaterialInk.displayEffect();
 
                 //ionicMaterialMotion.slideUp({
                 //    selector: '.slide-up'
                 //});
-            }, 300);
+            }, 100);
 
             //$timeout(function () { 
             //    ionicMaterialMotion.fadeSlideInRight({
             //        startVelocity: 3000
             //    });
             //}, 700);
+        };
+
+        /* Execute search books and go to results list */
+        vm.executeSearchBookResults = function () {
+            /* First set service searchBook key */
+            Books.searchBookKey = vm.searchBookKey;
+            vm.loadSearchResults();
         };
 
         /* Compute and load search results */
@@ -74,6 +81,8 @@
 
         /* Init controller function */
         vm.initController = function () {
+            /* First set current book */
+            vm.searchBookKey = Books.searchBookKey;
             vm.loadSearchResults();
         };
 

@@ -23,7 +23,7 @@
             $timeout(function () {
                 //$scope.isExpanded = true;
                 //$scope.$parent.setExpanded(true);
-                ionicMaterialMotion.fadeSlideInRight();
+                ionicMaterialMotion.blinds();
                 //// Set Ink
                 ionicMaterialInk.displayEffect();
 

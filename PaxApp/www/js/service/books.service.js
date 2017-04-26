@@ -71,7 +71,9 @@
             /* Mock */
             //self.searchBookKey = 'Un paradis trompeur';
             /* END Mock */
-            var _searchBookKey = self.searchBookKey.replace(/ /g, "+");
+            if (self.searchBookKey) {
+                var _searchBookKey = self.searchBookKey.replace(/ /g, "+");
+            };
 
             /* search execution */
             var searchKey = self.searchBookKey;
