@@ -4,15 +4,15 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput']);
+var app = angular.module('starter', ['ionic', 'ionic-material', 'ionMdInput', 'ion-floating-menu']);
 
 app.run(function ($ionicPlatform, $state, $ionicPopup, ionicMaterialInk, $timeout) {
-    
+
     /* When platform is ready, then add notification plug in registration */
     window.ionic.Platform.ready(function () {
 
         /*  --------------------- PUSH NOTIFICATION --------------------- */
-        
+
         //FCMPlugin.onTokenRefresh( onTokenRefreshCallback(token) );
         //Note that this callback will be fired everytime a new token is generated, including the first time.
         FCMPlugin.onTokenRefresh(function (token) {
@@ -34,7 +34,7 @@ app.run(function ($ionicPlatform, $state, $ionicPopup, ionicMaterialInk, $timeou
         //Must match the following regular expression: "[a-zA-Z0-9-_.~%]{1,900}".
         FCMPlugin.subscribeToTopic('paxNewHeratBooks');
         FCMPlugin.subscribeToTopic('testPaxNewHeratBooks');
-        
+
         /* Notification popup */
         var showNotificationPopup = function () {
             var alertPopup = $ionicPopup.alert({
@@ -281,18 +281,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             'menuContent': {
                 templateUrl: 'templates/about-pax.html'
                 //,controller: 'ProfileCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-profile" class="button button-positive button-fab button-fab-bottom-right" ng-click="goTest()"><i class="icon ion-social-twitter"></i></button>',
-                controller: function ($timeout, $window, $scope) {
-                    $timeout(function () {
-                        document.getElementById('fab-profile').classList.toggle('on');
-                    }, 800);
-                    $scope.goTest = function () {
-                        $window.open('https://twitter.com/librairiepax');
-                    };
-                }
             }
+            //, 'fabContent': {
+            //    template: '<button id="fab-profile" class="button button-positive button-fab button-fab-bottom-right" ng-click="goTest()"><i class="icon ion-social-twitter"></i></button>',
+            //    controller: function ($timeout, $window, $scope) {
+            //        $timeout(function () {
+            //            document.getElementById('fab-profile').classList.toggle('on');
+            //        }, 800);
+            //        $scope.goTest = function () {
+            //            $window.open('https://twitter.com/librairiepax');
+            //        };
+            //    }
+            //}
         }
     })
     ;

@@ -1,4 +1,10 @@
-<ion-view view-title="Librairie Pax">
+<ion-view view-title="Librairie Pax" ng-controller="AboutPaxCtrl as vm">
+    <ion-floating-menu menu-color="#174992" menu-icon-color="#DFE2F1" menu-open-color="#DFE2F1" menu-open-icon-color="#174992">
+        <ion-floating-item icon="ion-social-twitter" button-color="#55ACEE" click="vm.goTwitter()"></ion-floating-item>
+        <ion-floating-item icon="ion-social-facebook" button-color="#2F609C" click="vm.goFacebook()"></ion-floating-item>
+        <ion-floating-item icon="ion-social-instagram-outline" button-color="#f56040" click="vm.goInstagram()"></ion-floating-item>
+        <ion-floating-item icon="ion-android-call"><a href="tel:003242232146"></a></ion-floating-item>
+    </ion-floating-menu>
     <ion-content ng-class="{expanded:$scope.isExpanded}" class="about-pax-content">
         <div class="hero pax-bkg-img-content" style="background-image: url('img/photo-liege-pax-6.jpg');">
             <div class="content pax-bkg-img">
