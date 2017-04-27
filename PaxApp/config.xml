@@ -23,6 +23,7 @@
   <preference name="FadeSplashScreen" value="false" />
   <preference name="android-minSdkVersion" value="16" />
   <preference name="BackupWebStorage" value="none" />
+  <preference name="StatusBarBackgroundColor" value="#001534" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true" />
   </feature>
@@ -50,4 +51,5 @@
   <plugin name="cordova-plugin-splashscreen" version="4.0.1" />
   <plugin name="phonegap-plugin-push" version="1.8.4" />
   <plugin name="cordova-plugin-fcm" version="2.1.1" src="https://github.com/fechanique/cordova-plugin-fcm" />
+  <plugin name="cordova-plugin-statusbar" version="2.2.3-dev" />
 </widget>
