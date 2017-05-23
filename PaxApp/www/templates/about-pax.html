@@ -3,27 +3,27 @@
         <ion-floating-item icon="ion-social-twitter" button-color="#55ACEE" click="vm.goTwitter()"></ion-floating-item>
         <ion-floating-item icon="ion-social-facebook" button-color="#2F609C" click="vm.goFacebook()"></ion-floating-item>
         <ion-floating-item icon="ion-social-instagram-outline" button-color="#f56040" click="vm.goInstagram()"></ion-floating-item>
-        <ion-floating-item icon="ion-android-call"><a href="tel:003242232146"></a></ion-floating-item>
+        <ion-floating-item icon="ion-android-call" click="vm.callPax()"></ion-floating-item>
     </ion-floating-menu>
     <ion-content ng-class="{expanded:$scope.isExpanded}" class="about-pax-content">
         <div class="hero pax-bkg-img-content" style="background-image: url('img/photo-liege-pax-6.jpg');">
             <div class="content pax-bkg-img">
-                <div class="avatar" style="background-image: url('img/pax-logo.jpg');"></div>
+                <div class="avatar" style="background-image: url('img/pax-logo-smaller.jpg');"></div>
                 <!--<h3><a class="light">Librairie Pax</a></h3>
                 <h4>4 place Cockerill, LI&Egrave;GE</h4>-->
             </div>
         </div>
-        <div class="content padding double-padding-x info-openings-content">
-            <h4>La librairie Pax est ouverte</h4>
-            <div class="info-openings">
-                <h5>Le lundi : 13:00-18:30</h5>
-                <h5>Du mardi au vendredi : 09:00-18:30</h5>
-                <h5>Le Samedi : 10h00-18:30</h5>
-                <h5>Le 1er dimanche du mois : 10:00-14:00</h5>
-                <h5>-------</h5>
-                <h5>Tel : 00 32 42 23 21 46</h5>
-                <h5>Email : librairiepax[@]skynet.be</h5>
+            <div class="content padding double-padding-x info-openings-content">
+                <h4>La librairie Pax est ouverte</h4>
+                <div class="info-openings">
+                    <h5>Le lundi : 13:00-18:30</h5>
+                    <h5>Du mardi au vendredi : 09:00-18:30</h5>
+                    <h5>Le Samedi : 10h00-18:30</h5>
+                    <h5>Le 1er dimanche du mois : 10:00-14:00</h5>
+                    <h5>-------</h5>
+                    <h5>Tel : 00 32 42 23 21 46</h5>
+                    <h5>Email : librairiepax[@]skynet.be</h5>
+                </div>
             </div>
-        </div>
-    </ion-content>
+</ion-content>
 </ion-view>

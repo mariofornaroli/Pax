@@ -25,7 +25,7 @@ namespace PaxWebApi.Tests.Controllers
                 icon = "fcm_push_icon",
                 sound = "default",
                 click_action = "FCM_PLUGIN_ACTIVITY",
-                color = "#B71C1C"
+                color = "#154991"
             };
             string topics = "/topics/testPaxNewHeratBooks";
             NotifComputation notiffComputation = new NotifComputation(new HttpConfiguration());

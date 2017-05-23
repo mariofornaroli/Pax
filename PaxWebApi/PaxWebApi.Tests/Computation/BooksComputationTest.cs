@@ -38,6 +38,19 @@ namespace PaxWebApi.Tests.Controllers
         }
 
         [TestMethod]
+        public void SimpleComputeSellerBooksOK()
+        {
+            bool forceRefreshAllData = true;
+
+            // Act
+            var sellerBooks = BooksComputation._ComputeSellerWords();
+
+            // Assert
+            Assert.IsNotNull(sellerBooks);
+        }
+
+
+        [TestMethod]
         public void GetAllBooksDetailsOk()
         {
             // Act
@@ -89,7 +102,7 @@ namespace PaxWebApi.Tests.Controllers
                 icon = "fcm_push_icon",
                 sound = "default",
                 click_action = "FCM_PLUGIN_ACTIVITY",
-                color = "#B71C1C"
+                color = "#154991"
             };
             string topics = "/topics/testPaxNewHeratBooks";
             // Act

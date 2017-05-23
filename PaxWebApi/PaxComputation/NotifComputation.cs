@@ -28,7 +28,7 @@ namespace PaxComputation
             icon = "fcm_push_icon",
             sound = "default",
             click_action = "FCM_PLUGIN_ACTIVITY",
-            color = "#B71C1C"
+            color = "#154991"
         };
 
         private object defaultData = new

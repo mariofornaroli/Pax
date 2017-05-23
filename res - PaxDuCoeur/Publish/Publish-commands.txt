@@ -1,3 +1,8 @@
+1 - Build in release mode
+2 - place with command line in "...\PAX\PaxApp\platforms\android\build\outputs\apk"
+3 - Execute the following 3 commands:
+
+
 jarsigner -verbose -keystore PaxDeCoeur.keystore -storepass Maomao@01 -keypass Maomao@01 android-release-unsigned.apk PaxDeCoeur
 
 

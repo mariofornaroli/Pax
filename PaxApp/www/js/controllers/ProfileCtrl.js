@@ -20,6 +20,9 @@
         vm.paxGlobal = paxGlobal;
 
         vm.setMotion = function () {
+
+            /*  */
+
             if (navigator && navigator.splashscreen) {
                 navigator.splashscreen.hide();
             };
@@ -92,7 +95,7 @@
                 vm.loadBestSellersBooks();
             } else {
                 vm.bestSellersBooks = Books.bestSellersBooks;
-                vm.setMotion();
+                //vm.setMotion();
 
             };
         };
@@ -135,7 +138,7 @@
                         /* vm state */
                         vm.bestSellersBooksLoaded = Books.bestSellersBooksLoaded;
                         vm.bestSellersBooks = Books.bestSellersBooks;
-                        vm.setMotion();
+                        //vm.setMotion();
 
                     } else {
                         // handle error here

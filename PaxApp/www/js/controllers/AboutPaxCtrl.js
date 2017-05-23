@@ -18,6 +18,10 @@
         vm.goInstagram = function () {
             $window.open('https://www.instagram.com/librairie_pax/');
         };
+
+        vm.callPax = function () {
+            window.plugins.CallNumber.callNumber(null, null, "+3242232146", false);
+        };
     };
 
 })();
