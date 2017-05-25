@@ -14,6 +14,7 @@ namespace PaxComputation
     public static class BooksComputation
     {
         private const string PAX_WEBSITE = "http://www.librairiepax.be/";
+        private const string PAX_WEBSITE_NO_SLASH = "http://www.librairiepax.be/";
         private const string PAX_WEBSITE_BEST_SELLERS = "http://www.librairiepax.be/topfrance.php";
         private const string PAX_WEBSITE_BOOKSELLER_WORDS = "https://www.librairiepax.be/coups-de-coeur";
         private const string HTML_COERU_TD_CLASS = "CoeurCorpus";
@@ -601,7 +602,8 @@ namespace PaxComputation
             var bookDetails = new BookDetailsItem();
 
             /* Get coeurTdDoc object */
-            var detailTableDoc = GetDetailTableObj(doc);
+            //var detailTableDoc = GetDetailTableObj(doc);
+            var detailTableDoc = doc;
 
             /* Fill properties */
             FillTitle(detailTableDoc, bookDetails);
@@ -609,8 +611,9 @@ namespace PaxComputation
             FillAuthor(detailTableDoc, bookDetails);
             FillEditeur(detailTableDoc, bookDetails);
             FillDateParution(detailTableDoc, bookDetails);
-            FillGenre(detailTableDoc, bookDetails);
+            //FillGenre(detailTableDoc, bookDetails);
             FillTraduction(detailTableDoc, bookDetails);
+            FillDescription(detailTableDoc, bookDetails);
 
             /* mot_du_libraire */
             bookDetails.AdditionalDescriptionItems = new List<DescriptionItem>();
@@ -650,6 +653,12 @@ namespace PaxComputation
             bookDetails.GlobalInfoDescriptionItems.Add(addItem);
         }
 
+        private static void FillDescription(HtmlDocument doc, BookDetailsItem bookDetails)
+        {
+            bookDetails.Descrption = AgilityTool
+                 .GetInnerText(doc, "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'productDescription')]//p[@class='description']");
+        }
+
         private static void FillAdditionalInfoSection(HtmlDocument doc, BookDetailsItem bookDetails)
         {
             var addItem = new DescriptionItem();
@@ -668,90 +677,74 @@ namespace PaxComputation
             bookDetails.AdditionalDescriptionItems.Add(addItem);
         }
 
-        private static HtmlDocument GetDetailTableObj(HtmlDocument doc)
-        {
-            var className = "tab_detaillivre";
-            var detailTable = doc.DocumentNode
-                .Descendants("table")
-                .Where(d =>
-                d.Attributes.Contains("class")
-                &&
-                d.Attributes["class"].Value.Contains(className)
-                ).Select(x => AgilityTool.LoadFromString(x.InnerHtml));
-            return detailTable.FirstOrDefault();
-        }
+        //private static HtmlDocument GetDetailTableObj(HtmlDocument doc)
+        //{
+        //    HtmlNode detailNode = doc.DocumentNode
+        //        .SelectSingleNode("//div[@class='bloc_visu_meta']");
+
+
+        //    var className = "tab_detaillivre";
+        //    var detailTable = doc.DocumentNode
+        //        .Descendants("table")
+        //        .Where(d =>
+        //        d.Attributes.Contains("class")
+        //        &&
+        //        d.Attributes["class"].Value.Contains(className)
+        //        ).Select(x => AgilityTool.LoadFromString(x.InnerHtml));
+        //    return detailTable.FirstOrDefault();
+        //}
 
         /* Title */
         private static void FillTitle(HtmlDocument tableDoc, BookDetailsItem bookDetails)
         {
-            HtmlNode titleNode = tableDoc.DocumentNode
-                .SelectSingleNode("//td[@class='tab_detaillivre_metabook']//span[@class='titre']");
-            if (titleNode != null)
-            {
-                bookDetails.Title = titleNode.InnerText;
-            }
+            bookDetails.Title = AgilityTool
+                 .GetInnerText(tableDoc, "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'bloc_metaproduct_light')]//h1");
         }
 
         /* ImgSrc */
         private static void FillImgSrc(HtmlDocument tableDoc, BookDetailsItem bookDetails)
         {
-            HtmlNode imgNode = tableDoc.DocumentNode
-                .SelectSingleNode("//td[@class='visu']//img");
-            if (imgNode != null)
-            {
-                bookDetails.ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
-            }
+            bookDetails.ImgSrc = AgilityTool
+                 .GetAttributeValue(tableDoc, "src", "//div[@class='bloc_visu_meta']//div[@id='visuproduct']//div[contains(@class, 'bloc_img')]//img");
         }
 
         /* auteur */
         private static void FillAuthor(HtmlDocument tableDoc, BookDetailsItem bookDetails)
         {
-            HtmlNode autheurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='auteur']//a");
-            if (autheurNode != null)
-            {
-                bookDetails.AuthorHref = autheurNode.HasAttributes ? autheurNode.Attributes["href"].Value : string.Empty;
-                bookDetails.Author = autheurNode.InnerText;
-            }
+            bookDetails.Author = AgilityTool
+                 .GetInnerText(tableDoc, "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'bloc_metaproduct_light')]//h1[@class='auteurs']//span");
+            bookDetails.AuthorHref = AgilityTool
+                 .GetAttributeValue(tableDoc, "href", "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'bloc_metaproduct_light')]//h1[@class='auteurs']//a");
+            bookDetails.AuthorHref = PAX_WEBSITE_NO_SLASH + bookDetails.AuthorHref;
         }
 
-        /* editeur_collection */
+        /* editeur_collection - genre */
         private static void FillEditeur(HtmlDocument tableDoc, BookDetailsItem bookDetails)
         {
-            HtmlNode editeurNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='editeur_collection']//span[@class='editeur']");
-            if (editeurNode != null)
+            bookDetails.Editor = AgilityTool
+                .GetInnerText(tableDoc, "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'bloc_metaproduct_light')]//ul[@class='metaProductLight']//li//span[@class='metaProductLight-editeur']//a");
+            bookDetails.Collection = AgilityTool
+                .GetInnerText(tableDoc, "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'bloc_metaproduct_light')]//ul[@class='metaProductLight']//li//span[@class='metaProductLight-collection']//a");
+            // type (second li)
+            HtmlNodeCollection tmpNodes = tableDoc.DocumentNode.SelectNodes("//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'bloc_metaproduct_light')]//ul[@class='metaProductLight']//li");
+            if (tmpNodes != null && tmpNodes.Count > 1)
             {
-                bookDetails.Editor = editeurNode.InnerText;
+                bookDetails.Type = tmpNodes[1].InnerText;
             }
         }
 
         /* date_parution */
         private static void FillDateParution(HtmlDocument tableDoc, BookDetailsItem bookDetails)
         {
-            HtmlNode dateNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='date_parution']");
-            if (dateNode != null)
-            {
-                bookDetails.PublishedDate = dateNode.InnerText;
-            }
-        }
-
-        /* genre */
-        private static void FillGenre(HtmlDocument tableDoc, BookDetailsItem bookDetails)
-        {
-            HtmlNode genreNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='genre']");
-            if (genreNode != null)
-            {
-                bookDetails.Type = genreNode.InnerText;
-            }
+            bookDetails.PublishedDate = AgilityTool
+                .GetInnerText(tableDoc, "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'bloc_metaproduct_light')]//ul[@class='metaProductLight']//li//span[@class='metaProductLight-MiseEnLigne']");
         }
 
         /* traduction */
         private static void FillTraduction(HtmlDocument tableDoc, BookDetailsItem bookDetails)
         {
-            HtmlNode traductionNode = tableDoc.DocumentNode.SelectSingleNode("//td[@class='tab_detaillivre_metabook']//div[@class='cont-metabook']//ul//li[@class='traduction']");
-            if (traductionNode != null)
-            {
-                bookDetails.TraductionInfo = traductionNode.InnerText;
-            }
+            bookDetails.TraductionInfo = AgilityTool
+                .GetOptionalInnerText(tableDoc, "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'bloc_metaproduct_light')]//p[@class='parution']//span]");
         }
 
         #endregion

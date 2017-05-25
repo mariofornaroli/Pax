@@ -61,7 +61,7 @@ namespace PaxWebApi.Tests.Controllers
             Assert.IsNotNull(bookDetails.DetailsBooks);
             Assert.AreEqual(84, bookDetails.DetailsBooks.Count());
         }
-
+        
         #endregion
 
         #region Get Seller Words Books and Details
@@ -154,8 +154,9 @@ namespace PaxWebApi.Tests.Controllers
 
         private string getFirstBookCompleteHref()
         {
-            var booksList = BooksComputation.GetAdvicedBooks();
-            return booksList.BooksList.FirstOrDefault().CompleteHref;
+            //var booksList = BooksComputation.GetAdvicedBooks();
+            var sellerBooks = BooksComputation._ComputeSellerWords();
+            return sellerBooks.BooksList.FirstOrDefault().CompleteHref;
         }
 
         #endregion
@@ -210,7 +211,8 @@ namespace PaxWebApi.Tests.Controllers
         [TestMethod]
         public void ComputeBookDetailsOk()
         {
-            string bookDetail = getFirstBookCompleteHref();
+            //string bookDetail = getFirstBookCompleteHref();
+            string bookDetail = "http://www.librairiepax.be//livre/9782081413146-quand-sort-la-recluse-fred-vargas/";
             // Act
             BookDetailsItem bookDetails = BooksComputation.GetBookDetails(bookDetail);
 

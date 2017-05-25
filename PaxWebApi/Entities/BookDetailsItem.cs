@@ -25,5 +25,7 @@ namespace Entities
         public string PublishedDate { get; set; }
         public string TraductionInfo { get; set; }
         public List<BookDetailsItem> LastBooksOfThisAuthor { get; set; }
+        public string Collection { get; set; }
+        public string MiseEnLigne { get; set; }
     }
 }
