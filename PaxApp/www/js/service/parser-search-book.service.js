@@ -45,7 +45,8 @@
 
         /* Main parser computatoion method */
         function _fillSearchedItems() {
-            var resultItems = $('table.tab_listlivre tr', self.domEl);
+            var list_selector = '#liste_livres>li';
+            var resultItems = $(list_selector, self.domEl);
             var itemsCount = resultItems.length;
             for (var i = 0; i < itemsCount; i++) {
                 var bookToAdd = fillBookItem(resultItems[i]);
@@ -58,7 +59,8 @@
         function fillBookItem(bookToParse) {
             var retBook = {};
             /* Fill title and href */
-            var titleNode = $('td.metabook ul.listeliv_metabook li.titre_commentaire span.titre a', bookToParse);
+            var title_selector = 'h2.livre_titre a';
+            var titleNode = $(title_selector, bookToParse);
             if (titleNode) {
                 retBook.title = $(titleNode).text();
                 retBook.href = $(titleNode).attr('href');
@@ -66,27 +68,30 @@
                 retBook.completeHref = retBook.href;
             }
             /* Fill Autheur */
-            var autheurNode = $('td.metabook ul.listeliv_metabook li.auteurs a', bookToParse);
+            var autheur_selector = 'h2.livre_auteur a';
+            var autheurNode = $(autheur_selector, bookToParse);
             if (autheurNode) {
                 retBook.author = $(autheurNode).text();
                 retBook.authorHref = $(autheurNode).attr('href');
                 retBook.authorHref = self.PAX_WEBSITE + retBook.authorHref;
             }
             /* Fill img */
-            var imgNode = $('td.visu img', bookToParse);
+            var img_selector = 'p.zone_image a img';
+            var imgNode = $(img_selector, bookToParse);
             if (imgNode) {
-                retBook.imgSrc = $(imgNode).attr('src');
+                retBook.imgSrc = $(imgNode).attr('data-original');
             }
             /* Fill editor */
-            var editorNode = $('td.metabook ul.listeliv_metabook li.editeur', bookToParse);
+            var editor_selector = 'li.editeur a';
+            var editorNode = $(editor_selector, bookToParse);
             if (editorNode) {
                 retBook.editor = $(editorNode).text();
             }
             /* Fill genre */
-            var genreNode = $('td.metabook ul.listeliv_metabook li.genre', bookToParse);
-            if (genreNode) {
-                retBook.genre = $(genreNode).text();
-            }            
+            //var genreNode = $('td.metabook ul.listeliv_metabook li.genre', bookToParse);
+            //if (genreNode) {
+            //    retBook.genre = $(genreNode).text();
+            //}            
             
             return retBook;
         };

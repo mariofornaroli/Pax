@@ -79,7 +79,8 @@
             var searchKey = self.searchBookKey;
             var req = {
                 method: 'GET',
-                url: 'http://www.librairiepax.be/listeliv.php?RECHERCHE=simple&LIVREANCIEN=2&MOTS=' + _searchBookKey + '&x=11&y=13'
+                url: 'https://www.librairiepax.be/listeliv.php?mots_recherche=' + _searchBookKey + '&base=paper'
+                //url: 'http://www.librairiepax.be/listeliv.php?RECHERCHE=simple&LIVREANCIEN=2&MOTS=' + _searchBookKey + '&x=11&y=13'
             };
             return $http(req).then(function (response) {
 
