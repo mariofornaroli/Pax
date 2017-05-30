@@ -15,6 +15,7 @@ namespace Entities
         public string Description { get; set; }
         public string ShortDescription { get; set; }
         public string Title { get; set; }
+        public string DateEventInfo { get; set; }
         public DateTime? DateComputation { get; set; }
     }
 }

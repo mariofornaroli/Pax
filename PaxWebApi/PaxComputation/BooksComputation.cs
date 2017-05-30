@@ -17,6 +17,7 @@ namespace PaxComputation
         private const string PAX_WEBSITE_NO_SLASH = "http://www.librairiepax.be";
         private const string PAX_WEBSITE_BEST_SELLERS = "https://www.librairiepax.be/listeliv.php?ssh_id=&type_page=palmares&base=paper";
         private const string PAX_WEBSITE_BOOKSELLER_WORDS = "https://www.librairiepax.be/coups-de-coeur";
+        private const string PAX_WEBSITE_BOOKSELLER_WORDS_PER_PAGE = "https://www.librairiepax.be/coups-de-coeur?page=";
         private const string HTML_COERU_TD_CLASS = "CoeurCorpus";
         private const int MAX_COERU_BLOCS_NUM = 10;
         private const string HTML_COERU_TITLE_CLASS = "CoeurTitre";
@@ -154,7 +155,9 @@ namespace PaxComputation
             var sbRes = ComputeSellerBooksToFileAndNotification(ref notificationsOccurred);
 
             /* ADVICED BOOKS */
-            var adbRes = ComputeAdvicedBooksToFile(ref notificationsOccurred);
+            /* TO BE REDEVELOPED */
+            var adbRes = new ResultModel<BooksListModel>();
+            //var adbRes = ComputeAdvicedBooksToFile(ref notificationsOccurred);
 
             /* BEST SELLER BOOKS */
             var bsRes = ComputeBestSellerBooksToFile(ref notificationsOccurred);
@@ -185,10 +188,13 @@ namespace PaxComputation
             BooksListModel bookListForDetails = new BooksListModel() { BooksList = new List<BookItem>() };
             foreach (var bookList in bookListModelList)
             {
-                bookListForDetails.BooksList.AddRange(bookList.BooksList);
-                if (bookList.MonthBook != null)
+                if (bookList != null)
                 {
-                    bookListForDetails.BooksList.Add(bookList.MonthBook);
+                    bookListForDetails.BooksList.AddRange(bookList.BooksList);
+                    if (bookList.MonthBook != null)
+                    {
+                        bookListForDetails.BooksList.Add(bookList.MonthBook);
+                    }
                 }
             }
 
@@ -897,19 +903,21 @@ namespace PaxComputation
 
         public static BooksListModel _ComputeSellerWords()
         {
-            HtmlDocument doc = new HtmlDocument();
-            HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE_BOOKSELLER_WORDS, null, null);
-            doc.LoadHtml(downloader.GetPage());
+            //HtmlDocument doc = new HtmlDocument();
+            //HttpDownloader downloader = new HttpDownloader(PAX_WEBSITE_BOOKSELLER_WORDS, null, null);
+            //doc.LoadHtml(downloader.GetPage());
+            //return GetBookSellerWordsObjList(doc);
 
-            return GetBookSellerWordsObjList(doc);
+            return GetBookSellerWordsObjList();
         }
 
-        public static BooksListModel GetBookSellerWordsObjList(HtmlDocument doc)
+        //public static BooksListModel GetBookSellerWordsObjList(HtmlDocument doc)
+        public static BooksListModel GetBookSellerWordsObjList()
         {
             var retData = new BooksListModel() { BooksList = new List<BookItem>() };
 
             /* Fill Book Seller Words */
-            FillBookSellerWords(doc, retData.BooksList);
+            FillBookSellerWords_FirstPages(retData.BooksList);
 
             /* Compute here the book of the month */
             var monthBook = GetMonthBookTdObj();
@@ -919,6 +927,21 @@ namespace PaxComputation
 
             return retData;
         }
+
+        private static void FillBookSellerWords_FirstPages(List<BookItem> bookSellerWords)
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                var url = PAX_WEBSITE_BOOKSELLER_WORDS_PER_PAGE + i;
+                HtmlDocument doc = new HtmlDocument();
+                HttpDownloader downloader = new HttpDownloader(url, null, null);
+                doc.LoadHtml(downloader.GetPage());
+
+                FillBookSellerWords(doc, bookSellerWords);
+            }
+
+        }
+
 
         private static void FillBookSellerWords(HtmlDocument doc, List<BookItem> bookSellerWords)
         {

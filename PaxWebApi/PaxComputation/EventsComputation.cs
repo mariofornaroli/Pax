@@ -42,10 +42,10 @@ namespace PaxComputation
             FillEventsShortData(doc, retData.Events);
 
             /* Fill events Image */
-            FillEventsImage(doc, retData.Events);
+            //FillEventsImage(doc, retData.Events);
 
-            /* Fill events Description */
-            FillEventsDescription(doc, retData.Events);
+            /* Fill events Description and Date */
+            FillEventsDescription(retData.Events);
 
             ///* Get coeurTdDoc object */
             //var coeurTdDoc = GetCoeurTdObj(doc);
@@ -66,7 +66,7 @@ namespace PaxComputation
 
             return retData;
         }
-        
+
         private static void FillEventsShortData(HtmlDocument doc, List<EventItem> events)
         {
             //desc_agenda
@@ -86,61 +86,98 @@ namespace PaxComputation
 
                 /* Fill title href */
                 eventToAdd.CompleteHref = AgilityTool
-                 .GetAttributeValue(eventsTitles[i], "href", "/h2/a");
+                 .GetAttributeValue(eventsTitles[i], "href", "div[contains(@class, 'infos_agenda')]/div[contains(@class, 'desc_agenda')]/h2/a");
                 eventToAdd.CompleteHref = PAX_WEBSITE_NO_SLASH + eventToAdd.CompleteHref;
 
-                /* Fill title */
-                //HtmlNode titleNode = eventsTitles[i];
-                //if (titleNode != null)
-                //{
-                //    eventToAdd.Title = titleNode.InnerText;
-                //}
-                ///* Add event to list */
-                //events.Add(eventToAdd);
+                /* Fill image */
+                eventToAdd.ImgSrc = AgilityTool
+                .GetAttributeValue(eventsTitles[i], "src", "a/img");
+
+                /* Event addition */
+                events.Add(eventToAdd);
             }
         }
 
-        private static void FillEventsImage(HtmlDocument doc, List<EventItem> events)
+        //private static void FillEventsImage(HtmlDocument doc, List<EventItem> events)
+        //{
+        //    HtmlNodeCollection eventsImages = doc.DocumentNode.SelectNodes("//td[@class='EventsCorpus2']//div[@class='events_image']//img");
+
+        //    var countEvents = eventsImages.Count;
+
+        //    for (int i = 0; i < countEvents; i++)
+        //    {
+        //        /* Fill image */
+        //        HtmlNode imgNode = eventsImages[i];
+        //        if (imgNode != null)
+        //        {
+        //            if (events.Count > i) {
+        //                events[i].ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
+        //                events[i].ImgSrc = "http://www.librairiepax.be" + events[i].ImgSrc;
+        //            }
+        //        }
+        //    }
+        //}
+
+        private static void FillEventsDescription(List<EventItem> events)
         {
-            HtmlNodeCollection eventsImages = doc.DocumentNode.SelectNodes("//td[@class='EventsCorpus2']//div[@class='events_image']//img");
-
-            var countEvents = eventsImages.Count;
-
-            for (int i = 0; i < countEvents; i++)
+            /* In each event partially pre-filled, fill the description and data */
+            foreach (var ev in events)
             {
-                /* Fill image */
-                HtmlNode imgNode = eventsImages[i];
-                if (imgNode != null)
-                {
-                    if (events.Count > i) {
-                        events[i].ImgSrc = imgNode.HasAttributes ? imgNode.Attributes["src"].Value : string.Empty;
-                        events[i].ImgSrc = "http://www.librairiepax.be" + events[i].ImgSrc;
-                    }
-                }
+                parseFillDescriptionAndData(ev);
             }
+
+            //HtmlNodeCollection eventsDescr = doc.DocumentNode.SelectNodes("//td[@class='EventsCorpus2']//div[@class='event_item']//p");
+            //var countEvents = eventsDescr.Count;
+            //for (int i = 0; i < countEvents; i++)
+            //{
+            //    /* Fill image */
+            //    HtmlNode descrNode = eventsDescr[i];
+            //    if (descrNode != null)
+            //    {
+            //        if (events.Count > i)
+            //        {
+            //            events[i].Description = descrNode.InnerText;
+            //            events[i].Description = events[i].Description.Replace("\r\n", "<br>");
+            //            events[i].ShortDescription = events[i].Description.Replace("\r\n", " ").Substring(0, 100);
+            //            events[i].ShortDescription += " [...]";
+            //        }
+            //    }
+            //}
         }
 
-        private static void FillEventsDescription(HtmlDocument doc, List<EventItem> events)
+        private static void parseFillDescriptionAndData(EventItem ev)
         {
-            HtmlNodeCollection eventsDescr = doc.DocumentNode.SelectNodes("//td[@class='EventsCorpus2']//div[@class='event_item']//p");
+            HtmlDocument doc = new HtmlDocument();
+            HttpDownloader downloader = new HttpDownloader(ev.CompleteHref, null, null);
+            doc.LoadHtml(downloader.GetPage());
 
-            var countEvents = eventsDescr.Count;
+            executeParseFillDescriptionAndData(doc, ev);
+            return;
+        }
 
-            for (int i = 0; i < countEvents; i++)
+        private static void executeParseFillDescriptionAndData(HtmlDocument doc, EventItem ev)
+        {
+            /* Fill date information */
+            ev.DateEventInfo = AgilityTool
+             .GetInnerText(doc, "//div[contains(@class, 'blocAgenda')]//div[contains(@class, 'desc_agenda')]//div[contains(@class, 'date_agenda')]//h3");
+
+            /* Fill description */
+            HtmlNodeCollection tmpNodes = doc.DocumentNode.SelectNodes("//div[contains(@class, 'blocAgenda')]//div[contains(@class, 'desc_agenda')]//p");
+            string commentContent = string.Empty;
+
+            foreach (var pNode in tmpNodes)
             {
-                /* Fill image */
-                HtmlNode descrNode = eventsDescr[i];
-                if (descrNode != null)
+                var tmpP = pNode.InnerText;
+                if (!string.IsNullOrEmpty(tmpP))
                 {
-                    if (events.Count > i)
+                    /* Check if string is not already contained */
+                    if (!commentContent.Contains(tmpP))
                     {
-                        events[i].Description = descrNode.InnerText;
-                        events[i].Description = events[i].Description.Replace("\r\n", "<br>");
-                        events[i].ShortDescription = events[i].Description.Replace("\r\n", " ").Substring(0, 100);
-                        events[i].ShortDescription += " [...]";
+                        commentContent = string.Concat(commentContent, tmpP, "<br>");
                     }
                 }
             }
+            ev.Description = commentContent;
         }
 
         #endregion
