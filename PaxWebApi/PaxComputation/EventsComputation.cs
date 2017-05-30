@@ -11,8 +11,9 @@ namespace PaxComputation
 {
     public static class EventsComputation
     {
-        private const string PAX_EVENTS_WEBSITE = "http://www.librairiepax.be/events.php?blid=5808";
-        
+        //private const string PAX_EVENTS_WEBSITE = "http://www.librairiepax.be/events.php?blid=5808";
+        private const string PAX_WEBSITE_NO_SLASH = "http://www.librairiepax.be";
+        private const string PAX_EVENTS_WEBSITE = "https://www.librairiepax.be/agenda.php";
         #region ComputeHeartBooks Methods
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace PaxComputation
             var retData = new EventsModel() { Events = new List<EventItem>() };
 
             /* Fill events title */
-            FillEventsTitle(doc, retData.Events);
+            FillEventsShortData(doc, retData.Events);
 
             /* Fill events Image */
             FillEventsImage(doc, retData.Events);
@@ -66,9 +67,12 @@ namespace PaxComputation
             return retData;
         }
         
-        private static void FillEventsTitle(HtmlDocument doc, List<EventItem> events)
+        private static void FillEventsShortData(HtmlDocument doc, List<EventItem> events)
         {
-            HtmlNodeCollection eventsTitles = doc.DocumentNode.SelectNodes("//td[@class='EventsCorpus2']//h2[@class='EventsTitre']");
+            //desc_agenda
+            HtmlNodeCollection eventsTitles = doc.DocumentNode
+                //.SelectNodes("//div[@id='wrap_central']//div[contains(@class, 'infos_agenda')]//div[contains(@class, 'desc_agenda')]");
+                .SelectNodes("//div[@id='wrap_central']//article");
 
             var countEvents = eventsTitles.Count;
 
@@ -77,13 +81,22 @@ namespace PaxComputation
                 var eventToAdd = new EventItem();
 
                 /* Fill title */
-                HtmlNode titleNode = eventsTitles[i];
-                if (titleNode != null)
-                {
-                    eventToAdd.Title = titleNode.InnerText;
-                }
-                /* Add event to list */
-                events.Add(eventToAdd);
+                eventToAdd.Title = AgilityTool
+                 .GetInnerText(eventsTitles[i], "div[contains(@class, 'infos_agenda')]/div[contains(@class, 'desc_agenda')]/h2/a");
+
+                /* Fill title href */
+                eventToAdd.CompleteHref = AgilityTool
+                 .GetAttributeValue(eventsTitles[i], "href", "/h2/a");
+                eventToAdd.CompleteHref = PAX_WEBSITE_NO_SLASH + eventToAdd.CompleteHref;
+
+                /* Fill title */
+                //HtmlNode titleNode = eventsTitles[i];
+                //if (titleNode != null)
+                //{
+                //    eventToAdd.Title = titleNode.InnerText;
+                //}
+                ///* Add event to list */
+                //events.Add(eventToAdd);
             }
         }
 

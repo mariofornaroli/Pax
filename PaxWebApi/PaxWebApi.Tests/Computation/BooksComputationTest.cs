@@ -165,6 +165,18 @@ namespace PaxWebApi.Tests.Controllers
         #region Get Best Sellers Books and Details
 
         [TestMethod]
+        public void SimpleGetBestSellersOk()
+        {
+            // Act
+            BooksListModel result = BooksComputation._ComputeBestSellers();
+
+            Assert.IsNotNull(result);
+            Assert.IsNotNull(result.BooksList);
+            Assert.AreEqual(true, result.BooksList.Count > 0);
+            //Assert.AreEqual(EXPECTED_BEST_SELLERS_BOOKS, result.BooksList.Count());
+        }
+
+        [TestMethod]
         public void GetBestSellersOk()
         {
             // Act
@@ -209,7 +221,7 @@ namespace PaxWebApi.Tests.Controllers
         }
 
         [TestMethod]
-        public void ComputeBookDetailsOk()
+        public void SimpleComputeBookDetailsOk()
         {
             //string bookDetail = getFirstBookCompleteHref();
             string bookDetail = "http://www.librairiepax.be//livre/9782081413146-quand-sort-la-recluse-fred-vargas/";

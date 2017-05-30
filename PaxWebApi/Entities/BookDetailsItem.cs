@@ -20,6 +20,7 @@ namespace Entities
         public List<string> TypeExisting { get; set; }
         public List<DescriptionItem> AdditionalDescriptionItems { get; set; }
         public List<DescriptionItem> GlobalInfoDescriptionItems { get; set; }
+        public List<DescriptionItem> OtherInfoTableItems { get; set; }        
         public string DescrptionTitle { get; set; }
         public string Descrption { get; set; }
         public string PublishedDate { get; set; }

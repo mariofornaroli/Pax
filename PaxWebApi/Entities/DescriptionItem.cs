@@ -10,5 +10,6 @@ namespace Entities
     {
         public string Title { get; set; }
         public string Content { get; set; }
+        public string ContentAuthor { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace PaxWebApi.Tests.Controllers
     public class EventsComputationTest
     {
         [TestMethod]
-        public void EventsOk()
+        public void SimpleEventsOk()
         {
             // Act
             EventsModel result = EventsComputation.ComputeEvents();
