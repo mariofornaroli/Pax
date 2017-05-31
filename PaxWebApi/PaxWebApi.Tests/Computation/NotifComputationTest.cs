@@ -18,19 +18,24 @@ namespace PaxWebApi.Tests.Controllers
         [TestMethod]
         public void NotifOk()
         {
-            object defaultsNotif = new
+            object defaultData = new
+            {
+                numberNewBooks = "5"
+            };
+
+        object defaultsNotif = new
             {
                 body = "Des livres récents ont été conseillés",
                 title = "Librairie Pax",
                 icon = "fcm_push_icon",
                 sound = "default",
-                click_action = "FCM_PLUGIN_ACTIVITY",
+                //click_action = "FCM_PLUGIN_ACTIVITY",
                 color = "#154991"
             };
-            string topics = "/topics/testPaxNewHeratBooks";
+            string topics = "/topics/testPaxNewHeratBooks2";
             NotifComputation notiffComputation = new NotifComputation(new HttpConfiguration());
             // Act
-            var ret = notiffComputation.executeNotif(defaultsNotif, null, topics);            
+            var ret = notiffComputation.executeNotif(defaultsNotif, defaultData, topics);            
         }
         
     }

@@ -345,6 +345,12 @@ namespace PaxComputation
                     /* Save newentries into model */
                     newEntriesHeartBooks.BooksList = newEntries;
 
+                    /* Set data for the notification */
+                    dataToSend = new
+                    {
+                        numberNewBooks = newEntries.Count
+                    };
+
                     /* Execute device notifications */
                     executeHeartNotifications(notifContent, dataToSend, topics);
 

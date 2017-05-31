@@ -76,7 +76,7 @@
                 },
                 function (error) { 
                     // handle error here
-                    ErrorMng.showSystemError(error.msg);
+                    ErrorMng.showSystemError(error.msg ? error.msg : error);
                 });
         };
 

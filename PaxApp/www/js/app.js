@@ -13,27 +13,30 @@ app.run(function ($ionicPlatform, $state, $ionicPopup, ionicMaterialInk, $timeou
 
         /*  --------------------- PUSH NOTIFICATION --------------------- */
 
-        //FCMPlugin.onTokenRefresh( onTokenRefreshCallback(token) );
-        //Note that this callback will be fired everytime a new token is generated, including the first time.
-        FCMPlugin.onTokenRefresh(function (token) {
-            //console.log('onTokenRefresh:');
-            //console.log(token);
-            //alert(token);
-        });
-
-        //FCMPlugin.getToken( successCallback(token), errorCallback(err) );
-        //Keep in mind the function will return null if the token has not been established yet.
-        FCMPlugin.getToken(function (token) {
-            //console.log('getToken:');
-            //console.log(token);
-            //alert(token);
-        });
+      //  //FCMPlugin.onTokenRefresh( onTokenRefreshCallback(token) );
+      //  //Note that this callback will be fired everytime a new token is generated, including the first time.
+      //  FCMPlugin.onTokenRefresh(function (token) {
+      //      //console.log('onTokenRefresh:');
+      //      //console.log(token);
+      //      //alert(token);
+      //  });
+      //
+      //  //FCMPlugin.getToken( successCallback(token), errorCallback(err) );
+      //  //Keep in mind the function will return null if the token has not been established yet.
+      //  FCMPlugin.getToken(function (token) {
+      //      //console.log('getToken:');
+      //      //console.log(token);
+      //      //alert(token);
+      //  });
 
         //FCMPlugin.subscribeToTopic( topic, successCallback(msg), errorCallback(err) );
         //All devices are subscribed automatically to 'all' and 'ios' or 'android' topic respectively.
         //Must match the following regular expression: "[a-zA-Z0-9-_.~%]{1,900}".
-        FCMPlugin.subscribeToTopic('paxNewHeratBooks');
-        FCMPlugin.subscribeToTopic('testPaxNewHeratBooks');
+        //FCMPlugin.subscribeToTopic('paxNewHeratBooks');
+        //FCMPlugin.subscribeToTopic('testPaxNewHeratBooks');
+        window.FirebasePlugin.subscribe("paxNewHeratBooks");
+        window.FirebasePlugin.subscribe("testPaxNewHeratBooks");
+        window.FirebasePlugin.subscribe("testPaxNewHeratBooks2");
 
         /* Notification popup */
         var showNotificationPopup = function () {
@@ -55,11 +58,47 @@ app.run(function ($ionicPlatform, $state, $ionicPopup, ionicMaterialInk, $timeou
             };
         }
 
-        //FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
-        //Here you define your application behaviour based on the notification data.
-        FCMPlugin.onNotification(function (data) {
+     //   //FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
+     //   //Here you define your application behaviour based on the notification data.
+     //   FCMPlugin.onNotification(function (data) {
+     //       var forceGoToProfile = false;
+     //       if (data.tap) {
+     //           //Notification was received on device tray and tapped by the user.
+     //           forceGoToProfile = true;
+     //           //console.log("Was tapped:");
+     //           //console.log(JSON.stringify(data));
+     //       } else {
+     //           //Notification was received in foreground. Maybe the user needs to be notified.
+     //           showNotificationPopup();
+     //           ///* A notification occurred, thus force the app to reload all it's data */
+     //           //paxGlobal.NotificationOccurred = true;
+     //           ///* Then redirect the app to Main page */
+     //           //$state.go('app.profile', {}, { reload: true });
+     //       };
+     //       /* A notification occurred, thus force the app to reload all it's data */
+     //       paxGlobal.NotificationOccurred = true;
+     //       /* Then redirect the app to Main page */
+     //       refreshPaxProfile(forceGoToProfile);
+     //
+     //   }, function (data) {
+     //       if (data.tap) {
+     //           //Notification was received on device tray and tapped by the user.
+     //           //console.log("Was tapped:");
+     //           //console.log(JSON.stringify(data));
+     //       } else {
+     //           //Notification was received in foreground. Maybe the user needs to be notified.
+     //           //console.log("Wasn't tapped:");
+     //           //console.log(JSON.stringify(data));
+     //       }
+     //   });
+
+
+        window.FirebasePlugin.onNotificationOpen(function (notification) {
             var forceGoToProfile = false;
-            if (data.wasTapped) {
+            //if (notification.numberNewBooks) {
+            //    window.FirebasePlugin.setBadgeNumber(notification.numberNewBooks);
+            //}
+            if (notification.tap) {
                 //Notification was received on device tray and tapped by the user.
                 forceGoToProfile = true;
                 //console.log("Was tapped:");
@@ -72,23 +111,14 @@ app.run(function ($ionicPlatform, $state, $ionicPopup, ionicMaterialInk, $timeou
                 ///* Then redirect the app to Main page */
                 //$state.go('app.profile', {}, { reload: true });
             };
-
             /* A notification occurred, thus force the app to reload all it's data */
             paxGlobal.NotificationOccurred = true;
             /* Then redirect the app to Main page */
             refreshPaxProfile(forceGoToProfile);
-
-        }, function (data) {
-            if (data.wasTapped) {
-                //Notification was received on device tray and tapped by the user.
-                //console.log("Was tapped:");
-                //console.log(JSON.stringify(data));
-            } else {
-                //Notification was received in foreground. Maybe the user needs to be notified.
-                //console.log("Wasn't tapped:");
-                //console.log(JSON.stringify(data));
-            }
+        }, function (error) {
+            console.error(error);
         });
+
 
     });
 

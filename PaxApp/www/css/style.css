@@ -15,7 +15,7 @@
 }
 
 .assertive-900-bg, .assertive-900-bg.activated, .assertive-900-bg:active, .assertive-900-bg:hover, .assertive-900-border, .assertive-900-border.activated, .assertive-900-border:active, .assertive-900-border:hover, .bar .button-assertive-900, .bar .button-assertive-900.activated, .bar .button-assertive-900:active, .bar .button-assertive-900:hover, .bar-assertive-900, .bar-assertive-900.activated, .bar-assertive-900:active, .bar-assertive-900:hover, .button-assertive-900, .button-assertive-900.activated, .button-assertive-900:active, .button-assertive-900:hover, .button-bar-assertive-900, .button-bar-assertive-900.activated, .button-bar-assertive-900:active, .button-bar-assertive-900:hover, .header-assertive-900, .header-assertive-900.activated, .header-assertive-900:active, .header-assertive-900:hover {
-    background-color: #174992;
+    background-color: #104A93;
     /*color: #232578;*/
 }
 
@@ -44,6 +44,10 @@
     max-height: 170px;
 }
 
+p.content-author {
+    font-style: italic;
+    text-align: right;
+}
 
 
 /* General
@@ -77,9 +81,9 @@ p {
 
 .tabs-dark > .tabs, .tabs.tabs-dark {
     background-color: #DFE2F1;
-    color: #174992;
-    border-top: #174992 solid 1px;
-    border-bottom: #174992 solid 1px;
+    color: #104A93;
+    border-top: #104A93 solid 1px;
+    border-bottom: #104A93 solid 1px;
 }
 
 .tab-item {
@@ -96,8 +100,8 @@ p {
 }
 
 .button.button-positive.button.search-btn {
-    background-color: #174992;
-    border-color: #174992;
+    background-color: #104A93;
+    border-color: #104A93;
 }
 
 .item.search-bar .item-input-wrapper {

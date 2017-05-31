@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.cordova.PaxDeCoeur2785d518e9f4578943055878dd7a400" version="0.2.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="4">
+<widget id="io.cordova.PaxDeCoeur2785d518e9f4578943055878dd7a400" version="0.2.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="5">
   <!-- A wildcard can be used to whitelist the entire network,
      over HTTP and HTTPS.
      *NOT RECOMMENDED* -->
@@ -49,8 +49,7 @@
   </platform>
   <plugin name="cordova-plugin-whitelist" version="1.3.1" />
   <plugin name="cordova-plugin-splashscreen" version="4.0.1" />
-  <plugin name="phonegap-plugin-push" version="1.8.4" />
-  <plugin name="cordova-plugin-fcm" version="2.1.1" src="https://github.com/fechanique/cordova-plugin-fcm" />
   <plugin name="cordova-plugin-statusbar" version="2.2.3-dev" />
   <plugin name="call-number" version="0.0.2" src="https://github.com/Rohfosho/CordovaCallNumberPlugin.git" />
+  <plugin name="cordova-plugin-firebase" version="0.1.21" src="https://github.com/arnesson/cordova-plugin-firebase" />
 </widget>

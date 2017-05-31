@@ -101,7 +101,7 @@ namespace PaxWebApi.Tests.Controllers
                 title = "Librairie Pax",
                 icon = "fcm_push_icon",
                 sound = "default",
-                click_action = "FCM_PLUGIN_ACTIVITY",
+                //click_action = "FCM_PLUGIN_ACTIVITY",
                 color = "#154991"
             };
             string topics = "/topics/testPaxNewHeratBooks";

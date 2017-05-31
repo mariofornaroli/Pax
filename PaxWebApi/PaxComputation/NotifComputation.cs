@@ -27,14 +27,14 @@ namespace PaxComputation
             title = "Librairie Pax",
             icon = "fcm_push_icon",
             sound = "default",
-            click_action = "FCM_PLUGIN_ACTIVITY",
+            //click_action = "FCM_PLUGIN_ACTIVITY",
             color = "#154991"
         };
 
         private object defaultData = new
         {
-            param1 = "value1",
-            param2 = "value2"
+            numberNewBooks = "1",
+            //param2 = "value2"
         };
 
         #endregion

@@ -29,19 +29,24 @@ namespace PaxWebApi.Controllers
             /* Execute test only for correct pswd */
             if (pswd == "334455")
             {
+                object defaultData = new
+                {
+                    numberNewBooks = "1"
+                };
+
                 object defaultsNotif = new
                 {
                     body = "Des livres récents ont été conseillés",
                     title = "Librairie Pax",
                     icon = "fcm_push_icon",
                     sound = "default",
-                    click_action = "FCM_PLUGIN_ACTIVITY",
+                    //click_action = "FCM_PLUGIN_ACTIVITY",
                     color = "#154991"
                 };
                 string topics = "/topics/paxNewHeratBooks";
                 NotifComputation notiffComputation = new NotifComputation(new HttpConfiguration());
                 // Act
-                var ret = notiffComputation.executeNotif(defaultsNotif, null, topics);
+                var ret = notiffComputation.executeNotif(defaultsNotif, defaultData, topics);
 
             }
             /* Return data */
