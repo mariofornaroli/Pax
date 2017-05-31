@@ -5,11 +5,12 @@
             <div class="card stable-bg ink ink-dark">
                 <div class="item item-text-wrap">
                     <strong ng-bind-html="event.title"></strong> <br />
+                    <span class="event-date-info" ng-bind-html="event.dateEventInfo"></span> <br />
 
                     <a class="image">
                         <img ng-src="{{event.imgSrc}}">
                     </a>
-                    <span ng-bind-html="sanitizeMe(event.shortDescription)"></span>
+                    <!--<span ng-bind-html="sanitizeMe(event.shortDescription)"></span>-->
 
                     <!--<div class="card-footer text-right">
                         <div class="pull-left">

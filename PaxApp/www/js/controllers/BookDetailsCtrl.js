@@ -59,6 +59,7 @@
                 function (error) {
                     // handle error here
                     ErrorMng.showSystemError(error.msg);
+                    $ionicLoading.hide();
                 });
         };
 

@@ -20,10 +20,11 @@
                ng-click="vm.goToBookDetails(hBook)" class="item item-avatar item-icon-right">
                 <img ng-src="{{hBook.imgSrc}}">
                 <h2 ng-bind-html="hBook.title"></h2>
-                <p>
+                <p><span ng-bind-html="hBook.author"></span></p>
+                <!--<p>
                     <span ng-bind-html="hBook.author"></span>&nbsp;-&nbsp;<span ng-bind-html="hBook.genre"></span>
                 </p>
-                <img ng-if="hBook.isNewAdded == true" class="new-book-added" ng-src="img/new-book.jpeg">
+                <img ng-if="hBook.isNewAdded == true" class="new-book-added" ng-src="img/new-book.jpeg">-->
             </a>
         </div>
     </ion-content>

@@ -3,11 +3,11 @@
 /* ---- App url ---- */ 
 //paxGlobal.appUrl = '';
 // Debug
-//paxGlobal.appUrl = 'http://localhost:51267/';
+paxGlobal.appUrl = 'http://localhost:51267/';
 // IIS
 //paxGlobal.appUrl = 'http://localhost:8091/';
 // Azure
-paxGlobal.appUrl = 'http://paxwebapi.azurewebsites.net/';
+//paxGlobal.appUrl = 'http://paxwebapi.azurewebsites.net/';
 
 paxGlobal.getAppUrl = function getAppUrl() {
     if (paxGlobal.appUrl) {

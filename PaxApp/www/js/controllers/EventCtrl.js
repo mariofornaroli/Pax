@@ -1,9 +1,9 @@
 ﻿(function () {
 
     app.controller('EventCtrl', EventCtrl);
-    EventCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', '$state', 'Events', 'ErrorMng'];
+    EventCtrl.$inject = ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$controller', '$state', 'Events', 'ErrorMng', '$ionicLoading'];
 
-function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, $state, Events, ErrorMng) {
+    function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $controller, $state, Events, ErrorMng, $ionicLoading) {
 
         var vm = this;
 
@@ -54,9 +54,9 @@ function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMateri
 
             $timeout(function () {
                 ionicMaterialMotion.fadeSlideIn({
-                        selector: '.animate-fade-slide-in .item'
-                    });
-                }, 200);
+                    selector: '.animate-fade-slide-in .item'
+                });
+            }, 200);
         };
 
         /* Load all heart events */
@@ -73,6 +73,7 @@ function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMateri
 
         /* Load all events data from server */
         vm.loadEventsFromServer = function () {
+            vm.showLoading();
             Events.GetEvents().then(
                 function (result) {
                     if (result.operationResult === true) {
@@ -83,14 +84,16 @@ function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMateri
                         // handle error here
                         ErrorMng.showSystemError(result.msg);
                     };
-                    /* Save vm state */ 
+                    /* Save vm state */
                     vm.eventsLoaded = Events.eventsLoaded;
                     vm.heartEvents = Events.heartEvents;
                     vm.setMotion();
+                    $ionicLoading.hide();
                 },
                 function (error) {
                     // handle error here
                     ErrorMng.showSystemError(error.msg);
+                    $ionicLoading.hide();
                 });
         };
 
@@ -104,6 +107,13 @@ function EventCtrl($scope, $stateParams, $timeout, ionicMaterialInk, ionicMateri
 
         vm.setVmCurrentEvent = function () {
             vm.currentEvent = Events.currentEvent;
+        };
+
+        /* Loading spin show */
+        vm.showLoading = function () {
+            $ionicLoading.show({
+                template: '<div class="loader"><svg class="circular"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg></div>'
+            });
         };
 
         /* Load all heart events */

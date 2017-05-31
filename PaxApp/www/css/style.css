@@ -230,10 +230,16 @@ div.list ion-item a {
 }
 
 .agenda-container .card img {
-    max-width: 80%; 
+    /*max-width: 80%;*/ 
     margin-left: auto;
     margin-right: auto;
 }
+
+.agenda-container .card .event-date-info {
+    font-size: 0.9em; 
+    font-style: italic; 
+}
+
 
 /*  ----------------------------------   ABOUT PAX    -----------------------------------  */
 

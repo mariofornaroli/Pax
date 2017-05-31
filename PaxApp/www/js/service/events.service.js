@@ -12,6 +12,7 @@
         self.getItems = getItems;
         self.events = [];
         /* Events loaded */
+        self.eventsLoaded = false;
         self.booksLoaded = false;
         /* callbacks to be called on documents status changes */
         self.observerCallbacks = [];
