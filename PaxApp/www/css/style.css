@@ -19,11 +19,11 @@
     /*color: #232578;*/
 }
 
-.hero.h230 {
-    height: 230px;
+.hero.h222 {
+    height: 222px;
 }
 .content.book-det-img-content {
-    top: 28px;
+    top: 26px;
     background-color: #ffffff;
     display: flex; /* or inline-flex */
     justify-content: space-around;
@@ -46,7 +46,11 @@
 
 p.content-author {
     font-style: italic;
-    text-align: right;
+    text-align: left;
+}
+
+div.book-details-description {
+    margin-top: 8px;
 }
 
 

@@ -1,7 +1,7 @@
 <ion-view class="book-details-page" view-title="{{vm.getPageTitle()}}" ng-controller="BookDetailsCtrl as vm">
     <ion-content>
         <div class="content">
-            <div class="hero h230">
+            <div class="hero h222">
                 <div class="content book-det-img-content">
                         <div class="img-item">
                             <img class="book-det-img" ng-src="{{vm.currentBookDetail.imgSrc}}" />
@@ -19,7 +19,7 @@
                 <p ng-bind-html="vm.currentBookDetail.author"></p>
             </div>
             <div class="content double-padding">
-                <div>
+                <div class="book-details-description">
                     <p class="text-muted" ng-bind-html="vm.currentBookDetail.description"></p>
                 </div>
                 <div ng-repeat="addInfo in vm.currentBookDetail.additionalDescriptionItems">
