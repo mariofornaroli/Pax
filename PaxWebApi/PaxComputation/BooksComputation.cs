@@ -693,7 +693,7 @@ namespace PaxComputation
 
         private static void FillDescription(HtmlDocument doc, BookDetailsItem bookDetails)
         {
-            bookDetails.Descrption = AgilityTool
+            bookDetails.Description = AgilityTool
                  .GetInnerText(doc, "//div[@class='bloc_visu_meta']//div[@id='metaproduct']//div[contains(@class, 'productDescription')]//p[@class='description']");
         }
 

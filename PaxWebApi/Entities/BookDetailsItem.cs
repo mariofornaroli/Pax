@@ -21,8 +21,8 @@ namespace Entities
         public List<DescriptionItem> AdditionalDescriptionItems { get; set; }
         public List<DescriptionItem> GlobalInfoDescriptionItems { get; set; }
         public List<DescriptionItem> OtherInfoTableItems { get; set; }        
-        public string DescrptionTitle { get; set; }
-        public string Descrption { get; set; }
+        public string DescriptionTitle { get; set; }
+        public string Description { get; set; }
         public string PublishedDate { get; set; }
         public string TraductionInfo { get; set; }
         public List<BookDetailsItem> LastBooksOfThisAuthor { get; set; }
