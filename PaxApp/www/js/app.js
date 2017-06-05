@@ -11,6 +11,11 @@ app.run(function ($ionicPlatform, $state, $ionicPopup, ionicMaterialInk, $timeou
     /* When platform is ready, then add notification plug in registration */
     window.ionic.Platform.ready(function () {
 
+        /* Hide splash screen */
+        if (navigator && navigator.splashscreen) {
+            navigator.splashscreen.hide();
+        };
+
         /*  --------------------- PUSH NOTIFICATION --------------------- */
 
       //  //FCMPlugin.onTokenRefresh( onTokenRefreshCallback(token) );

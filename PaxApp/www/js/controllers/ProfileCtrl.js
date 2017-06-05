@@ -21,12 +21,6 @@
 
         vm.setMotion = function () {
 
-            /*  */
-
-            if (navigator && navigator.splashscreen) {
-                navigator.splashscreen.hide();
-            };
-
             // Set Motion
             //$timeout(function () {
             //    ionicMaterialMotion.slideUp({
