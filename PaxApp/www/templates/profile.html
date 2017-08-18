@@ -39,7 +39,7 @@
                 <i class="icon ion-android-bulb"></i> Poche du mois
             </a>
         </div>
-        <h4 class="content padding double-padding-x">Nos derniers conseils</h4>
+        <h4 class="content padding double-padding-x">Nos derniers conseils <span ng-if="!vm.heartBooks || (vm.heartBooks && vm.heartBooks.length==0)">&nbsp;(Loading...)</span></h4>
         <div class="list animate-blinds">
             <!--<div class="list">-->
             <a ng-repeat="hBook in vm.heartBooks"
