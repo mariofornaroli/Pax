@@ -224,22 +224,22 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
                     templateUrl: 'templates/book-details.html',
                     //controller: 'BookDetailsCtrl'
                 }
-                , 'fabContent': {
-                    template: '<button id="fab-book-details" data-to-href="test" class="button button-fab button-fab-bottom-right expanded button-energized-900 fade" ng-click="gePaxLink()"><i class="icon ion-forward"></i></button>',
-                    controller: function ($timeout, $scope, Books, $window) {
-                        $timeout(function () {
-                            document.getElementById('fab-book-details').classList.toggle('fade');
-                        }, 900);
-                        $scope.gePaxLink = function () {
-                            dataToHref = Books.currentBook.completeHref;
-                            $window.open(dataToHref);
-                            //console.log(Books.currentBook.completeHref);
-                            //var dataToHref = $('#fab-book-details').attr("title");
-                            //alert(dataToHref);
-                            //$window.open(dataToHref);
-                        };
-                    }
-                }
+                //, 'fabContent': {
+                //    template: '<button id="fab-book-details" data-to-href="test" class="button button-fab button-fab-bottom-right expanded button-energized-900 fade" ng-click="gePaxLink()"><i class="icon ion-forward"></i></button>',
+                //    controller: function ($timeout, $scope, Books, $window) {
+                //        $timeout(function () {
+                //            document.getElementById('fab-book-details').classList.toggle('fade');
+                //        }, 900);
+                //        $scope.gePaxLink = function () {
+                //            dataToHref = Books.currentBook.completeHref;
+                //            $window.open(dataToHref);
+                //            //console.log(Books.currentBook.completeHref);
+                //            //var dataToHref = $('#fab-book-details').attr("title");
+                //            //alert(dataToHref);
+                //            //$window.open(dataToHref);
+                //        };
+                //    }
+                //}
             }
         })
 

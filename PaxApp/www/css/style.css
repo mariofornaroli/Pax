@@ -46,13 +46,28 @@
 
 p.content-author {
     font-style: italic;
-    text-align: left;
+    text-align: right;
 }
 
 div.book-details-description {
     margin-top: 8px;
 }
 
+div.add-to-shop {
+    text-align: center;
+}
+
+div.add-to-shop p{
+    font-size: 13px;
+}
+
+p.mb-10 {
+    margin-bottom: 10px;
+}
+
+p.mb-20 {
+    margin-bottom: 20px;
+}
 
 /* General
 ==================================*/
@@ -160,7 +175,7 @@ p {
 /* Menu */
 
 .menu .bar.bar-header.expanded {
-    background-image: url('../img/material-graphite.jpg');
+    /*background-image: url('../img/material-graphite.jpg');*/
     background-size: 120%;
     background-position: 0%;
     transition: all .5s ease-in-out;

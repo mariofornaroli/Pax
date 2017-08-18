@@ -982,20 +982,24 @@ namespace PaxComputation
                  .GetAttributeValue(bookNodeDocument, "href", "//div[contains(@class, 'bloc_metaproduct_light')]//h2[@class='livre_titre']//a");
                 retBook.Href = PAX_WEBSITE + retBook.Href;
                 retBook.CompleteHref = retBook.Href;
-
-                /* Short Description */
-                var desriptionNodes = bookNodeDocument.DocumentNode.SelectNodes("//div[contains(@class, 'blocMotLib')]//p");
-                if (desriptionNodes != null && desriptionNodes.Count > 0)
-                {
-                    var shortDesriptionNode = desriptionNodes[0];
-                    if (shortDesriptionNode != null)
-                    {
-                        retBook.ShortDescription = shortDesriptionNode.InnerText;
-                    }
-                }
+                
                 /* Fill Autheur */
                 retBook.Author = AgilityTool
                  .GetInnerText(bookNodeDocument, "//div[contains(@class, 'bloc_metaproduct_light')]//h2[@class='livre_auteur']//a");
+
+                /* Short Description */
+
+                /* Set short description equals to author */
+                retBook.ShortDescription = retBook.Author;
+                //var desriptionNodes = bookNodeDocument.DocumentNode.SelectNodes("//div[contains(@class, 'blocMotLib')]//p");
+                //if (desriptionNodes != null && desriptionNodes.Count > 0)
+                //{
+                //    var shortDesriptionNode = desriptionNodes[0];
+                //    if (shortDesriptionNode != null)
+                //    {
+                //        retBook.ShortDescription = shortDesriptionNode.InnerText;
+                //    }
+                //}
 
                 /* Fill Autheur href */
                 retBook.AuthorHref = AgilityTool

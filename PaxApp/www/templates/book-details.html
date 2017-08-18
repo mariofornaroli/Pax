@@ -1,17 +1,17 @@
 <ion-view class="book-details-page" view-title="{{vm.getPageTitle()}}" ng-controller="BookDetailsCtrl as vm">
     <ion-content>
-        <div class="content">
+        <div class="content" ng-if="vm.singleBooksDetailLoaded">
             <div class="hero h222">
                 <div class="content book-det-img-content">
-                        <div class="img-item">
-                            <img class="book-det-img" ng-src="{{vm.currentBookDetail.imgSrc}}" />
-                        </div>
-                        <div class="img-item">
-                            <p class="text-muted" ng-bind-html="vm.currentBookDetail.editor"></p>
-                            <p class="text-muted" ng-bind-html="vm.currentBookDetail.type"></p>
-                            <p class="text-muted" ng-bind-html="vm.currentBookDetail.publishedDate"></p>
-                            <p class="text-muted" ng-bind-html="vm.currentBookDetail.traductionInfo"></p>
-                        </div>
+                    <div class="img-item">
+                        <img class="book-det-img" ng-src="{{vm.currentBookDetail.imgSrc}}" />
+                    </div>
+                    <div class="img-item">
+                        <p class="text-muted" ng-bind-html="vm.currentBookDetail.editor"></p>
+                        <p class="text-muted" ng-bind-html="vm.currentBookDetail.type"></p>
+                        <p class="text-muted" ng-bind-html="vm.currentBookDetail.publishedDate"></p>
+                        <p class="text-muted" ng-bind-html="vm.currentBookDetail.traductionInfo"></p>
+                    </div>
                 </div>
             </div>
             <div class="mid-bar dark-bg z1 padding">
@@ -19,28 +19,38 @@
                 <p ng-bind-html="vm.currentBookDetail.author"></p>
             </div>
             <div class="content double-padding">
-                <div class="book-details-description">
-                    <p class="text-muted" ng-bind-html="vm.currentBookDetail.description"></p>
-                </div>
                 <div ng-repeat="addInfo in vm.currentBookDetail.additionalDescriptionItems">
                     <h4 class="positive">{{addInfo.title}}</h4>
-                    <p class="text-muted" ng-bind-html="addInfo.content"></p>
-                    <p class="text-muted content-author" ng-if="addInfo.contentAuthor"
-                        ng-bind-html="addInfo.contentAuthor"></p>
+                    <p class="text-muted" ng-bind-html="addInfo.content" ng-class="{'mb-10': addInfo.contentAuthor}"></p>
+                    <p class="text-muted content-author mb-20" ng-if="addInfo.contentAuthor"
+                       ng-bind-html="addInfo.contentAuthor"></p>
                     <!--<p class="text-muted"></p>
                         {{addInfo.content}}
                     </p>-->
                 </div>
+
+                <div class="book-details-description">
+                    <h4 class="positive">Le mot de l'&eacute;diteur</h4>
+                    <p class="text-muted" ng-bind-html="vm.currentBookDetail.description"></p>
+                </div>
+
                 <div ng-repeat="addInfo in vm.currentBookDetail.globalInfoDescriptionItems">
                     <h4 class="positive">{{addInfo.title}}</h4>
                     <p class="text-muted" ng-bind-html="addInfo.content"></p>
                     <p class="text-muted content-author" ng-if="addInfo.contentAuthor"
-                        ng-bind-html="addInfo.contentAuthor"></p>
+                       ng-bind-html="addInfo.contentAuthor"></p>
                     <!--ContentAuthor-->
                     <!--<p class="text-muted">
                         {{addInfo.content}}
                     </p>-->
                 </div>
+
+                <div class="add-to-shop">
+                    <button class="button button-positive search-btn ink">
+                        <i class="icon ion-android-cart"></i> &nbsp;Ajouter au panier
+                    </button>
+                </div>
+
             </div>
         </div>
     </ion-content>
